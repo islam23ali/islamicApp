@@ -1,0 +1,35 @@
+import 'package:flutter/material.dart';
+class AppColors {
+  static const Color gray = Color(0xff777777);
+  static const Color gray2 = Color(0xffF2F2F2);
+  static const Color darkGray = Color(0xff777777);
+  static const Color ofWhite = Color(0xffF6F6F6);
+  static const Color grayLight = Color(0xffEEEEEE);
+  static const Color lightGray = Color(0xffE4E6E8);
+  static const Color primaryColor = Color(0xff2295F2);
+  static const Color pointCared = Color(0xffC3C3C3);
+  static  const Color inactiveColor = Color(0xffB9E5B3);
+  static  const Color borderColor = Color(0xffF9DCBF);
+  static const Color secondColor = Color(0xff0E7967);
+  static const Color backgroundColor = Color(0xffFEF4EB);
+  static const Color orderDetailsCaredColor = Color(0xffF4FBF3);
+  static const Color grayTextField = Color(0xffEEEEEE);
+  static const Color main10 = Color(0xffEEF2F8);
+  static const Color main05 = Color(0xffF4FAFA);
+  static const Color main20 = Color(0xffD4EAEC);
+  static const Color black = Color(0xff1F1F1F);
+  static const Color green = Color(0xff1D9502);
+  static const Color semeBlack = Color(0xff2F2D2E);
+  static const Color white = Color(0xffFFFFFF);
+  static const Color whiteCard = Color(0xffF9F9F9);
+  static const Color second = Color(0xffFFD200);
+  static const Color errorColor =  Color(0xffc52828);
+  static const Color blue=  Color(0xff018AFE);
+  static const Color second30=  Color(0x4dB9E5B3);
+  static const Color hintColor=  Color(0xffAAAAAA);
+  static Color detailsCardColor=  Color(0xffFFEEEC);
+  static Color textColor=  Color(0xff666B88);
+  static Color text1Color=  Color(0xff231F20);
+  static Color backColor=  Color(0xffFEF4EB);
+  static Color containargrayColor=  Color(0xffF8F8F8);
+}
