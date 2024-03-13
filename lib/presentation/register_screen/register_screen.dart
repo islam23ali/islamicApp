@@ -29,7 +29,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-               const TopAppBar(),
+               const TopAppBar(logo: Assets.praying, title: 'انتبه! لم تصلي الفجر بعد',
+                 label: 'الصلاة القادمة: الظهر 3 ساعات و 4 دقائق',
+                 date: 'الأربعاء 25 شعبان 1445',),
                 Container(
                   padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 16.h),
                   height: 90.h,
@@ -88,7 +90,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
           Expanded(
             child: AnimationLimiter(
               child:ListView.builder(
-                  padding: EdgeInsets.symmetric(horizontal: 12.w),
+                  padding: EdgeInsets.symmetric(horizontal: 12.w,vertical: 16.h),
                   itemCount: 10,
                   shrinkWrap: true,
                   itemBuilder: (context,index){

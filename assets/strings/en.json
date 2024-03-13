@@ -7,7 +7,9 @@
   "register": "Register",
   "myHabits": "My habits",
   "theReports": "The Reports",
-  "tools": "Tools"
+  "tools": "Tools",
+  "yes": "yes",
+  "no": "no"
 
 
 }

@@ -14,6 +14,8 @@ abstract class  LocaleKeys {
   static const myHabits = 'myHabits';
   static const theReports = 'theReports';
   static const tools = 'tools';
+  static const yes = 'yes';
+  static const no = 'no';
 
 ///componantes-----------
   static const camera = '';  static const selectPaymentType = '';

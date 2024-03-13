@@ -8,6 +8,9 @@ class Assets {
   static const String selectedRegister= 'assets/images/svg/selectedRegister.svg';
   static const String unselectedRegister= 'assets/images/svg/unselectedRegister.svg';
   static const String praying= 'assets/images/png/praying.png';
+  static const String habitsLogo= 'assets/images/png/habitsLogo.png';
+  static const String yes= 'assets/images/png/yes.png';
+  static const String no= 'assets/images/png/no.png';
   static const String expandLess= 'assets/images/svg/expandLess.svg';
   static const String expandMore= 'assets/images/svg/expandMore.svg';
   static const String myHabitsUnSelect= 'assets/images/svg/MyHabitsUnSelect.svg';
