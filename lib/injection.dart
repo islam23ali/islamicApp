@@ -4,6 +4,8 @@ import 'package:islamic_app/data/repository/deliveryRepo.dart';
 import 'package:islamic_app/data/repository/store_keeper_repo.dart';
 import 'package:islamic_app/data/repository/supevisorRepo.dart';
 import 'package:islamic_app/presentation/auth/auth_view_model.dart';
+import 'package:islamic_app/presentation/tools_screen/pages/quraan/my_provider_quraan.dart';
+import 'package:islamic_app/presentation/tools_screen/tools_view_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'core/network_info.dart';
@@ -30,12 +32,8 @@ Future<void> init() async {
 
   /// Providers
   getIt.registerLazySingleton(() => AuthViewModel(saveUserData: getIt(), authRepo: getIt()));
-  // getIt.registerLazySingleton(() => StoreKeeperViewModel(saveUserData: getIt(), storeKeeperRepo: getIt()));
-  // getIt.registerLazySingleton(() => SiteSupervisorViewModel(saveUserData: getIt(), siteSupervisorRepo: getIt()));
-  // getIt.registerLazySingleton(() => DeliveryViewModel(saveUserData: getIt(), deliveryRepo: getIt()));
-  // getIt.registerLazySingleton(() => SuperVisorViewModel(saveUserData: getIt(), superVisorRepo: getIt()));
-  // getIt.registerLazySingleton(() => DirectorViewModel(saveUserData: getIt(), directorRepo: getIt()));
-  // getIt.registerLazySingleton(() => QualitySpecialistViewModel(saveUserData: getIt(), qualitySpecialistRepo: getIt()));
+  getIt.registerLazySingleton(() => ToolsViewModel(saveUserData: getIt(), storeKeeperRepo: getIt()));
+  getIt.registerLazySingleton(() => MyProviderQuraan());
 
   getIt.registerLazySingleton(() => ProductProvider());
 

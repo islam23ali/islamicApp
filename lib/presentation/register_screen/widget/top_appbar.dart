@@ -40,25 +40,28 @@ class _TopAppBarState extends State<TopAppBar> {
         ),
         Container(
           padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 16.h),
-          height: 80.h,
+          height: 95.h,
           child: Row(children: [
             Image.asset(widget.logo??'',width: 80.w,height:80.h),
             SizedBox(width: 10.w,),
-            Column(crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  widget.title??'',
-                  style: TextStyles()
-                      .getTitleStyle(fontSize: 14.sp)
-                      .customColor(AppColors.white),
-                ),SizedBox(height: 5.w,),
-                Text(
-                  widget.label??'',
-                  style: TextStyles()
-                      .getRegularStyle(fontSize: 14.sp)
-                      .customColor(AppColors.white),
-                ),
-              ],),
+            SizedBox(width: MediaQuery.of(context).size.width-120,
+              child: Column(crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    widget.title??'',
+                    style: TextStyles()
+                        .getTitleStyle(fontSize: 14.sp)
+                        .customColor(AppColors.white),
+                  ),SizedBox(height: 5.w,),
+                  Text(
+                    widget.label??'',
+                    style: TextStyles()
+                        .getRegularStyle(fontSize: 14.sp)
+                        .customColor(AppColors.white),
+                  ),
+                ],),
+            ),
           ],),),
       ],);
   }

@@ -1,6 +1,8 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:islamic_app/presentation/auth/auth_view_model.dart';
+import 'package:islamic_app/presentation/tools_screen/pages/quraan/my_provider_quraan.dart';
+import 'package:islamic_app/presentation/tools_screen/tools_view_model.dart';
 import 'package:provider/provider.dart';
 import 'data/datasource/locale/locale_data_source.dart';
 import 'injection.dart';
@@ -16,7 +18,8 @@ class GenerateMultiProvider extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_) => getIt<AuthViewModel>()),
-        // ChangeNotifierProvider(create: (_) => getIt<StoreKeeperViewModel>()),
+        ChangeNotifierProvider(create: (_) => getIt<ToolsViewModel>()),
+        ChangeNotifierProvider(create: (_) => getIt<MyProviderQuraan>()),
         // ChangeNotifierProvider(create: (_) => getIt<QualitySpecialistViewModel>()),
         // ChangeNotifierProvider(create: (_) => getIt<SiteSupervisorViewModel>()),
         // ChangeNotifierProvider(create: (_) => getIt<DeliveryViewModel>()),

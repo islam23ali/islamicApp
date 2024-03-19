@@ -19,6 +19,8 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   final Widget? leading;
   final double? height;
   final Color? color;
+  final Color? topColor;
+  final Brightness? topColorIcon;
 
   final List<Widget>? actions;
   final Widget? logo;
@@ -49,7 +51,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
         this.color,
         this.actions,
         this.onBackPress,
-        this.iconBack, this.titleSize}) : super(key: key);
+        this.iconBack, this.titleSize, this.topColor, this.topColorIcon}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -58,7 +60,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
       child: AppBar(
         shadowColor: Colors.transparent,
         surfaceTintColor: Colors.transparent,
-        systemOverlayStyle: SystemUiOverlayStyle(statusBarColor: Colors.white,statusBarIconBrightness: Brightness.dark),
+        systemOverlayStyle: SystemUiOverlayStyle(statusBarColor: topColor??Colors.white,statusBarIconBrightness:topColorIcon?? Brightness.dark),
         backgroundColor: Colors.transparent,//Theme.of(context).backgroundColor,
         title: titleWidget??(title != null
             ? Text(title ?? '', style: TextStyles().getTitleStyle(fontSize:titleSize?? 18.sp).boldStyle().customColor(titleColor?? AppColors.black))

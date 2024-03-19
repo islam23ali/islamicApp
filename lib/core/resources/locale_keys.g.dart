@@ -16,6 +16,22 @@ abstract class  LocaleKeys {
   static const tools = 'tools';
   static const yes = 'yes';
   static const no = 'no';
+  static const to = 'to';
+  static const from = 'from';
+  static const showReport = 'showReport';
+  static const hideReports = 'hideReports';
+  static const remembrances = 'remembrances';
+  static const supplications = 'supplications';
+  static const quraan = 'quraan';
+  static const rosary = 'rosary';
+  static const qibla = 'qibla';
+  static const imsakiya = 'imsakiya';
+  static const notifications = 'notifications';
+  static const add = 'add';
+  static const addNewRosary = 'addNewRosary';
+  static const nameRosary = 'nameRosary';
+  static const addNameRosary = 'addNameRosary';
+  static const surat = 'surat';
 
 ///componantes-----------
   static const camera = '';  static const selectPaymentType = '';

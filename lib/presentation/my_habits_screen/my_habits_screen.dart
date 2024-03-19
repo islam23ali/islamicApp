@@ -51,37 +51,40 @@ class _MyHabitsScreenState extends State<MyHabitsScreen> {
                           duration:const Duration(milliseconds: 1000),
                           curve: Curves.fastLinearToSlowEaseIn,
                           child: FadeInAnimation(child:
-                          Row(mainAxisAlignment: MainAxisAlignment.start,
-                            children: [
-                              Row(
-                                children: [
-                                  AppNetworkImage(imageUrl:Assets.selectedRegister,width: 32.w,height: 32.h,borderRadius: 4.r,),
-                                  SizedBox(width: 5.w,),
-                                  Text('اذكار الصباح',
-                                    style: TextStyles()
-                                        .getTitleStyle(fontSize: 14.sp)
-                                        .customColor(AppColors.black),
-                                  )
-                                ],
-                              ),
-                              SizedBox(width: 50.w,),
-                              InkWell(
-                                  onTap: (){
-                                    setState(() {
-                                      isClicked=1;
-                                    });
-                                  },
-                                  child: Icon((isClicked==1)?Icons.radio_button_checked_rounded:Icons.radio_button_off_rounded,size: 30.r,color: (isClicked==1)?AppColors.second:AppColors.gray,)
-                              ),
-                              InkWell(
-                                  onTap: (){
-                                    setState(() {
-                                      isClicked=2;
-                                    });
-                                  },
-                                  child: Icon((isClicked==2)?Icons.radio_button_checked_rounded:Icons.radio_button_off_rounded,size: 30.r,color: (isClicked==2)?AppColors.second:AppColors.gray,)
-                              ),
-                            ],)
+                          Container(
+                            margin: EdgeInsets.symmetric(vertical: 10.h),
+                            child: Row(mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                Row(
+                                  children: [
+                                    AppNetworkImage(imageUrl:Assets.selectedRegister,width: 32.w,height: 32.h,borderRadius: 4.r,),
+                                    SizedBox(width: 5.w,),
+                                    Text('اذكار الصباح',
+                                      style: TextStyles()
+                                          .getTitleStyle(fontSize: 14.sp)
+                                          .customColor(AppColors.black),
+                                    )
+                                  ],
+                                ),
+                                SizedBox(width: 50.w,),
+                                InkWell(
+                                    onTap: (){
+                                      setState(() {
+                                        isClicked=1;
+                                      });
+                                    },
+                                    child: Icon((isClicked==1)?Icons.radio_button_checked_rounded:Icons.radio_button_off_rounded,size: 30.r,color: (isClicked==1)?AppColors.second:AppColors.gray,)
+                                ),SizedBox(width: 35.w,),
+                                InkWell(
+                                    onTap: (){
+                                      setState(() {
+                                        isClicked=2;
+                                      });
+                                    },
+                                    child: Icon((isClicked==2)?Icons.radio_button_checked_rounded:Icons.radio_button_off_rounded,size: 30.r,color: (isClicked==2)?AppColors.second:AppColors.gray,)
+                                ),
+                              ],),
+                          )
                           )));
                 }),
           ),

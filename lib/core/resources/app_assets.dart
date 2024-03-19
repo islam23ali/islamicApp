@@ -11,6 +11,14 @@ class Assets {
   static const String habitsLogo= 'assets/images/png/habitsLogo.png';
   static const String yes= 'assets/images/png/yes.png';
   static const String no= 'assets/images/png/no.png';
+  static const String reportsLogo= 'assets/images/png/reportsLogo.png';
+  static const String toolsLogo= 'assets/images/png/toolsLogo.png';
+  static const String remembrances= 'assets/images/png/remembrances.png';
+  static const String quraan= 'assets/images/png/quraan.png';
+  static const String supplications= 'assets/images/png/supplications.png';
+  static const String qibla= 'assets/images/png/qibla.png';
+  static const String imsakiya= 'assets/images/png/imsakiya.png';
+  static const String notifications= 'assets/images/png/notifications.png';
   static const String expandLess= 'assets/images/svg/expandLess.svg';
   static const String expandMore= 'assets/images/svg/expandMore.svg';
   static const String myHabitsUnSelect= 'assets/images/svg/MyHabitsUnSelect.svg';
@@ -19,6 +27,8 @@ class Assets {
   static const String unSelectReport= 'assets/images/svg/unSelectReport.svg';
   static const String unSelectTools= 'assets/images/svg/unSelectTools.svg';
   static const String selectTools= 'assets/images/svg/selectTools.svg';
+  static const String rosary= 'assets/images/svg/rosary.svg';
+  static const String rosaryButton= 'assets/images/svg/rosaryButton.svg';
 
 
   /// not set

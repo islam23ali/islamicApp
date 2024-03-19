@@ -10,6 +10,22 @@
   "theReports": "التقارير",
   "tools": "الأدوات",
   "yes": "نعم",
-  "no": "لا"
+  "no": "لا",
+  "to": "الي",
+  "from": "من",
+  "showReport": "اظهر التقرير",
+  "hideReports": "إخفاء التقارير",
+  "remembrances": "الأذكار",
+  "supplications": "الأدعية",
+  "quraan": "المصحف",
+  "rosary": "المسبحة",
+  "qibla": "القبلة",
+  "imsakiya": "الإمساكية",
+  "notifications": "الإشعارات",
+  "add": "اضافة",
+  "addNewRosary": "إضافة تسبيحة جديدة",
+  "nameRosary": "اسم التسبيحة",
+  "addNameRosary": "اضف اسم للتسبيحة اولا",
+  "surat": "سورة"
 
 }

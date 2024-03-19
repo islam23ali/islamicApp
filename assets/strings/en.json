@@ -9,7 +9,23 @@
   "theReports": "The Reports",
   "tools": "Tools",
   "yes": "yes",
-  "no": "no"
+  "no": "no",
+  "to": "to",
+  "from": "from",
+  "showReport": "Show report",
+  "hideReports": "Hide reports",
+  "remembrances": "Remembrances",
+  "supplications": "Supplications",
+  "quraan": "The Qur’an",
+  "rosary": "Rosary",
+  "qibla": "Qibla",
+  "imsakiya": "Imsakiya",
+  "notifications": "Notifications",
+  "add": "add",
+  "addNewRosary": "Add a new rosary",
+  "nameRosary": "The name of the rosary",
+  "addNameRosary": "Add a name to the rosary first",
+  "surat": "Surat"
 
 
 }

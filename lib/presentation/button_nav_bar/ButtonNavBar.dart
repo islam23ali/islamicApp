@@ -40,6 +40,13 @@ class _BottomNavigationBarState extends State<BottomNavigationBarApp> {
   @override
   Widget build(BuildContext context) {
     return CustomScaffold(
+      appBar: CustomAppBar(
+        height: 0.h,
+        topColor: AppColors.primaryColor,
+        topColorIcon: Brightness.light,
+        isBackButtonExist: false,
+        color: Colors.transparent,
+      ),
       body: Center(
         child: _widgetOptions.elementAt(_selectedIndex),
       ),

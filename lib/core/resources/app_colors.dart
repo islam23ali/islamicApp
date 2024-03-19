@@ -29,7 +29,7 @@ class AppColors {
   static const Color hintColor=  Color(0xffAAAAAA);
   static Color detailsCardColor=  Color(0xffFFEEEC);
   static Color textColor=  Color(0xff666B88);
-  static Color text1Color=  Color(0xff231F20);
+  static Color text1Color=  Color(0xff49464D);
   static Color backColor=  Color(0xffFEF4EB);
   static Color containargrayColor=  Color(0xffF8F8F8);
 }
