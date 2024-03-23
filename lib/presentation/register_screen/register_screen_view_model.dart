@@ -8,6 +8,7 @@ import '../../../core/utils/showToast.dart';
 import '../../../data/model/response/user_model.dart';
 import '../../core/api_checker.dart';
 import '../../data/model/response/assumption_model.dart';
+import '../../data/model/response/next_prayer_model.dart';
 import '../../data/model/response/prayers_model.dart';
 import '../../data/repository/home_Repo.dart';
 
@@ -27,6 +28,7 @@ class RegisterScreenViewModel with ChangeNotifier {
   String? isClickedKey;
 
   PrayersModel? _prayersModel;
+  NextPrayerModel? _nextPrayerModel;
   AssumptionsModel? _assumptionsModel;
 
   // final TextEditingController userNameController = TextEditingController();
@@ -38,9 +40,33 @@ class RegisterScreenViewModel with ChangeNotifier {
 
   PrayersModel? get prayersModel => _prayersModel;
   AssumptionsModel? get assumptionsModel => _assumptionsModel;
+  NextPrayerModel? get nextPrayerModel => _nextPrayerModel;
 
   ///calling APIs Functions
 
+  Future<ApiResponse> nextPrayAPI (BuildContext context) async {
+    _isLoading = true;
+    // notifyListeners();
+    ApiResponse responseModel = await homeRepo.nextPrayRepo();
+    if (responseModel.response != null &&
+        responseModel.response?.statusCode == 200) {
+      _isLoading = false;
+      _nextPrayerModel = NextPrayerModel.fromJson(responseModel.response?.data);
+
+      if (_nextPrayerModel?.status == 200) {
+        // await saveUserData.clearSharedData().then((value) => pushAndRemoveUntil(const Splash()));
+
+      } else {
+        ToastUtils.showToast(_nextPrayerModel?.message.toString() ?? "");
+      }
+    } else {
+      _isLoading = false;
+      ApiChecker.checkApi(context, responseModel);
+    }
+    _isLoading = false;
+    notifyListeners();
+    return responseModel;
+  }
   Future<ApiResponse> prayersAPI (BuildContext context) async {
     _isLoading = true;
     // notifyListeners();

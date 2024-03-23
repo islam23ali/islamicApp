@@ -52,4 +52,13 @@ class ToolsRepo {
       return ApiResponse.withError(ApiErrorHandler.getMessage(e));
     }
   }
+
+  Future<ApiResponse> imsakiaRepo() async {
+    try {
+      Response response = await dioClient.get(AppURL.kImsakiaURl);
+      return ApiResponse.withSuccess(response);
+    } catch (e) {
+      return ApiResponse.withError(ApiErrorHandler.getMessage(e));
+    }
+  }
 }

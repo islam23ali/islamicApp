@@ -24,14 +24,6 @@ class SaveUserData {
     }
   }
 
-  // Future<void> saveUserId(String userId) async {
-  //   try {
-  //     await sharedPreferences.setString(AppConstants.userId, userId);
-  //   } catch (e) {
-  //     throw e;
-  //   }
-  // }
-
   Future<void> saveLang(String lang) async {
     try {
       await sharedPreferences.setString(AppConstants.lang, lang);
@@ -47,13 +39,6 @@ class SaveUserData {
       throw e;
     }
   }
-  // Future<void> saveBranchId(String branchId) async {
-  //   try {
-  //     await sharedPreferences.setString(AppConstants.branchId, branchId);
-  //   } catch (e) {
-  //     throw e;
-  //   }
-  // }
 
   Future<void> saveTitle(String title) async {
     try {
@@ -62,22 +47,13 @@ class SaveUserData {
       throw e;
     }
   }
-
-  // Future<void> saveUserName(String userName) async {
-  //   try {
-  //     await sharedPreferences.setString(AppConstants.userName, userName);
-  //   } catch (e) {
-  //     throw e;
-  //   }
-  // }
-  //
-  // Future<void> saveUserImage(String userImage) async {
-  //   try {
-  //     await sharedPreferences.setString(AppConstants.userImage, userImage);
-  //   } catch (e) {
-  //     throw e;
-  //   }
-  // }
+  Future<void> saveColor(String color) async {
+    try {
+      await sharedPreferences.setString(AppConstants.color, color);
+    } catch (e) {
+      throw e;
+    }
+  }
 
   Future<void> saveIsShowIntro(bool isShowIntro) async {
     try {
@@ -118,21 +94,21 @@ class SaveUserData {
   // String getUserName() {
   //   return sharedPreferences.getString(AppConstants.userName) ?? "";
   // }
-  //
-  // String getUserImage() {
-  //   return sharedPreferences.getString(AppConstants.userImage) ?? "";
-  // }
+
+  String getColor() {
+    return sharedPreferences.getString(AppConstants.color) ?? "";
+  }
   //
   // String getUserBanner() {
   //   return sharedPreferences.getString(AppConstants.userBanner) ?? "";
   // }
 /// check SharedData
-  bool isShowIntro() {
-    return sharedPreferences.containsKey(AppConstants.isShowIntro);
-  }
-  bool isSaveBranchId() {
-    return sharedPreferences.containsKey(AppConstants.branchId);
-  }
+//   bool isShowIntro() {
+//     return sharedPreferences.containsKey(AppConstants.isShowIntro);
+//   }
+//   bool isSaveBranchId() {
+//     return sharedPreferences.containsKey(AppConstants.branchId);
+//   }
 
   // bool isTitle() {
   //   return sharedPreferences.containsKey(AppConstants.title);

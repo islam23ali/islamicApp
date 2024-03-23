@@ -9,6 +9,7 @@ import 'package:islamic_app/presentation/component/component.dart';
 import 'package:islamic_app/presentation/component/svg_icon.dart';
 import 'package:islamic_app/presentation/register_screen/register_screen_view_model.dart';
 import 'package:islamic_app/presentation/register_screen/widget/top_appbar.dart';
+import 'package:jhijri/_src/_jHijri.dart';
 import 'package:provider/provider.dart';
 
 import '../../core/res/text_styles.dart';
@@ -28,6 +29,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
     super.initState();
     Provider.of<RegisterScreenViewModel>(context,listen: false).prayersAPI(context);
     Provider.of<RegisterScreenViewModel>(context,listen: false).getAllAssumptions(context);
+    Provider.of<RegisterScreenViewModel>(context,listen: false).nextPrayAPI(context);
   }
   @override
   Widget build(BuildContext context) {
@@ -35,6 +37,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
     return SafeArea(
       child:
         Consumer<RegisterScreenViewModel>(builder: (context, data, child) {
+          final jHijri = JHijri(fDate: data.nextPrayerModel?.data?.date).hijri;
       return load? AppLoader(): Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -42,9 +45,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-               const TopAppBar(logo: Assets.praying, title: 'انتبه! لم تصلي الفجر بعد',
-                 label: 'الصلاة القادمة: الظهر 3 ساعات و 4 دقائق',
-                 date: 'الأربعاء 25 شعبان 1445',),
+                TopAppBar(logo: Assets.praying, title: data.nextPrayerModel?.data?.title??'',
+                 label: data.nextPrayerModel?.data?.text??'',
+                 date:jHijri.toString() ??'',),
                 Container(
                   padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 16.h),
                   height: 90.h,

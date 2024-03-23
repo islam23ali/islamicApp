@@ -1,27 +1,20 @@
-import 'package:animated_bottom_navigation_bar/animated_bottom_navigation_bar.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:islamic_app/core/extensions/num_extensions.dart';
 import 'package:islamic_app/core/routing/route.dart';
-import 'package:islamic_app/presentation/component/component.dart';
 import 'package:islamic_app/presentation/tools_screen/pages/azan_screen/azan_screen.dart';
 import 'package:islamic_app/presentation/tools_screen/pages/hadiths_page/hadiths_page.dart';
-import 'package:islamic_app/presentation/tools_screen/pages/imsakiya_page.dart';
+import 'package:islamic_app/presentation/tools_screen/pages/imsakia_page/imsakiya_page.dart';
 import 'package:islamic_app/presentation/tools_screen/pages/notification_page/notification_pagr.dart';
-import 'package:islamic_app/presentation/tools_screen/pages/qibla_page/qiblaApp_page.dart';
-import 'package:islamic_app/presentation/tools_screen/pages/qibla_page/qibla_page.dart';
+import 'package:islamic_app/presentation/tools_screen/pages/qibla_page/qiblah_screen.dart';
 import 'package:islamic_app/presentation/tools_screen/pages/quraan/quraan_page.dart';
 import 'package:islamic_app/presentation/tools_screen/pages/remembrances_page/remembrances_page.dart';
 import 'package:islamic_app/presentation/tools_screen/pages/rosary_page/rosary_page.dart';
-import 'package:islamic_app/presentation/tools_screen/pages/supplications_page/page/supplications_details_page.dart';
 import 'package:islamic_app/presentation/tools_screen/pages/supplications_page/supplications_page.dart';
-
 import '../../core/res/text_styles.dart';
 import '../../core/resources/app_assets.dart';
 import '../../core/resources/app_colors.dart';
 import '../../core/resources/locale_keys.g.dart';
-import '../component/svg_icon.dart';
 import '../register_screen/widget/top_appbar.dart';
 
 class ToolsScreen extends StatefulWidget {
@@ -113,8 +106,7 @@ class _ToolsScreenState extends State<ToolsScreen> {
             ),
           ),
           InkWell(onTap: (){
-            // push(QiblahPage());
-            push(QiblahAppPage());
+            push(QiblahScreen());
           },
             child: Column(crossAxisAlignment: CrossAxisAlignment.center,
               children: [

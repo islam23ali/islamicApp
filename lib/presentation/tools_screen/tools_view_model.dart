@@ -1,5 +1,7 @@
 
 import 'package:flutter/material.dart';
+import 'package:islamic_app/core/utils/showToast.dart';
+import 'package:islamic_app/data/model/response/imsakia_model.dart';
 import 'package:islamic_app/data/repository/home_Repo.dart';
 import 'package:islamic_app/data/repository/tools_Repo.dart';
 import '../../../../data/repository/SaveUserData.dart';
@@ -24,6 +26,7 @@ class ToolsViewModel with ChangeNotifier {
   RemembranceModel? _remembranceModel;
   RemembranceDetailsModel? _remembranceDetailsModel;
   SupplicationsDetailsModel? _supplicationsDetailsModel;
+  ImsakiaModel? _imsakiaModel;
 
 
 
@@ -43,6 +46,7 @@ class ToolsViewModel with ChangeNotifier {
   RemembranceModel? get supplicationModel => _remembranceModel;
   RemembranceDetailsModel? get remembranceDetailsModel => _remembranceDetailsModel;
   SupplicationsDetailsModel? get supplicationsDetailsModel => _supplicationsDetailsModel;
+  ImsakiaModel? get imsakiaModel => _imsakiaModel;
 
 
 
@@ -131,6 +135,28 @@ class ToolsViewModel with ChangeNotifier {
       _isLoading = false;
       _supplicationsDetailsModel = SupplicationsDetailsModel.fromJson(responseModel.response?.data);
 
+
+    } else {
+      _isLoading = false;
+      ApiChecker.checkApi(context, responseModel);
+    }
+    _isLoading = false;
+    notifyListeners();
+    return responseModel;
+  }
+  Future<ApiResponse> getImsakiaAPI(BuildContext context) async {
+    _isLoading = true;
+    // notifyListeners();
+    ApiResponse responseModel = await toolsRepo.imsakiaRepo();
+    if (responseModel.response != null &&
+        responseModel.response?.statusCode == 200) {
+      _isLoading = false;
+      _imsakiaModel = ImsakiaModel.fromJson(responseModel.response?.data);
+      if(_imsakiaModel?.status==200){
+
+      }else{
+        ToastUtils.showToast(_imsakiaModel?.message.toString()??'');
+      }
 
     } else {
       _isLoading = false;

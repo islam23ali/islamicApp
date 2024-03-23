@@ -23,7 +23,7 @@ class MyApp extends StatelessWidget {
       supportedLocales: context.supportedLocales,
       locale: context.locale,
       // locale: supportedLocales[0],
-      title: 'Islamic App',
+      title: 'حاسبوا أنفسكم',
        theme: getAppTheme(),
 
      // theme: lightTheme,     ///ده سبب مشكله الريليز

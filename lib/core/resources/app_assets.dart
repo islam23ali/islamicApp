@@ -31,6 +31,8 @@ class Assets {
   static const String rosary= 'assets/images/svg/rosary.svg';
   static const String rosaryButton= 'assets/images/svg/rosaryButton.svg';
   static const String google= 'assets/images/svg/google.svg';
+  static const String needle= 'assets/images/svg/needle.svg';
+  static const String compass= 'assets/images/svg/compass.svg';
 
 
   /// not set

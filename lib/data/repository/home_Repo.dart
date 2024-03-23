@@ -18,6 +18,14 @@ class HomeRepo {
       return ApiResponse.withError(ApiErrorHandler.getMessage(e));
     }
   }
+  Future<ApiResponse> nextPrayRepo() async {
+    try {
+      Response response = await dioClient.get(AppURL.kNextPrayerURI);
+      return ApiResponse.withSuccess(response);
+    } catch (e) {
+      return ApiResponse.withError(ApiErrorHandler.getMessage(e));
+    }
+  }
   Future<ApiResponse> assumptionsRepo() async {
     try {
       Response response = await dioClient.get(AppURL.kAssumptionsURI);

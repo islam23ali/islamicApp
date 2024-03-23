@@ -6,7 +6,7 @@ class AppConstants {
   // sharePreference
   static const String userData = 'userData';
   static const String userId = 'userId';
-  static const String userImage = 'image';
+  static const String color = 'color';
   static const String isShowIntro = 'isShowIntro';
   static const String userName = 'name';
   static const String userTOKEN = 'userTOKEN';
