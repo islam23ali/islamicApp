@@ -1,15 +1,12 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:islamic_app/data/model/body/login_body.dart';
-import 'package:islamic_app/data/model/response/regions_model.dart';
 import '../../../../data/model/response/base/api_response.dart';
 import '../../../../data/repository/SaveUserData.dart';
 import '../../../../data/repository/auth_repo.dart';
-import '../../../core/routing/route.dart';
 import '../../../core/utils/showToast.dart';
 import '../../../data/model/response/user_model.dart';
 import '../../core/api_checker.dart';
-import '../../data/model/response/countries_model.dart';
 
 class AuthViewModel with ChangeNotifier {
   final AuthRepo authRepo;
@@ -25,8 +22,8 @@ class AuthViewModel with ChangeNotifier {
 
  late String _verificationId ;
   UserModel? _userModel;
-  RegionsModel? _regionsModel;
-  CountriesModel? _countriesModel;
+  // RegionsModel? _regionsModel;
+  // CountriesModel? _countriesModel;
 
   //login
   final TextEditingController userNameController = TextEditingController();
@@ -71,8 +68,8 @@ class AuthViewModel with ChangeNotifier {
   ///setters
 
   UserModel? get userModel => _userModel;
-  RegionsModel? get regionsModel => _regionsModel;
-  CountriesModel? get countriesModel => _countriesModel;
+  // RegionsModel? get regionsModel => _regionsModel;
+  // CountriesModel? get countriesModel => _countriesModel;
 
   set validationMsg(String msg) {
     _validationMSG = msg;

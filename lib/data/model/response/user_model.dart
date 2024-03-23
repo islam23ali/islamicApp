@@ -1,5 +1,4 @@
 
-import 'package:islamic_app/data/model/response/charity_model.dart';
 
 class UserModel {
   int? code;
@@ -119,23 +118,23 @@ class Store {
 class UserCharity {
   int? id;
   String? charityId;
-  CharityModel? charity;
+  // CharityModel? charity;
 
   UserCharity({
     this.id,
     this.charityId,
-    this.charity,
+    // this.charity,
   });
 
   factory UserCharity.fromJson(Map<String, dynamic> json) => UserCharity(
     id: json["id"],
     charityId: json["charity_id"],
-    charity: json["charity"] == null ? null : CharityModel.fromJson(json["charity"]),
+    // charity: json["charity"] == null ? null : CharityModel.fromJson(json["charity"]),
   );
 
   Map<String, dynamic> toJson() => {
     "id": id,
     "charity_id": charityId,
-    "charity": charity?.toJson(),
+    // "charity": charity?.toJson(),
   };
 }

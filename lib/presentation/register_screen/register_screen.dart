@@ -17,6 +17,8 @@ class RegisterScreen extends StatefulWidget {
 }
 
 class _RegisterScreenState extends State<RegisterScreen> {
+
+
   bool checkBoxValue=false;
   int? isClicked;
   @override

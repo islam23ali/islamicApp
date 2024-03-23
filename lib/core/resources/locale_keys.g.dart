@@ -34,10 +34,10 @@ abstract class  LocaleKeys {
   static const surat = 'surat';
 
 ///componantes-----------
-  static const camera = '';  static const selectPaymentType = '';
-
+  static const camera = '';
+  static const selectPaymentType = '';
   static const confirmAndEnd = '';
-   static const gallery = '';
+  static const gallery = '';
   static const String notification = "notification";
   static const noRouteFound  = 'noRouteFound';
   static const noResultFound  = 'noResultFound';

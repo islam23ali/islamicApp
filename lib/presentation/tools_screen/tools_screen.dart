@@ -5,6 +5,7 @@ import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:islamic_app/core/extensions/num_extensions.dart';
 import 'package:islamic_app/core/routing/route.dart';
 import 'package:islamic_app/presentation/component/component.dart';
+import 'package:islamic_app/presentation/tools_screen/pages/azan_screen/azan_screen.dart';
 import 'package:islamic_app/presentation/tools_screen/pages/imsakiya_page.dart';
 import 'package:islamic_app/presentation/tools_screen/pages/notification_page/notification_pagr.dart';
 import 'package:islamic_app/presentation/tools_screen/pages/qibla_page/qiblaApp_page.dart';
@@ -128,6 +129,17 @@ class _ToolsScreenState extends State<ToolsScreen> {
                 Image.asset(Assets.notifications,height: 70.h,width: 70.w,),
                 SizedBox(height: 10.h,),
                 Text(LocaleKeys.notifications.tr(),style: TextStyles().getDisplayMediumStyle(fontSize: 14.sp).customColor(AppColors.text1Color),)
+              ],
+            ),
+          ),
+          InkWell(onTap: (){
+            push(AzanPage());
+          },
+            child: Column(crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Image.asset(Assets.quraan,height: 70.h,width: 70.w,),
+                SizedBox(height: 10.h,),
+                Text(LocaleKeys.add.tr(),style: TextStyles().getDisplayMediumStyle(fontSize: 14.sp).customColor(AppColors.text1Color),)
               ],
             ),
           ),

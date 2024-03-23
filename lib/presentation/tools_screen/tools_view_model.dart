@@ -1,13 +1,12 @@
 
 import 'package:flutter/material.dart';
 import '../../../../data/repository/SaveUserData.dart';
-import '../../../data/repository/store_keeper_repo.dart';
 
 class ToolsViewModel with ChangeNotifier {
-  final StoreKeeperRepo storeKeeperRepo;
+  // final StoreKeeperRepo storeKeeperRepo;
   final SaveUserData saveUserData;
 
-  ToolsViewModel({required this.saveUserData, required this.storeKeeperRepo});
+  ToolsViewModel({required this.saveUserData,});
 
   ///variables
   bool _isLoading = false;

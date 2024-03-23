@@ -57,17 +57,18 @@ class suraDetails extends StatelessWidget {
               ],
             ),
             body: Container(
-              padding: EdgeInsets.all(12),
-              margin: EdgeInsets.all(16),
+              padding: EdgeInsets.all(12.r),
+              margin: EdgeInsets.all(16.r),
               decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(25),
-                  color: Color(0XFFFAEBD7).withOpacity(0.7),
+                borderRadius: BorderRadius.circular(18.r),
+                  color: Color(0XFFFAEBD7).withOpacity(0.2),
                   // border: Border.all(color: Color(0XFFB7935F))
               ),
               child: Column(
                 children: [
                   Container(width: MediaQuery.of(context).size.width,
                     padding: EdgeInsets.symmetric(horizontal: 10.w,vertical: 5.h),
+                    margin: EdgeInsets.only(bottom: 15.h),
                     decoration: BoxDecoration(borderRadius: BorderRadius.circular(8.r),color: Colors.blue.shade100),
                     child: Center(
                       child: Text(" ${LocaleKeys.surat.tr()} ${suraModel.name}",
@@ -98,7 +99,7 @@ class suraDetails extends StatelessWidget {
                           Text("${provider.verses[index]} (${index})",
                           // textDirection: TextDirection.rtl,
                             style: TextStyles()
-                                .getDisplayMediumStyle(fontSize: 22.sp)
+                                .getDisplayMediumStyle(fontSize: 18.sp)
                                 .customColor(AppColors.black),
                           ),
                         );
