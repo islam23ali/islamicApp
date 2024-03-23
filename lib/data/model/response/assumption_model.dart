@@ -1,17 +1,17 @@
 
-class PrayersModel {
-  List<OnePrayes>? data;
+class AssumptionsModel {
+  List<Datum>? data;
   List<String>? message;
   int? status;
 
-  PrayersModel({
+  AssumptionsModel({
     this.data,
     this.message,
     this.status,
   });
 
-  factory PrayersModel.fromJson(Map<String, dynamic> json) => PrayersModel(
-      data: json["data"] == null ? [] : List<OnePrayes>.from(json["data"]!.map((x) => OnePrayes.fromJson(x))),
+  factory AssumptionsModel.fromJson(Map<String, dynamic> json) => AssumptionsModel(
+      data: json["data"] == null ? [] : List<Datum>.from(json["data"]!.map((x) => Datum.fromJson(x))),
   message: json["message"] == null ? [] : List<String>.from(json["message"]!.map((x) => x)),
   status: json["status"],
   );
@@ -23,26 +23,26 @@ class PrayersModel {
 };
 }
 
-class OnePrayes {
+class Datum {
   int? id;
   String? title;
   String? slug;
-  String? time;
+  String? type;
   String? image;
 
-  OnePrayes({
+  Datum({
     this.id,
     this.title,
     this.slug,
-    this.time,
+    this.type,
     this.image,
   });
 
-  factory OnePrayes.fromJson(Map<String, dynamic> json) => OnePrayes(
+  factory Datum.fromJson(Map<String, dynamic> json) => Datum(
     id: json["id"],
     title: json["title"],
     slug: json["slug"],
-    time: json["time"],
+    type: json["type"],
     image: json["image"],
   );
 
@@ -50,7 +50,7 @@ class OnePrayes {
     "id": id,
     "title": title,
     "slug": slug,
-    "time": time,
+    "type": type,
     "image": image,
   };
 }

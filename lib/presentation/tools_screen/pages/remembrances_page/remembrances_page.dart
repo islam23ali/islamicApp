@@ -4,8 +4,13 @@ import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:islamic_app/core/extensions/num_extensions.dart';
 import 'package:islamic_app/core/resources/app_colors.dart';
 import 'package:islamic_app/core/resources/locale_keys.g.dart';
+import 'package:islamic_app/core/routing/route.dart';
 import 'package:islamic_app/presentation/component/component.dart';
+import 'package:islamic_app/presentation/tools_screen/pages/remembrances_page/page/remembrances_details_page.dart';
+import 'package:islamic_app/presentation/tools_screen/tools_view_model.dart';
+import 'package:provider/provider.dart';
 
+import '../../../../core/app_loader.dart';
 import '../../../../core/res/text_styles.dart';
 import '../../../../core/resources/app_assets.dart';
 import '../../../component/svg_icon.dart';
@@ -18,6 +23,11 @@ class RemembrancesPage extends StatefulWidget {
 }
 
 class _RemembrancesPageState extends State<RemembrancesPage> {
+  @override
+  void initState() {
+    super.initState();
+    Provider.of<ToolsViewModel>(context,listen: false).getAllRemembranceAPI(context);
+  }
   @override
   Widget build(BuildContext context) {
     return CustomScaffold(appBar: CustomAppBar(
@@ -33,11 +43,12 @@ class _RemembrancesPageState extends State<RemembrancesPage> {
         child: Icon(Icons.keyboard_arrow_left_rounded,color: AppColors.white,size: 26.r,),
     ),
       )],),
-      body:Padding(
+      body: Consumer<ToolsViewModel>(builder: (context, data, child) {
+    return data.isLoading?AppLoader(): Padding(
         padding: EdgeInsets.all(12.r),
-        child: AnimationLimiter(
+        child: (data.remembranceModel?.data?.length==0)?NoDataScreen(): AnimationLimiter(
           child:ListView.builder(
-              itemCount: 10,
+              itemCount: data.remembranceModel?.data?.length,
               shrinkWrap: true,
               itemBuilder: (context,index){
                 return AnimationConfiguration.staggeredGrid(
@@ -48,38 +59,34 @@ class _RemembrancesPageState extends State<RemembrancesPage> {
                         duration:const Duration(milliseconds: 1000),
                         curve: Curves.fastLinearToSlowEaseIn,
                         child: FadeInAnimation(child:
-                        Stack(
-                          children: [
-                            Container(
-                              padding: EdgeInsets.symmetric(horizontal: 20.w,vertical: 16.h),
-                              margin: EdgeInsets.only(left: 10.w,right: 10.w,bottom: 20.h),
-                              decoration: BoxDecoration(borderRadius: BorderRadius.circular(30.r),border: Border.all(width: 1.w,color: AppColors.primaryColor),color: Colors.blue.shade50),
-                              child:Column(crossAxisAlignment: CrossAxisAlignment.center,
-                                mainAxisAlignment: MainAxisAlignment.center,
+                        InkWell(onTap: (){
+                          push(RemembrancesDetailsPage(remembranceId: data.remembranceModel?.data?[index].id.toString()??'',
+                            name: data.remembranceModel?.data?[index].title??'',));
+                        },
+                          child: Container(height: 50.h,
+                            margin: EdgeInsets.symmetric(vertical: 2.h),
+                            padding: EdgeInsets.symmetric(horizontal: 5.h),
+                            decoration: BoxDecoration(borderRadius: BorderRadius.circular(12.r),color: AppColors.ofWhite,),
+                            child: Center(
+                              child: Row(
                                 children: [
-                                  Text('bsdjsbasjkgfhjlrv gnioercjfoihrngihrjngvihsdrnbfwekalseksqw;lkedpoewhjfbuykrsjhcjfmpoqewnvj98gy45bv89y57yubvw8nrnqfjrw8ubht98reuhigjslcwfnrbajetvbrstuiobcungxriubecgjniostubjvitucbwnr79qcuwihndk',
-                                    style: TextStyles()
-                                        .getRegularStyle(fontSize: 16.sp)
-                                        .customColor(AppColors.black),
-                                  ),
+                                  AppNetworkImage(imageUrl:data.remembranceModel?.data?[index].image??'',width: 32.w,height: 32.h,borderRadius: 4.r,),
+                                  SizedBox(width: 5.w,),
+                                  SizedBox(width: 100.w,
+                                    child: Text(data.remembranceModel?.data?[index].title??'',
+                                      style: TextStyles()
+                                          .getTitleStyle(fontSize: 14.sp)
+                                          .customColor(AppColors.black),
+                                    ),
+                                  )
                                 ],
-                              ) ,),
-                            Positioned(bottom: 5,left: 25,
-                                child: Container(
-                              padding: EdgeInsets.symmetric(horizontal: 8.w,vertical: 4.h),
-                              margin: EdgeInsets.symmetric(horizontal: 10.w,vertical: 1.h),
-                              decoration: BoxDecoration(borderRadius: BorderRadius.circular(100.r),
-                                  border: Border.all(width: 1.w,color: AppColors.primaryColor),color: Colors.blue),
-                              child:Text(
-                                'hghghghgg',style: TextStyles()
-                                    .getRegularStyle(fontSize: 16.sp)
-                                    .customColor(AppColors.white),
-                              ) ,))
-                          ],
-                        )
+                              ),
+                            ),
+                          ),
+                        ),
                         )));
               }),
         ),
-      ) ,);
+      );}) ,);
   }
 }

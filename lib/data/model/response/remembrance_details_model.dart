@@ -1,17 +1,17 @@
 
-class PrayersModel {
-  List<OnePrayes>? data;
+class RemembranceDetailsModel {
+  List<Datum>? data;
   List<String>? message;
   int? status;
 
-  PrayersModel({
+  RemembranceDetailsModel({
     this.data,
     this.message,
     this.status,
   });
 
-  factory PrayersModel.fromJson(Map<String, dynamic> json) => PrayersModel(
-      data: json["data"] == null ? [] : List<OnePrayes>.from(json["data"]!.map((x) => OnePrayes.fromJson(x))),
+  factory RemembranceDetailsModel.fromJson(Map<String, dynamic> json) => RemembranceDetailsModel(
+      data: json["data"] == null ? [] : List<Datum>.from(json["data"]!.map((x) => Datum.fromJson(x))),
   message: json["message"] == null ? [] : List<String>.from(json["message"]!.map((x) => x)),
   status: json["status"],
   );
@@ -23,34 +23,26 @@ class PrayersModel {
 };
 }
 
-class OnePrayes {
+class Datum {
   int? id;
   String? title;
-  String? slug;
-  String? time;
-  String? image;
+  String? text;
 
-  OnePrayes({
+  Datum({
     this.id,
     this.title,
-    this.slug,
-    this.time,
-    this.image,
+    this.text,
   });
 
-  factory OnePrayes.fromJson(Map<String, dynamic> json) => OnePrayes(
+  factory Datum.fromJson(Map<String, dynamic> json) => Datum(
     id: json["id"],
     title: json["title"],
-    slug: json["slug"],
-    time: json["time"],
-    image: json["image"],
+    text: json["text"],
   );
 
   Map<String, dynamic> toJson() => {
     "id": id,
     "title": title,
-    "slug": slug,
-    "time": time,
-    "image": image,
+    "text": text,
   };
 }

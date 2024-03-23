@@ -26,6 +26,15 @@
   "addNewRosary": "إضافة تسبيحة جديدة",
   "nameRosary": "اسم التسبيحة",
   "addNameRosary": "اضف اسم للتسبيحة اولا",
-  "surat": "سورة"
+  "surat": "سورة",
+  "orRegistrationEmail": "او التسجيل بالبريد الالكتروني",
+  "registerGoogleAccount": "التسجيل بحساب جوجل",
+  "emailPhone": "البريد الالكتروني / الهاتف",
+  "password": "كلمة المرور",
+  "emailRequired": "يلزم إدخال البريد الالكتروني",
+  "passwordRequired": "يلزم إدخال كلمة المرور",
+  "signIn": "تسجيل الدخول",
+  "today": "اليوم",
+  "hadiths": "الأحاديث"
 
 }

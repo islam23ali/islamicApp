@@ -5,38 +5,48 @@ import '../datasource/remote/exception/api_error_handler.dart';
 import '../model/body/habits_body.dart';
 import '../model/response/base/api_response.dart';
 
-class HomeRepo {
+class ToolsRepo {
   final DioClient dioClient;
 
-  HomeRepo({required this.dioClient});
+  ToolsRepo({required this.dioClient});
 
-  Future<ApiResponse> prayersRepo() async {
+
+  Future<ApiResponse> hadithRepo() async {
     try {
-      Response response = await dioClient.get(AppURL.kPrayersURI);
+      Response response = await dioClient.get(AppURL.kHadithURl);
       return ApiResponse.withSuccess(response);
     } catch (e) {
       return ApiResponse.withError(ApiErrorHandler.getMessage(e));
     }
   }
-  Future<ApiResponse> assumptionsRepo() async {
+  Future<ApiResponse> remembranceRepo() async {
     try {
-      Response response = await dioClient.get(AppURL.kAssumptionsURI);
+      Response response = await dioClient.get(AppURL.kRemembranceURl);
       return ApiResponse.withSuccess(response);
     } catch (e) {
       return ApiResponse.withError(ApiErrorHandler.getMessage(e));
     }
   }
-  Future<ApiResponse> goodDeedsRepo() async {
+  Future<ApiResponse> remembranceDetailsRepo(String remembranceId) async {
     try {
-      Response response = await dioClient.get(AppURL.kGoodDeedsURI);
+      Response response = await dioClient.get('${AppURL.kRemembranceDetailsURl}$remembranceId');
       return ApiResponse.withSuccess(response);
     } catch (e) {
       return ApiResponse.withError(ApiErrorHandler.getMessage(e));
     }
   }
-  Future<ApiResponse> goodDeedsPostRepo(HabitsBody habitsBody) async {
+  Future<ApiResponse> supplicationRepo() async {
     try {
-      Response response = await dioClient.post(AppURL.kGoodDeedsPostURI,data: habitsBody.toJson());
+      Response response = await dioClient.get(AppURL.kSupplicationURl);
+      return ApiResponse.withSuccess(response);
+    } catch (e) {
+      return ApiResponse.withError(ApiErrorHandler.getMessage(e));
+    }
+  }
+
+  Future<ApiResponse> supplicationDetailsRepo(String supplicationId) async {
+    try {
+      Response response = await dioClient.get('${AppURL.kSupplicationDetailsURl}$supplicationId');
       return ApiResponse.withSuccess(response);
     } catch (e) {
       return ApiResponse.withError(ApiErrorHandler.getMessage(e));

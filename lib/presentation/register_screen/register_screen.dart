@@ -1,9 +1,15 @@
+
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
+import 'package:islamic_app/core/app_loader.dart';
 import 'package:islamic_app/core/extensions/num_extensions.dart';
+import 'package:islamic_app/core/resources/locale_keys.g.dart';
 import 'package:islamic_app/presentation/component/component.dart';
 import 'package:islamic_app/presentation/component/svg_icon.dart';
+import 'package:islamic_app/presentation/register_screen/register_screen_view_model.dart';
 import 'package:islamic_app/presentation/register_screen/widget/top_appbar.dart';
+import 'package:provider/provider.dart';
 
 import '../../core/res/text_styles.dart';
 import '../../core/resources/app_assets.dart';
@@ -17,14 +23,19 @@ class RegisterScreen extends StatefulWidget {
 }
 
 class _RegisterScreenState extends State<RegisterScreen> {
-
-
-  bool checkBoxValue=false;
-  int? isClicked;
+@override
+  void initState() {
+    super.initState();
+    Provider.of<RegisterScreenViewModel>(context,listen: false).prayersAPI(context);
+    Provider.of<RegisterScreenViewModel>(context,listen: false).getAllAssumptions(context);
+  }
   @override
   Widget build(BuildContext context) {
+    final load =context.watch<RegisterScreenViewModel>().isLoading;
     return SafeArea(
-      child: Column(
+      child:
+        Consumer<RegisterScreenViewModel>(builder: (context, data, child) {
+      return load? AppLoader(): Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Container(color: AppColors.primaryColor,
@@ -46,15 +57,17 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           child:Row(crossAxisAlignment: CrossAxisAlignment.center,
                             mainAxisAlignment: MainAxisAlignment.spaceAround,
                             children: [
-                        Column(
-                          children: [
-                            SVGIcon(Assets.expandLess,width: 24.w,height: 20.h,color: AppColors.white),
-                            SVGIcon(Assets.expandMore,width: 24.w,height: 20.h,color: AppColors.white,),
-                          ],
+                        SizedBox(width: 30.w,
+                          // child: Column(
+                          //   children: [
+                          //     SVGIcon(Assets.expandLess,width: 24.w,height: 20.h,color: AppColors.white),
+                          //     SVGIcon(Assets.expandMore,width: 24.w,height: 20.h,color: AppColors.white,),
+                          //   ],
+                          // ),
                         ),
                         SizedBox(width: 16.w,),
                         Text(
-                          'اليوم',
+                          LocaleKeys.today.tr(),
                           style: TextStyles()
                               .getDisplayMediumStyle(fontSize: 14.sp)
                               .customColor(AppColors.white),
@@ -64,21 +77,21 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         child: ListView.builder(
                           padding: EdgeInsets.symmetric(horizontal: 10.w),
                           scrollDirection: Axis.horizontal,
-                          itemCount: 10,
+                          itemCount: data.assumptionsModel?.data?.length,
                           shrinkWrap: true,
                           itemBuilder: (BuildContext context, int index) {
                             return Container(
-                              margin: EdgeInsets.symmetric(horizontal: 11.w),
-                              height: 61.h,width: 40.w,
-                              child: Column(mainAxisAlignment: MainAxisAlignment.spaceAround
-                                ,children: [
+                              margin: EdgeInsets.symmetric(horizontal: 6.w),
+                              height: 61.h,width: 50.w,
+                              child: Column(mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                children: [
                                 Text(
-                                  'جماعة',
+                                  data.assumptionsModel?.data?[index].title??'',
                                   style: TextStyles()
                                       .getDisplayMediumStyle(fontSize: 10.sp)
                                       .customColor(AppColors.white),
                                 ),
-                                AppNetworkImage(imageUrl:Assets.selectedRegister,width: 40.w,height: 40.h,borderRadius: 4.r,),
+                                AppNetworkImage(imageUrl:data.assumptionsModel?.data?[index].image??'',width: 40.w,height: 40.h,borderRadius: 4.r,),
                               ],),);
 
                           },
@@ -90,12 +103,13 @@ class _RegisterScreenState extends State<RegisterScreen> {
             ),
           ),
           Expanded(
-            child: AnimationLimiter(
+            child: (data.prayersModel?.data?.length==0)?NoDataScreen(): AnimationLimiter(
               child:ListView.builder(
                   padding: EdgeInsets.symmetric(horizontal: 12.w,vertical: 16.h),
-                  itemCount: 10,
+                  itemCount: data.prayersModel?.data?.length,
                   shrinkWrap: true,
                   itemBuilder: (context,index){
+                    String slug =data.prayersModel?.data?[index].slug??'';
                     return AnimationConfiguration.staggeredGrid(
                         duration:const Duration(milliseconds: 900),
                         position: index,
@@ -104,21 +118,23 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             duration:const Duration(milliseconds: 1000),
                             curve: Curves.fastLinearToSlowEaseIn,
                             child: FadeInAnimation(child:
-                            Container(
-                              child: Row(mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            SizedBox(
+                              child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                 children: [
                                   Row(
                                     children: [
-                                      AppNetworkImage(imageUrl:Assets.selectedRegister,width: 32.w,height: 32.h,borderRadius: 4.r,),
+                                      AppNetworkImage(imageUrl:data.prayersModel?.data?[index].image??'',width: 32.w,height: 32.h,borderRadius: 4.r,),
                                       SizedBox(width: 5.w,),
                                       Column(crossAxisAlignment: CrossAxisAlignment.start,
                                         children: [
-                                        Text('الفجر',
-                                          style: TextStyles()
-                                              .getTitleStyle(fontSize: 14.sp)
-                                              .customColor(AppColors.black),
+                                        SizedBox(width: 80.w,
+                                          child: Text(data.prayersModel?.data?[index].title??'',
+                                            style: TextStyles()
+                                                .getTitleStyle(fontSize: 14.sp)
+                                                .customColor(AppColors.black),
+                                          ),
                                         ),
-                                        Text('6:14 ص',
+                                        Text(data.prayersModel?.data?[index].time??'',
                                           style: TextStyles()
                                               .getRegularStyle(fontSize: 10.sp)
                                               .customColor(AppColors.black),
@@ -129,32 +145,35 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                   InkWell(
                                     onTap: (){
                                       setState(() {
-                                        isClicked=1;
+                                        data.isClicked=1;
+                                        data.isClickedKey=slug;
                                       });
                                     },
-                                      child: Icon((isClicked==1)?Icons.radio_button_checked_rounded:Icons.radio_button_off_rounded,size: 30.r,color: (isClicked==1)?AppColors.second:AppColors.gray,)
+                                      child: Icon((data.isClicked==1 && data.isClickedKey==slug)?Icons.radio_button_checked_rounded:Icons.radio_button_off_rounded,size: 25.r,color: (data.isClicked==1 && data.isClickedKey==slug)?AppColors.second:AppColors.gray,)
                                   ),
                                   InkWell(
                                     onTap: (){
                                       setState(() {
-                                        isClicked=2;
+                                        data.isClicked=2;
+                                        data.isClickedKey=slug;
                                       });
                                     },
-                                      child: Icon((isClicked==2)?Icons.radio_button_checked_rounded:Icons.radio_button_off_rounded,size: 30.r,color: (isClicked==2)?AppColors.second:AppColors.gray,)
+                                      child: Icon((data.isClicked==2 && data.isClickedKey==slug)?Icons.radio_button_checked_rounded:Icons.radio_button_off_rounded,size: 25.r,color: (data.isClicked==2 && data.isClickedKey==slug)?AppColors.second:AppColors.gray,)
                                   ),
                                   InkWell(
                                     onTap: (){
                                       setState(() {
-                                        isClicked=3;
+                                        data.isClicked=3;
+                                        data.isClickedKey=slug;
                                       });
                                     },
-                                      child: Icon((isClicked==3)?Icons.radio_button_checked_rounded:Icons.radio_button_off_rounded,size: 30.r,color: (isClicked==3)?AppColors.second:AppColors.gray,)
+                                      child: Icon((data.isClicked==3 && data.isClickedKey==slug)?Icons.radio_button_checked_rounded:Icons.radio_button_off_rounded,size: 25.r,color: (data.isClicked==3 && data.isClickedKey==slug)?AppColors.second:AppColors.gray,)
                                   ),
-                                  Checkbox(value: checkBoxValue,
+                                  Checkbox(value: data.checkBoxValue,
                                       activeColor: AppColors.second,
                                       onChanged:(bool? newValue){
                                         setState(() {
-                                          checkBoxValue = !checkBoxValue;
+                                          data.checkBoxValue = !data.checkBoxValue;
                                         });
                                         Text('Remember me');
                                       }),
@@ -165,7 +184,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
             ),
           )
         ],
-      ),
+      );})
     );
   }
 }

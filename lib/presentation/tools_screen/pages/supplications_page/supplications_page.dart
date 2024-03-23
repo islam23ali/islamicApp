@@ -1,14 +1,20 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:islamic_app/core/extensions/num_extensions.dart';
-import 'package:islamic_app/presentation/component/svg_icon.dart';
+import 'package:islamic_app/core/resources/app_colors.dart';
+import 'package:islamic_app/core/resources/locale_keys.g.dart';
+import 'package:islamic_app/core/routing/route.dart';
+import 'package:islamic_app/presentation/component/component.dart';
+import 'package:islamic_app/presentation/tools_screen/pages/remembrances_page/page/remembrances_details_page.dart';
+import 'package:islamic_app/presentation/tools_screen/pages/supplications_page/page/supplications_details_page.dart';
+import 'package:islamic_app/presentation/tools_screen/tools_view_model.dart';
+import 'package:provider/provider.dart';
+
+import '../../../../core/app_loader.dart';
 import '../../../../core/res/text_styles.dart';
-import '../../../../core/resources/app_colors.dart';
-import '../../../../core/resources/locale_keys.g.dart';
-import '../../../component/appbars/custom_app_bar.dart';
-import '../../../component/custom_scaffold.dart';
+import '../../../../core/resources/app_assets.dart';
+import '../../../component/svg_icon.dart';
 
 class SupplicationsPage extends StatefulWidget {
   const SupplicationsPage({Key? key}) : super(key: key);
@@ -19,25 +25,31 @@ class SupplicationsPage extends StatefulWidget {
 
 class _SupplicationsPageState extends State<SupplicationsPage> {
   @override
+  void initState() {
+    super.initState();
+    Provider.of<ToolsViewModel>(context,listen: false).getAllSupplicationAPI(context);
+  }
+  @override
   Widget build(BuildContext context) {
     return CustomScaffold(appBar: CustomAppBar(
       topColor: AppColors.primaryColor,
       topColorIcon: Brightness.light,
       titleColor: AppColors.white,
-      color: AppColors.primaryColor,title: LocaleKeys.supplications.tr(),isBackButtonExist: false,
+      color: AppColors.primaryColor,title: LocaleKeys.remembrances.tr(),isBackButtonExist: false,
       actions: [InkWell(onTap: (){
         Navigator.pop(context);
       },
         child: Padding(
-          padding: EdgeInsets.symmetric(horizontal:16.w),
-          child: Icon(Icons.keyboard_arrow_left_rounded,color: AppColors.white,size: 26.r,),
-        ),
+        padding: EdgeInsets.symmetric(horizontal:16.w),
+        child: Icon(Icons.keyboard_arrow_left_rounded,color: AppColors.white,size: 26.r,),
+    ),
       )],),
-      body:Padding(
+      body: Consumer<ToolsViewModel>(builder: (context, data, child) {
+    return data.isLoading?AppLoader(): Padding(
         padding: EdgeInsets.all(12.r),
-        child: AnimationLimiter(
+        child: (data.supplicationModel?.data?.length==0)?NoDataScreen(): AnimationLimiter(
           child:ListView.builder(
-              itemCount: 10,
+              itemCount: data.supplicationModel?.data?.length,
               shrinkWrap: true,
               itemBuilder: (context,index){
                 return AnimationConfiguration.staggeredGrid(
@@ -48,21 +60,34 @@ class _SupplicationsPageState extends State<SupplicationsPage> {
                         duration:const Duration(milliseconds: 1000),
                         curve: Curves.fastLinearToSlowEaseIn,
                         child: FadeInAnimation(child:
-                        Row(crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                           Icon(Icons.control_camera_outlined,size: 10.r,color: AppColors.primaryColor,),
-                            SizedBox(width: MediaQuery.of(context).size.width-50,
-                              child: Text('bsdjsbasjkgfhjlrv gnioercjfoihrngihrjngvihsdrnbfwekalseksqw;lkedpoewhjfbuykrsjhcjfmpoqewnvj98gy45bv89y57yubvw8nrnqfjrw8ubht98reuhigjslcwfnrbajetvbrstuiobcungxriubecgjniostubjvitucbwnr79qcuwihndk',
-                                style: TextStyles()
-                                    .getRegularStyle(fontSize: 16.sp)
-                                    .customColor(AppColors.black),
+                        InkWell(onTap: (){
+                          push(SupplicationsDetailsPage(supplicationId: data.supplicationModel?.data?[index].id.toString()??'',
+                            name: data.supplicationModel?.data?[index].title??'',));
+                        },
+                          child: Container(height: 50.h,
+                            margin: EdgeInsets.symmetric(vertical: 2.h),
+                            padding: EdgeInsets.symmetric(horizontal: 5.h),
+                            decoration: BoxDecoration(borderRadius: BorderRadius.circular(12.r),color: AppColors.ofWhite,),
+                            child: Center(
+                              child: Row(
+                                children: [
+                                  AppNetworkImage(imageUrl:data.supplicationModel?.data?[index].image??'',width: 32.w,height: 32.h,borderRadius: 4.r,),
+                                  SizedBox(width: 5.w,),
+                                  SizedBox(width: 100.w,
+                                    child: Text(data.supplicationModel?.data?[index].title??'',
+                                      style: TextStyles()
+                                          .getTitleStyle(fontSize: 14.sp)
+                                          .customColor(AppColors.black),
+                                    ),
+                                  )
+                                ],
                               ),
                             ),
-                          ],
+                          ),
                         ),
                         )));
               }),
         ),
-      ) ,);
+      );}) ,);
   }
 }

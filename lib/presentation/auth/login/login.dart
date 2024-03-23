@@ -37,12 +37,12 @@ class _LoginState extends State<Login> {
     if (_formKey.currentState != null) {
       if (_formKey.currentState!.validate()) {
         _formKey.currentState!.save();
-        if (provider.userNameController.text.isEmpty) {
-          ToastUtils.showToast('LocaleKeys.usernameRequired.tr()');
+        if (provider.emailController.text.isEmpty) {
+          ToastUtils.showToast(LocaleKeys.emailRequired.tr());
         } else if (provider.passwordController.text.isEmpty) {
-          ToastUtils.showToast('LocaleKeys.passwordRequired.tr()');
-        // } else if (provider.passwordController.text.length < 7) {
-        //   ToastUtils.showToast('يجب الا يغل عن 7 احرف');
+          ToastUtils.showToast(LocaleKeys.passwordRequired.tr());
+        } else if (provider.passwordController.text.length < 6) {
+          ToastUtils.showToast('يجب الا يقل عن 6 احرف');
         }else {
            Provider.of<AuthViewModel>(context, listen: false)
               .login(context);
@@ -56,55 +56,58 @@ class _LoginState extends State<Login> {
     bool isLoading = context.watch<AuthViewModel>().isLoading;
 
     final isKeyboard = MediaQuery.of(context).viewInsets.bottom != 0;
-    return CustomScaffold(appBar:CustomAppBar(isBackButtonExist: false,) ,
-      body: Stack(
-        fit: StackFit.expand,
-        children: [
-          Padding(
-            padding: EdgeInsets.only(
-              right: AppSize.s16.w, left: AppSize.s16.w, bottom: AppSize.s8.h),
-            child: ListAnimator(
+    return CustomScaffold(
+      body: Padding(
+        padding: EdgeInsets.all(16.r),
+        child: Stack(
+          fit: StackFit.expand,
+          children: [
+            ListAnimator(
               children: [
-                SVGIcon(
-                  Assets.backgroundPoint,
-                  height: 64.h,
-                  width: 220.w,
+                isKeyboard?SizedBox():  Image.asset(
+                  Assets.loginLogo,
+                  height: 188.h,
+                  width: 292.w,
                 ),
                 VerticalSpace(AppSize.s36.h),
-                Text(
-                  'tr(LocaleKeys.heyYou)',
-                  style: const TextStyle()
-                      .titleStyle(fontSize: FontSize.s28.sp)
-                      .textColor(),
-                ),
-                Text(
-                  'tr(LocaleKeys.enterYourRegistered)',
-                  style:  TextStyle()
-                      .bodyStyle(fontSize: 14.sp)
-                      .customColor(AppColors.textColor),
-                ),
-                VerticalSpace(AppSize.s24.h),
+                CustomButton(onTap: (){},
+                  title: LocaleKeys.registerGoogleAccount.tr(),textColor: AppColors.black,
+                  color: AppColors.white,borderColor: AppColors.grayLight,icon: Assets.google,),
+                VerticalSpace(AppSize.s8.h),
+                Row(crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                  Container(width:85.w,height: .5.h,color: AppColors.gray,),
+                    Text(
+                      LocaleKeys.orRegistrationEmail.tr(),
+                      style: TextStyles()
+                          .getRegularStyle(fontSize: 15.sp)
+                          .customColor(AppColors.gray),
+                    ),
+                    Container(width: 85.w,height: .5.h,color: AppColors.gray,),
+                ],),
+                VerticalSpace(AppSize.s8.h),
                 _buildForm(),
                 SizedBox(height: 0.h,),
                 CustomButton(
-                  title: 'LocaleKeys.login.tr()',
+                  title: LocaleKeys.signIn.tr(),
                   loading: isLoading,
                   onTap: (){
                   _onSubmit(context);
                 },),
               ],
             ),
-          ),
-          if (!isKeyboard)
-            Align(
-              alignment: Alignment.bottomLeft,
-              child: SVGIcon(
-                Assets.homeSelect,
-                width:200.w,
-                height: 200.h,
-              ),
-            )
-        ],
+            // if (!isKeyboard)
+            //   Align(
+            //     alignment: Alignment.bottomLeft,
+            //     child: SVGIcon(
+            //       Assets.homeSelect,
+            //       width:200.w,
+            //       height: 200.h,
+            //     ),
+            //   )
+          ],
+        ),
       ),
     );
   }
@@ -118,18 +121,19 @@ class _LoginState extends State<Login> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                'tr(LocaleKeys.userName)',
+                LocaleKeys.emailPhone.tr(),
                 style:  TextStyle()
                     .titleStyle(fontSize: 14.sp)
                     .customColor(AppColors.black),
               ),
               SizedBox(height: 5.h,),
               CustomTextFormFiled(
-                validationMSG:Provider.of<AuthViewModel>(context, listen: true).validationMSG,
-                hintText: 'LocaleKeys.userName.tr()',
+                backGroundColor: AppColors.white,
+                // validationMSG:Provider.of<AuthViewModel>(context, listen: true).validationMSG,
+                hintText: '',
                 paddingHorizontal: 10.w,
                 textInputType: TextInputType.text,
-                controller: provider.userNameController,
+                controller: provider.emailController,
                 borderColor: AppColors.grayLight,
               ),
             ],
@@ -138,15 +142,16 @@ class _LoginState extends State<Login> {
           Column(crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                'tr(LocaleKeys.password)',
+               LocaleKeys.password.tr(),
                 style:  TextStyle()
                     .titleStyle(fontSize: 14.sp)
                     .customColor(AppColors.black),
               ),
               SizedBox(height: 5.h,),
               CustomTextFormFiledPassword(
-                validationMSG:Provider.of<AuthViewModel>(context, listen: true).validationMSG,
-                hintText: '*********',
+                backGroundColor: AppColors.white,
+                // validationMSG:Provider.of<AuthViewModel>(context, listen: true).validationMSG,
+                hintText: '',
                 textInputType: TextInputType.text,
                 controller: provider.passwordController,
                 borderColor: AppColors.grayLight,

@@ -1,23 +1,23 @@
 
 class LoginBody {
-  String? username;
+  String? email;
   String? password;
 
 
   LoginBody({
-    this.username,
+    this.email,
     this.password,
 
   });
 
   factory LoginBody.fromJson(Map<String, dynamic> json) => LoginBody(
-    username: json["username"],
+    email: json["email"],
     password: json["password"],
 
   );
 
   Map<String, dynamic> toJson() => {
-    "username": username,
+    "email": email,
     "password": password,
 
   };

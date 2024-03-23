@@ -6,6 +6,7 @@ import 'package:islamic_app/core/extensions/num_extensions.dart';
 import 'package:islamic_app/core/routing/route.dart';
 import 'package:islamic_app/presentation/component/component.dart';
 import 'package:islamic_app/presentation/tools_screen/pages/azan_screen/azan_screen.dart';
+import 'package:islamic_app/presentation/tools_screen/pages/hadiths_page/hadiths_page.dart';
 import 'package:islamic_app/presentation/tools_screen/pages/imsakiya_page.dart';
 import 'package:islamic_app/presentation/tools_screen/pages/notification_page/notification_pagr.dart';
 import 'package:islamic_app/presentation/tools_screen/pages/qibla_page/qiblaApp_page.dart';
@@ -13,6 +14,7 @@ import 'package:islamic_app/presentation/tools_screen/pages/qibla_page/qibla_pag
 import 'package:islamic_app/presentation/tools_screen/pages/quraan/quraan_page.dart';
 import 'package:islamic_app/presentation/tools_screen/pages/remembrances_page/remembrances_page.dart';
 import 'package:islamic_app/presentation/tools_screen/pages/rosary_page/rosary_page.dart';
+import 'package:islamic_app/presentation/tools_screen/pages/supplications_page/page/supplications_details_page.dart';
 import 'package:islamic_app/presentation/tools_screen/pages/supplications_page/supplications_page.dart';
 
 import '../../core/res/text_styles.dart';
@@ -60,6 +62,17 @@ class _ToolsScreenState extends State<ToolsScreen> {
             ),
           ),
           InkWell(onTap: (){
+            push(HadithsPage());
+          },
+            child: Column(crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Image.asset(Assets.remembrances,height: 70.h,width: 70.w,),
+                SizedBox(height: 10.h,),
+                Text(LocaleKeys.hadiths.tr(),style: TextStyles().getDisplayMediumStyle(fontSize: 14.sp).customColor(AppColors.text1Color),)
+              ],
+            ),
+          ),
+          InkWell(onTap: (){
             push(RemembrancesPage());
           },
             child: Column(crossAxisAlignment: CrossAxisAlignment.center,
@@ -81,6 +94,13 @@ class _ToolsScreenState extends State<ToolsScreen> {
               ],
             ),
           ),
+        ],
+      ),
+      SizedBox(height: 30.h,),
+      Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: [
+
           InkWell(onTap: (){
             push(Rosary());
           },
@@ -92,12 +112,6 @@ class _ToolsScreenState extends State<ToolsScreen> {
               ],
             ),
           ),
-        ],
-      ),
-      SizedBox(height: 30.h,),
-      Row(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: [
           InkWell(onTap: (){
             // push(QiblahPage());
             push(QiblahAppPage());
@@ -132,6 +146,13 @@ class _ToolsScreenState extends State<ToolsScreen> {
               ],
             ),
           ),
+        ],
+      ),
+      SizedBox(height: 30.h,),
+      Row(
+        // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
           InkWell(onTap: (){
             push(AzanPage());
           },

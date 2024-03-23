@@ -38,19 +38,19 @@ class _ColorCardState extends State<ColorCard> {
               Container(
                 margin: EdgeInsets.symmetric(horizontal: 2.w),
                 height:25.h,width: 25.w,
-                decoration: BoxDecoration(color: AppColors.primaryColor,borderRadius: BorderRadius.circular(100.r)),),
+                decoration: BoxDecoration(color: Color(0xffF59C34),borderRadius: BorderRadius.circular(100.r)),),
               Container(
                 margin: EdgeInsets.symmetric(horizontal: 2.w),
                 height:25.h,width: 25.w,
-                decoration: BoxDecoration(color: AppColors.primaryColor,borderRadius: BorderRadius.circular(100.r)),),
+                decoration: BoxDecoration(color: Color(0xff4D3B6B),borderRadius: BorderRadius.circular(100.r)),),
               Container(
                 margin: EdgeInsets.symmetric(horizontal: 2.w),
                 height:25.h,width: 25.w,
-                decoration: BoxDecoration(color: AppColors.primaryColor,borderRadius: BorderRadius.circular(100.r)),),
+                decoration: BoxDecoration(color: Color(0xff15244F),borderRadius: BorderRadius.circular(100.r)),),
               Container(
                 margin: EdgeInsets.symmetric(horizontal: 2.w),
                 height:25.h,width: 25.w,
-                decoration: BoxDecoration(color: AppColors.primaryColor,borderRadius: BorderRadius.circular(100.r)),)
+                decoration: BoxDecoration(color: Color(0xff30AD23),borderRadius: BorderRadius.circular(100.r)),)
             ],)
           ],),
       ),);

@@ -19,6 +19,7 @@ class Assets {
   static const String qibla= 'assets/images/png/qibla.png';
   static const String imsakiya= 'assets/images/png/imsakiya.png';
   static const String notifications= 'assets/images/png/notifications.png';
+  static const String loginLogo= 'assets/images/png/loginLogo.png';
   static const String expandLess= 'assets/images/svg/expandLess.svg';
   static const String expandMore= 'assets/images/svg/expandMore.svg';
   static const String myHabitsUnSelect= 'assets/images/svg/MyHabitsUnSelect.svg';
@@ -29,6 +30,7 @@ class Assets {
   static const String selectTools= 'assets/images/svg/selectTools.svg';
   static const String rosary= 'assets/images/svg/rosary.svg';
   static const String rosaryButton= 'assets/images/svg/rosaryButton.svg';
+  static const String google= 'assets/images/svg/google.svg';
 
 
   /// not set

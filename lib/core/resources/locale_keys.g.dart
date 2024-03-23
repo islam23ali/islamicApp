@@ -32,6 +32,15 @@ abstract class  LocaleKeys {
   static const nameRosary = 'nameRosary';
   static const addNameRosary = 'addNameRosary';
   static const surat = 'surat';
+  static const orRegistrationEmail = 'orRegistrationEmail';
+  static const emailPhone = 'emailPhone';
+  static const password = 'password';
+  static const registerGoogleAccount = 'registerGoogleAccount';
+  static const emailRequired = 'emailRequired';
+  static const passwordRequired = 'passwordRequired';
+  static const signIn = 'signIn';
+  static const today = 'today';
+  static const hadiths = 'hadiths';
 
 ///componantes-----------
   static const camera = '';

@@ -25,7 +25,15 @@
   "addNewRosary": "Add a new rosary",
   "nameRosary": "The name of the rosary",
   "addNameRosary": "Add a name to the rosary first",
-  "surat": "Surat"
+  "surat": "Surat",
+  "orRegistrationEmail": "Or registration by email",
+  "registerGoogleAccount": "Register with a Google account",
+  "emailPhone": "Email/Phone",
+  "password": "Password",
+  "emailRequired": "Email is required",
+  "passwordRequired": "Password required",
+  "today": "sign in",
+  "hadiths": "Hadiths"
 
 
 }

@@ -1,16 +1,17 @@
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
+import 'package:islamic_app/core/app_loader.dart';
 import 'package:islamic_app/core/extensions/num_extensions.dart';
-import 'package:islamic_app/core/resources/locale_keys.g.dart';
+import 'package:islamic_app/core/helper/no_data.dart';
+import 'package:islamic_app/presentation/my_habits_screen/my_habits_screen_view_model.dart';
 import 'package:islamic_app/presentation/my_habits_screen/widget/select_habits_appBar.dart';
 import 'package:islamic_app/presentation/register_screen/widget/top_appbar.dart';
-
+import 'package:jhijri/_src/_jHijri.dart';
+import 'package:provider/provider.dart';
 import '../../core/res/text_styles.dart';
 import '../../core/resources/app_assets.dart';
 import '../../core/resources/app_colors.dart';
 import '../component/images/network_image.dart';
-import '../component/svg_icon.dart';
 
 class MyHabitsScreen extends StatefulWidget {
   const MyHabitsScreen({Key? key}) : super(key: key);
@@ -20,27 +21,38 @@ class MyHabitsScreen extends StatefulWidget {
 }
 
 class _MyHabitsScreenState extends State<MyHabitsScreen> {
-  int? isClicked;
+  @override
+  void initState() {
+    super.initState();
+    Provider.of<HabitsScreenViewModel>(context,listen: false).getAllHabitsAPI(context);
+  }
+
+
   @override
   Widget build(BuildContext context) {
+    final load=context.watch<HabitsScreenViewModel>().isLoading;
     return SafeArea(child:
-    Column(crossAxisAlignment: CrossAxisAlignment.start,
+        Consumer<HabitsScreenViewModel>(builder: (context, data, child) {
+          final jHijri = JHijri(fDate: data.habitsModel?.data?.date).hijri;
+      return
+        load?AppLoader(): Column(crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Container(color: AppColors.primaryColor,
-          child:const Column(
+          child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-            TopAppBar(logo: Assets.habitsLogo, title: 'اهلا بك في صفحة العادات الجيدة',
-             label: 'تمكنك هذه الصفحة من متابعة عادادتك الجيدة',
-             date: 'الأربعاء 25 شعبان 1445',),
+            TopAppBar(logo: Assets.habitsLogo,
+              title: data.habitsModel?.data?.title??'',
+             label: data.habitsModel?.data?.text??'',
+             date: jHijri.toString(),),
               SelectHabitsAppBar()
           ],),
         ),
         Expanded(
-          child: AnimationLimiter(
+          child: (data.habitsModel?.data?.goodDeeds?.length==0)?NoDataScreen(): AnimationLimiter(
             child:ListView.builder(
                 padding: EdgeInsets.symmetric(horizontal: 12.w,vertical: 16.h),
-                itemCount: 10,
+                itemCount: data.habitsModel?.data?.goodDeeds?.length,
                 shrinkWrap: true,
                 itemBuilder: (context,index){
                   return AnimationConfiguration.staggeredGrid(
@@ -57,31 +69,35 @@ class _MyHabitsScreenState extends State<MyHabitsScreen> {
                               children: [
                                 Row(
                                   children: [
-                                    AppNetworkImage(imageUrl:Assets.selectedRegister,width: 32.w,height: 32.h,borderRadius: 4.r,),
+                                    AppNetworkImage(imageUrl:data.habitsModel?.data?.goodDeeds?[index].image??'',width: 32.w,height: 32.h,borderRadius: 4.r,),
                                     SizedBox(width: 5.w,),
-                                    Text('اذكار الصباح',
-                                      style: TextStyles()
-                                          .getTitleStyle(fontSize: 14.sp)
-                                          .customColor(AppColors.black),
+                                    SizedBox(width: 100.w,
+                                      child: Text(data.habitsModel?.data?.goodDeeds?[index].title??'',
+                                        style: TextStyles()
+                                            .getTitleStyle(fontSize: 14.sp)
+                                            .customColor(AppColors.black),
+                                      ),
                                     )
                                   ],
                                 ),
-                                SizedBox(width: 50.w,),
+                                SizedBox(width: 10.w,),
                                 InkWell(
                                     onTap: (){
+                                      Provider.of<HabitsScreenViewModel>(context,listen: false).habitsPostAPI(context,'1',data.habitsModel?.data?.goodDeeds?[index].id.toString()??'');
                                       setState(() {
-                                        isClicked=1;
+
                                       });
                                     },
-                                    child: Icon((isClicked==1)?Icons.radio_button_checked_rounded:Icons.radio_button_off_rounded,size: 30.r,color: (isClicked==1)?AppColors.second:AppColors.gray,)
+                                    child: Icon((data.habitsModel?.data?.goodDeeds?[index].isChecked==1)?Icons.radio_button_checked_rounded:Icons.radio_button_off_rounded,size: 30.r,color: (data.habitsModel?.data?.goodDeeds?[index].isChecked==1)?AppColors.second:AppColors.gray,)
                                 ),SizedBox(width: 35.w,),
                                 InkWell(
                                     onTap: (){
+                                      Provider.of<HabitsScreenViewModel>(context,listen: false).habitsPostAPI(context,'0',data.habitsModel?.data?.goodDeeds?[index].id.toString()??'');
                                       setState(() {
-                                        isClicked=2;
+
                                       });
                                     },
-                                    child: Icon((isClicked==2)?Icons.radio_button_checked_rounded:Icons.radio_button_off_rounded,size: 30.r,color: (isClicked==2)?AppColors.second:AppColors.gray,)
+                                    child: Icon((data.habitsModel?.data?.goodDeeds?[index].isChecked==0)?Icons.radio_button_checked_rounded:Icons.radio_button_off_rounded,size: 30.r,color: (data.habitsModel?.data?.goodDeeds?[index].isChecked==0)?AppColors.second:AppColors.gray,)
                                 ),
                               ],),
                           )
@@ -90,6 +106,6 @@ class _MyHabitsScreenState extends State<MyHabitsScreen> {
           ),
         )
       ],
-    ));
+    );}));
   }
 }
