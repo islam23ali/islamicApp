@@ -61,4 +61,13 @@ class ToolsRepo {
       return ApiResponse.withError(ApiErrorHandler.getMessage(e));
     }
   }
+
+  Future<ApiResponse> notificationRepo() async {
+    try {
+      Response response = await dioClient.get(AppURL.kNotificationURl);
+      return ApiResponse.withSuccess(response);
+    } catch (e) {
+      return ApiResponse.withError(ApiErrorHandler.getMessage(e));
+    }
+  }
 }

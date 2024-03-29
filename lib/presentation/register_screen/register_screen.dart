@@ -7,6 +7,7 @@ import 'package:islamic_app/core/extensions/num_extensions.dart';
 import 'package:islamic_app/core/resources/locale_keys.g.dart';
 import 'package:islamic_app/presentation/component/component.dart';
 import 'package:islamic_app/presentation/component/svg_icon.dart';
+import 'package:islamic_app/presentation/home_screen/home_view_model.dart';
 import 'package:islamic_app/presentation/register_screen/register_screen_view_model.dart';
 import 'package:islamic_app/presentation/register_screen/widget/top_appbar.dart';
 import 'package:jhijri/_src/_jHijri.dart';
@@ -151,6 +152,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                         data.isClicked=1;
                                         data.isClickedKey=slug;
                                       });
+                                      Provider.of<RegisterScreenViewModel>(context,listen: false).makeAssumptions(context, data.prayersModel?.data?[index].id.toString(), data.assumptionsModel?.data?[0].slug);
                                     },
                                       child: Icon((data.isClicked==1 && data.isClickedKey==slug)?Icons.radio_button_checked_rounded:Icons.radio_button_off_rounded,size: 25.r,color: (data.isClicked==1 && data.isClickedKey==slug)?AppColors.second:AppColors.gray,)
                                   ),
@@ -160,6 +162,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                         data.isClicked=2;
                                         data.isClickedKey=slug;
                                       });
+                                      Provider.of<RegisterScreenViewModel>(context,listen: false).makeAssumptions(context, data.prayersModel?.data?[index].id.toString(), data.assumptionsModel?.data?[1].slug);
                                     },
                                       child: Icon((data.isClicked==2 && data.isClickedKey==slug)?Icons.radio_button_checked_rounded:Icons.radio_button_off_rounded,size: 25.r,color: (data.isClicked==2 && data.isClickedKey==slug)?AppColors.second:AppColors.gray,)
                                   ),
@@ -169,6 +172,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                         data.isClicked=3;
                                         data.isClickedKey=slug;
                                       });
+                                      Provider.of<RegisterScreenViewModel>(context,listen: false).makeAssumptions(context, data.prayersModel?.data?[index].id.toString(), data.assumptionsModel?.data?[2].slug);
                                     },
                                       child: Icon((data.isClicked==3 && data.isClickedKey==slug)?Icons.radio_button_checked_rounded:Icons.radio_button_off_rounded,size: 25.r,color: (data.isClicked==3 && data.isClickedKey==slug)?AppColors.second:AppColors.gray,)
                                   ),
@@ -178,6 +182,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                         setState(() {
                                           data.checkBoxValue = !data.checkBoxValue;
                                         });
+                                        Provider.of<RegisterScreenViewModel>(context,listen: false).makeAssumptions(context, data.prayersModel?.data?[index].id.toString(), data.assumptionsModel?.data?[3].slug);
                                         Text('Remember me');
                                       }),
                                 ],),

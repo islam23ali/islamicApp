@@ -18,6 +18,22 @@ class HomeRepo {
       return ApiResponse.withError(ApiErrorHandler.getMessage(e));
     }
   }
+  Future<ApiResponse> percentageHomeRepo() async {
+    try {
+      Response response = await dioClient.get(AppURL.kPercentageHomeURl);
+      return ApiResponse.withSuccess(response);
+    } catch (e) {
+      return ApiResponse.withError(ApiErrorHandler.getMessage(e));
+    }
+  }
+  Future<ApiResponse> analysisHomeRepo() async {
+    try {
+      Response response = await dioClient.get(AppURL.kAnalysisHomeURl);
+      return ApiResponse.withSuccess(response);
+    } catch (e) {
+      return ApiResponse.withError(ApiErrorHandler.getMessage(e));
+    }
+  }
   Future<ApiResponse> nextPrayRepo() async {
     try {
       Response response = await dioClient.get(AppURL.kNextPrayerURI);
@@ -29,6 +45,17 @@ class HomeRepo {
   Future<ApiResponse> assumptionsRepo() async {
     try {
       Response response = await dioClient.get(AppURL.kAssumptionsURI);
+      return ApiResponse.withSuccess(response);
+    } catch (e) {
+      return ApiResponse.withError(ApiErrorHandler.getMessage(e));
+    }
+  }
+  Future<ApiResponse> makeAssumptionsRepo(String prayerId,slug) async {
+    try {
+      Response response = await dioClient.post(AppURL.kMakeAssumptionsURI,data: FormData.fromMap({
+            'prayer_id':prayerId,
+            'slug':slug,
+          }));
       return ApiResponse.withSuccess(response);
     } catch (e) {
       return ApiResponse.withError(ApiErrorHandler.getMessage(e));

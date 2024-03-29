@@ -32,13 +32,14 @@ class _SelectHabitsAppBarState extends State<SelectHabitsAppBar> {
                 children: [
                   Column(
                     children: [
-                      SVGIcon(Assets.expandLess,width: 24.w,height: 20.h,color: AppColors.second),
-                      SVGIcon(Assets.expandMore,width: 24.w,height: 20.h,color: AppColors.white,),
+                      SizedBox(width: 24.w,height: 20.h,)
+                      // SVGIcon(Assets.expandLess,width: 24.w,height: 20.h,color: AppColors.second),
+                      // SVGIcon(Assets.expandMore,width: 24.w,height: 20.h,color: AppColors.white,),
                     ],
                   ),
                   SizedBox(width: 16.w,),
                   Text(
-                    'اليوم',
+                    LocaleKeys.today.tr(),
                     style: TextStyles()
                         .getDisplayMediumStyle(fontSize: 14.sp)
                         .customColor(AppColors.white),

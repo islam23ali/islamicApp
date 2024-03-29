@@ -6,6 +6,7 @@ class AppURL {
   static const String kPrayersURI = "/user/auth/prayers";
   static const String kNextPrayerURI = "/user/auth/next_prayer";
   static const String kAssumptionsURI = "/user/auth/assumptions";
+  static const String kMakeAssumptionsURI = "/user/auth/make_assumption";
   static const String kGoodDeedsURI = "/user/auth/good_deeds";
   static const String kGoodDeedsPostURI = "/user/auth/make_good_deed";
   static const String kHadithURl = "/user/auth/hadith";
@@ -14,5 +15,8 @@ class AppURL {
   static const String kSupplicationURl = "/user/auth/supplication_categories";
   static const String kSupplicationDetailsURl = "/user/auth/supplications?category_id=";
   static const String kImsakiaURl = "/user/auth/settings";
+  static const String kNotificationURl = "/user/auth/notifications";
+  static const String kPercentageHomeURl = "/user/auth/home_page_percentage";
+  static const String kAnalysisHomeURl = "/user/auth/home_page_analysis";
 
 }

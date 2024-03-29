@@ -8,6 +8,7 @@ import '../../../../data/repository/SaveUserData.dart';
 import '../../core/api_checker.dart';
 import '../../data/model/response/base/api_response.dart';
 import '../../data/model/response/hadith_model.dart';
+import '../../data/model/response/notification_model.dart';
 import '../../data/model/response/remembrance_details_model.dart';
 import '../../data/model/response/remembrance_model.dart';
 import '../../data/model/response/remembrance_model.dart';
@@ -27,6 +28,7 @@ class ToolsViewModel with ChangeNotifier {
   RemembranceDetailsModel? _remembranceDetailsModel;
   SupplicationsDetailsModel? _supplicationsDetailsModel;
   ImsakiaModel? _imsakiaModel;
+  NotificationModel? _notificationModel;
 
 
 
@@ -47,6 +49,7 @@ class ToolsViewModel with ChangeNotifier {
   RemembranceDetailsModel? get remembranceDetailsModel => _remembranceDetailsModel;
   SupplicationsDetailsModel? get supplicationsDetailsModel => _supplicationsDetailsModel;
   ImsakiaModel? get imsakiaModel => _imsakiaModel;
+  NotificationModel? get notificationModel => _notificationModel;
 
 
 
@@ -156,6 +159,28 @@ class ToolsViewModel with ChangeNotifier {
 
       }else{
         ToastUtils.showToast(_imsakiaModel?.message.toString()??'');
+      }
+
+    } else {
+      _isLoading = false;
+      ApiChecker.checkApi(context, responseModel);
+    }
+    _isLoading = false;
+    notifyListeners();
+    return responseModel;
+  }
+  Future<ApiResponse> getNotificationAPI(BuildContext context) async {
+    _isLoading = true;
+    // notifyListeners();
+    ApiResponse responseModel = await toolsRepo.notificationRepo();
+    if (responseModel.response != null &&
+        responseModel.response?.statusCode == 200) {
+      _isLoading = false;
+      _notificationModel = NotificationModel.fromJson(responseModel.response?.data);
+      if(_notificationModel?.status==200){
+
+      }else{
+        ToastUtils.showToast(_notificationModel?.message.toString()??'');
       }
 
     } else {

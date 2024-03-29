@@ -33,7 +33,11 @@
   "emailRequired": "Email is required",
   "passwordRequired": "Password required",
   "today": "sign in",
-  "hadiths": "Hadiths"
+  "hadiths": "Hadiths",
+  "summary": "Summary",
+  "all": "All",
+  "obligatoryPrayer": "Obligatory prayer",
+  "supererogatoryPrayer": "Supererogatory prayer"
 
 
 }

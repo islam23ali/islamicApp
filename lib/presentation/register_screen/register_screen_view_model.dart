@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:islamic_app/data/model/body/login_body.dart';
+import 'package:islamic_app/data/model/response/base/emptyDataModel.dart';
 import '../../../../data/model/response/base/api_response.dart';
 import '../../../../data/repository/SaveUserData.dart';
 import '../../../../data/repository/auth_repo.dart';
@@ -30,6 +31,7 @@ class RegisterScreenViewModel with ChangeNotifier {
   PrayersModel? _prayersModel;
   NextPrayerModel? _nextPrayerModel;
   AssumptionsModel? _assumptionsModel;
+  EmptyDataModel? _emptyDataModel;
 
   // final TextEditingController userNameController = TextEditingController();
 
@@ -41,6 +43,7 @@ class RegisterScreenViewModel with ChangeNotifier {
   PrayersModel? get prayersModel => _prayersModel;
   AssumptionsModel? get assumptionsModel => _assumptionsModel;
   NextPrayerModel? get nextPrayerModel => _nextPrayerModel;
+  EmptyDataModel? get emptyDataModel => _emptyDataModel;
 
   ///calling APIs Functions
 
@@ -104,6 +107,29 @@ class RegisterScreenViewModel with ChangeNotifier {
 
       } else {
         ToastUtils.showToast(_assumptionsModel?.message.toString() ?? "");
+      }
+    } else {
+      _isLoading = false;
+      ApiChecker.checkApi(context, responseModel);
+    }
+    _isLoading = false;
+    notifyListeners();
+    return responseModel;
+  }
+  Future<ApiResponse> makeAssumptions (BuildContext context,prayerId,slug) async {
+    _isLoading = true;
+    notifyListeners();
+    ApiResponse responseModel = await homeRepo.makeAssumptionsRepo(prayerId,slug);
+    if (responseModel.response != null &&
+        responseModel.response?.statusCode == 200) {
+      _isLoading = false;
+      _emptyDataModel = EmptyDataModel.fromJson(responseModel.response?.data);
+
+      if (_emptyDataModel?.status == 200) {
+        // await saveUserData.clearSharedData().then((value) => pushAndRemoveUntil(const Splash()));
+        ToastUtils.showToast(_emptyDataModel?.message.toString() ?? "");
+      } else {
+        ToastUtils.showToast(_emptyDataModel?.message.toString() ?? "");
       }
     } else {
       _isLoading = false;

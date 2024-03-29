@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:islamic_app/core/extensions/num_extensions.dart';
 import 'package:islamic_app/presentation/component/svg_icon.dart';
+import 'package:islamic_app/presentation/tools_screen/tools_view_model.dart';
+import 'package:provider/provider.dart';
 
 import '../../../../core/res/text_styles.dart';
 import '../../../../core/resources/app_assets.dart';
@@ -20,6 +22,11 @@ class NotificationPage extends StatefulWidget {
 
 class _NotificationPageState extends State<NotificationPage> {
   @override
+  void initState() {
+    super.initState();
+    Provider.of<ToolsViewModel>(context,listen: false).getNotificationAPI(context);
+  }
+  @override
   Widget build(BuildContext context) {
     return CustomScaffold(appBar: CustomAppBar(
       topColor: AppColors.primaryColor,
@@ -34,11 +41,13 @@ class _NotificationPageState extends State<NotificationPage> {
           child: Icon(Icons.keyboard_arrow_left_rounded,color: AppColors.white,size: 26.r,),
         ),
       )],),
-      body:Padding(
+      body:  Consumer<ToolsViewModel>(builder: (context, data, child) {
+        return
+    Padding(
         padding: EdgeInsets.all(12.r),
         child: AnimationLimiter(
           child:ListView.builder(
-              itemCount: 10,
+              itemCount: data.notificationModel?.data?.length,
               shrinkWrap: true,
               itemBuilder: (context,index){
                 return AnimationConfiguration.staggeredGrid(
@@ -62,13 +71,12 @@ class _NotificationPageState extends State<NotificationPage> {
                                 child: Column(crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Text(
-                                      'رفيق الخشوع والسلام',
+                                      data.notificationModel?.data?[index].title??'',
                                       style: TextStyles()
                                           .getDisplayMediumStyle(fontSize: 14.sp)
                                           .customColor(AppColors.black),
                                     ),
-                                    Text(
-                                      'الصلاة: ملاذ السلام والهدوء. تطبيق يرافقنا لتذكيرنا بأوقاتها في كل مكان. لنستخدم التكنولوجيا لتعزيز عبادتنا ورفع روحنا إلى مراتب النقاء والطهارة.',
+                                    Text(data.notificationModel?.data?[index].body??'',
                                       style: TextStyles()
                                           .getRegularStyle(fontSize: 13.sp)
                                           .customColor(AppColors.black),
@@ -81,6 +89,6 @@ class _NotificationPageState extends State<NotificationPage> {
                         )));
               }),
         ),
-      ) ,);
+      );}) ,);
   }
 }

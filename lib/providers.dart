@@ -1,6 +1,7 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:islamic_app/presentation/auth/auth_view_model.dart';
+import 'package:islamic_app/presentation/home_screen/home_view_model.dart';
 import 'package:islamic_app/presentation/my_habits_screen/my_habits_screen_view_model.dart';
 import 'package:islamic_app/presentation/register_screen/register_screen_view_model.dart';
 import 'package:islamic_app/presentation/tools_screen/pages/quraan/my_provider_quraan.dart';
@@ -24,12 +25,7 @@ class GenerateMultiProvider extends StatelessWidget {
         ChangeNotifierProvider(create: (_) => getIt<MyProviderQuraan>()),
         ChangeNotifierProvider(create: (_) => getIt<RegisterScreenViewModel>()),
         ChangeNotifierProvider(create: (_) => getIt<HabitsScreenViewModel>()),
-        // ChangeNotifierProvider(create: (_) => getIt<QualitySpecialistViewModel>()),
-        // ChangeNotifierProvider(create: (_) => getIt<SiteSupervisorViewModel>()),
-        // ChangeNotifierProvider(create: (_) => getIt<DeliveryViewModel>()),
-        // ChangeNotifierProvider(create: (_) => getIt<SuperVisorViewModel>()),
-        // ChangeNotifierProvider(create: (_) => getIt<DirectorViewModel>()),
-        // ChangeNotifierProvider(create: (_) => getIt<ProductProvider>()),
+        ChangeNotifierProvider(create: (_) => getIt<HomeViewModel>()),
 
       ],
       child: child,

@@ -2,6 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
 import 'package:islamic_app/data/repository/tools_Repo.dart';
 import 'package:islamic_app/presentation/auth/auth_view_model.dart';
+import 'package:islamic_app/presentation/home_screen/home_view_model.dart';
 import 'package:islamic_app/presentation/my_habits_screen/my_habits_screen_view_model.dart';
 import 'package:islamic_app/presentation/register_screen/register_screen_view_model.dart';
 import 'package:islamic_app/presentation/tools_screen/pages/quraan/my_provider_quraan.dart';
@@ -32,6 +33,7 @@ Future<void> init() async {
   getIt.registerLazySingleton(() => RegisterScreenViewModel(saveUserData: getIt(), homeRepo: getIt()));
   getIt.registerLazySingleton(() => HabitsScreenViewModel(saveUserData: getIt(), homeRepo: getIt()));
   getIt.registerLazySingleton(() => MyProviderQuraan());
+  getIt.registerLazySingleton(() => HomeViewModel(saveUserData: getIt(), homeRepo: getIt()));
 
   // getIt.registerLazySingleton(() => ProductProvider());
 

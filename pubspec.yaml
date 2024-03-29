@@ -31,7 +31,7 @@ dependencies:
   cached_network_image: ^3.2.2
   # awesome_dialog: ^3.0.2 #dialog
   # flutter_timer_countdown: ^1.0.5
-  pin_code_fields: ^7.4.0
+#  pin_code_fields: ^7.4.0
   #  webview_flutter: ^3.0.4
   #  image_picker: ^0.8.5
   url_launcher: ^6.0.20
@@ -55,7 +55,7 @@ dependencies:
   fluttertoast: ^8.2.1
   carousel_slider: ^4.2.0   #slider
   flutter_rating_bar: ^4.0.1 #rat_Bar
-  flutter_share:  #for sharing
+#  flutter_share:  #for sharing
 
   #  date_picker_timeline: ^1.2.5  #for slide calender
   easy_date_timeline:   #for slide calender
@@ -63,8 +63,8 @@ dependencies:
 
   #local data base
   # sqflite:
-  google_maps_flutter: ^2.2.6
-  google_maps_place_picker_mb: ^3.0.2
+#  google_maps_flutter: ^2.2.6
+#  google_maps_place_picker_mb: ^3.0.2
 
   # for place id
   geolocator: ^9.0.2

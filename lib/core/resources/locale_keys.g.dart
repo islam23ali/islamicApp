@@ -41,6 +41,10 @@ abstract class  LocaleKeys {
   static const signIn = 'signIn';
   static const today = 'today';
   static const hadiths = 'hadiths';
+  static const summary = 'summary';
+  static const all = 'all';
+  static const obligatoryPrayer = 'obligatoryPrayer';
+  static const supererogatoryPrayer = 'supererogatoryPrayer';
 
 ///componantes-----------
   static const camera = '';

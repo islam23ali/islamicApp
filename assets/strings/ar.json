@@ -35,6 +35,10 @@
   "passwordRequired": "يلزم إدخال كلمة المرور",
   "signIn": "تسجيل الدخول",
   "today": "اليوم",
-  "hadiths": "الأحاديث"
+  "hadiths": "الأحاديث",
+  "summary": "الموجز",
+  "all": "الكل",
+  "obligatoryPrayer": "صلاة الفرض",
+  "supererogatoryPrayer": "صلاة النافلة"
 
 }
