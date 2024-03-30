@@ -7,6 +7,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:islamic_app/core/resources/app_assets.dart';
 
+import '../../../../core/app_loader.dart';
 import 'location_error_widget.dart';
 
 class QiblahCompass extends StatefulWidget {
@@ -55,7 +56,7 @@ class _QiblahCompassState extends State<QiblahCompass> {
         builder: (context, AsyncSnapshot<LocationStatus> snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return const Center(
-              child: CircularProgressIndicator(),
+              child: AppLoader(),
             );
           }
           if (snapshot.data!.enabled == true) {
@@ -106,7 +107,7 @@ class QiblahCompassWidget extends StatelessWidget {
       builder: (_, AsyncSnapshot<QiblahDirection> snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting)
           {
-            return const Center(child: CircularProgressIndicator(),);
+            return const Center(child: AppLoader(),);
           }
 
         final qiblahDirection = snapshot.data!;

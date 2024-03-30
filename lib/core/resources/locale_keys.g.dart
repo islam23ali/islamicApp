@@ -45,6 +45,8 @@ abstract class  LocaleKeys {
   static const all = 'all';
   static const obligatoryPrayer = 'obligatoryPrayer';
   static const supererogatoryPrayer = 'supererogatoryPrayer';
+  static const endRequired = 'endRequired';
+  static const startRequired = 'startRequired';
 
 ///componantes-----------
   static const camera = '';

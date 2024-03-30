@@ -8,11 +8,13 @@ import '../../../../data/repository/auth_repo.dart';
 import '../../../core/utils/showToast.dart';
 import '../../../data/model/response/user_model.dart';
 import '../../core/api_checker.dart';
+import '../../core/routing/route.dart';
 import '../../data/model/body/habits_body.dart';
 import '../../data/model/response/assumption_model.dart';
 import '../../data/model/response/habits_model.dart';
 import '../../data/model/response/prayers_model.dart';
 import '../../data/repository/home_Repo.dart';
+import '../splash/splash.dart';
 
 class HabitsScreenViewModel with ChangeNotifier {
   final HomeRepo homeRepo;
@@ -52,9 +54,10 @@ class HabitsScreenViewModel with ChangeNotifier {
       _habitsModel = HabitsModel.fromJson(responseModel.response?.data);
 
       if (_habitsModel?.status == 200) {
-        // await saveUserData.clearSharedData().then((value) => pushAndRemoveUntil(const Splash()));
 
-      } else {
+      } else if(_habitsModel?.status==401) {
+        await saveUserData.clearSharedData().then((value) => pushAndRemoveUntil(const Splash()));}
+      else {
         ToastUtils.showToast(_habitsModel?.message.toString() ?? "");
       }
     } else {
@@ -82,7 +85,9 @@ class HabitsScreenViewModel with ChangeNotifier {
         ToastUtils.showToast('تم تحديد الحالة بنجاح');
         // await saveUserData.clearSharedData().then((value) => pushAndRemoveUntil(const Splash()));
 
-      } else {
+      } else if(_emptyDataModel?.status==401) {
+        await saveUserData.clearSharedData().then((value) => pushAndRemoveUntil(const Splash()));}
+      else {
         ToastUtils.showToast(_emptyDataModel?.message.toString() ?? "");
       }
     } else {

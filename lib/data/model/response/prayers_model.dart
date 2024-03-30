@@ -29,6 +29,10 @@ class OnePrayes {
   String? slug;
   String? time;
   String? image;
+  int? group;
+  int? individually;
+  int? late;
+  int? nawafel;
 
   OnePrayes({
     this.id,
@@ -36,6 +40,10 @@ class OnePrayes {
     this.slug,
     this.time,
     this.image,
+    this.group,
+    this.individually,
+    this.late,
+    this.nawafel,
   });
 
   factory OnePrayes.fromJson(Map<String, dynamic> json) => OnePrayes(
@@ -44,6 +52,10 @@ class OnePrayes {
     slug: json["slug"],
     time: json["time"],
     image: json["image"],
+    group: json["group"],
+    individually: json["individually"],
+    late: json["late"],
+    nawafel: json["nawafel"],
   );
 
   Map<String, dynamic> toJson() => {
@@ -52,5 +64,9 @@ class OnePrayes {
     "slug": slug,
     "time": time,
     "image": image,
+    "group": group,
+    "individually": individually,
+    "late": late,
+    "nawafel": nawafel,
   };
 }

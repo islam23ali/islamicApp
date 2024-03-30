@@ -61,6 +61,22 @@ class HomeRepo {
       return ApiResponse.withError(ApiErrorHandler.getMessage(e));
     }
   }
+  Future<ApiResponse> reportsRepo(String fromDate,toDate) async {
+    try {
+      Response response = await dioClient.get('${AppURL.kReportsURI}$fromDate&to_date=$toDate');
+      return ApiResponse.withSuccess(response);
+    } catch (e) {
+      return ApiResponse.withError(ApiErrorHandler.getMessage(e));
+    }
+  }
+  Future<ApiResponse> titlePageRepo(String type) async {
+    try {
+      Response response = await dioClient.get('${AppURL.kTitlePagesURI}$type');
+      return ApiResponse.withSuccess(response);
+    } catch (e) {
+      return ApiResponse.withError(ApiErrorHandler.getMessage(e));
+    }
+  }
   Future<ApiResponse> goodDeedsRepo() async {
     try {
       Response response = await dioClient.get(AppURL.kGoodDeedsURI);

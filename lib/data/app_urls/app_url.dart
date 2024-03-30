@@ -7,6 +7,8 @@ class AppURL {
   static const String kNextPrayerURI = "/user/auth/next_prayer";
   static const String kAssumptionsURI = "/user/auth/assumptions";
   static const String kMakeAssumptionsURI = "/user/auth/make_assumption";
+  static const String kReportsURI = "/user/auth/reports?from_date=";
+  static const String kTitlePagesURI = "/user/auth/pages_title?type=";
   static const String kGoodDeedsURI = "/user/auth/good_deeds";
   static const String kGoodDeedsPostURI = "/user/auth/make_good_deed";
   static const String kHadithURl = "/user/auth/hadith";

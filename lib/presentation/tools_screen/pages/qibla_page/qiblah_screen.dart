@@ -1,6 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_qiblah/flutter_qiblah.dart';
+import 'package:islamic_app/core/app_loader.dart';
 import 'package:islamic_app/core/extensions/num_extensions.dart';
 import 'package:islamic_app/presentation/component/component.dart';
 import 'package:islamic_app/presentation/tools_screen/pages/qibla_page/qiblah_compass.dart';
@@ -38,7 +39,7 @@ class _QiblahScreenState extends State<QiblahScreen> {
           builder: (_, AsyncSnapshot<bool?> snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {
               return const Center(
-                child: CircularProgressIndicator(),
+                child: AppLoader(),
               );
             }
             if (snapshot.hasError) {

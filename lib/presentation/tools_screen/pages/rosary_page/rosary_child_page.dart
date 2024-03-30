@@ -2,9 +2,12 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:islamic_app/core/extensions/num_extensions.dart';
 import 'package:islamic_app/core/resources/app_assets.dart';
+import 'package:islamic_app/injection.dart';
 import 'package:islamic_app/presentation/component/animation/column_animator.dart';
 import 'package:islamic_app/presentation/component/svg_icon.dart';
 import 'package:islamic_app/presentation/component/custom_circle_pant.dart';
+import 'package:islamic_app/presentation/tools_screen/pages/rosary_page/rosary_view_model.dart';
+import 'package:provider/provider.dart';
 
 import '../../../../core/res/text_styles.dart';
 import '../../../../core/resources/app_colors.dart';
@@ -12,28 +15,21 @@ import '../../../../core/resources/locale_keys.g.dart';
 import '../../../component/appbars/custom_app_bar.dart';
 import '../../../component/custom_scaffold.dart';
 import '../../../home_screen/home_screen.dart';
-
+RosaryViewModel provider =getIt();
 class RosaryChildPage extends StatefulWidget {
-  const RosaryChildPage({Key? key}) : super(key: key);
+  const RosaryChildPage({Key? key, required this.title}) : super(key: key);
+  final String? title;
 
   @override
   _RosaryChildPageState createState() => _RosaryChildPageState();
 }
 
 class _RosaryChildPageState extends State<RosaryChildPage> {
-  int number=0;
-  double status=0.0;
-  void increaseNumber() {
-    setState(() {
-      number++;
-      if (status < 1.0) {
-        status += 0.1;
-      }else{
-        setState(() {
-          status=0.1;
-        });
-      }
-    });
+@override
+  void initState() {
+    super.initState();
+    Provider.of<RosaryViewModel>(context,listen: false);
+    provider.number=0;
   }
   @override
   Widget build(BuildContext context) {
@@ -62,13 +58,13 @@ class _RosaryChildPageState extends State<RosaryChildPage> {
           )
         ],
       ),
-      body: Padding(
+      body:Consumer<RosaryViewModel>(builder: (context, data, child) {
+        return Padding(
         padding: EdgeInsets.all(12.w),
         child: ColumnAnimator(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
-          Text('اللّهـمَّ أَنْتَ رَبِّـي لا إلهَ إلاّ أَنْتَ ، خَلَقْتَنـي وَأَنا عَبْـدُك ، وَأَنا عَلـى عَهْـدِكَ وَوَعْـدِكَ ما اسْتَـطَعْـت ، أَعـوذُبِكَ مِنْ شَـرِّ ما صَنَـعْت ، أَبـوءُ لَـكَ بِنِعْـمَتِـكَ عَلَـيَّ وَأَبـوءُ بِذَنْـبي فَاغْفـِرْ لي فَإِنَّـهُ لا يَغْـفِرُ الذُّنـوبَ إِلاّ أَنْتَ .',
-            style: TextStyles()
+          Text(widget.title??'',style: TextStyles()
                 .getDisplayMediumStyle(fontSize: 18.sp)
                 .customColor(AppColors.black),
           ),
@@ -93,7 +89,8 @@ class _RosaryChildPageState extends State<RosaryChildPage> {
                               margin: EdgeInsets.all(5.r),
                                 child: InkWell(
                                   onTap: (){
-                                    increaseNumber();
+                                    data.increaseNumber();
+                                    data.refreshData();
                                   },
                                     child: SVGIcon(Assets.rosaryButton,width: 98.w,height: 98.h,))
                   // )
@@ -101,9 +98,10 @@ class _RosaryChildPageState extends State<RosaryChildPage> {
                         Positioned(left: 0,right: 0,bottom: 0,top: 0,
                           child: Center(
                             child: InkWell(onTap: (){
-                              increaseNumber();           ///   ليها لازمه علشان تلغي ال activation بتاع ال text من غيرها ال onTap تعلق
+                              data.increaseNumber();           ///   ليها لازمه علشان تلغي ال activation بتاع ال text من غيرها ال onTap تعلق
+                            data.refreshData();
                             },
-                              child: Text('$number',
+                              child: Text('${data.number}',
                                 style: TextStyles()
                                     .getTitleStyle(fontSize: 24.sp)
                                     .customColor(AppColors.white),
@@ -116,7 +114,7 @@ class _RosaryChildPageState extends State<RosaryChildPage> {
             ],
           )
         ],),
-      ),
+      );})
     );
   }
 }

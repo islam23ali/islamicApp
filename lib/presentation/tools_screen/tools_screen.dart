@@ -1,5 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:islamic_app/core/app_loader.dart';
 import 'package:islamic_app/core/extensions/num_extensions.dart';
 import 'package:islamic_app/core/routing/route.dart';
 import 'package:islamic_app/presentation/tools_screen/pages/azan_screen/azan_screen.dart';
@@ -11,11 +12,14 @@ import 'package:islamic_app/presentation/tools_screen/pages/quraan/quraan_page.d
 import 'package:islamic_app/presentation/tools_screen/pages/remembrances_page/remembrances_page.dart';
 import 'package:islamic_app/presentation/tools_screen/pages/rosary_page/rosary_page.dart';
 import 'package:islamic_app/presentation/tools_screen/pages/supplications_page/supplications_page.dart';
+import 'package:jhijri/_src/_jHijri.dart';
+import 'package:provider/provider.dart';
 import '../../core/res/text_styles.dart';
 import '../../core/resources/app_assets.dart';
 import '../../core/resources/app_colors.dart';
 import '../../core/resources/locale_keys.g.dart';
 import '../register_screen/widget/top_appbar.dart';
+import '../reports_screen/reports_screen_view_model.dart';
 
 class ToolsScreen extends StatefulWidget {
   const ToolsScreen({Key? key}) : super(key: key);
@@ -26,17 +30,25 @@ class ToolsScreen extends StatefulWidget {
 
 class _ToolsScreenState extends State<ToolsScreen> {
   @override
+  void initState() {
+    super.initState();
+    Provider.of<ReportsScreenViewModel>(context,listen: false).titlePageAPI(context,'tools');
+  }
+  @override
   Widget build(BuildContext context) {
+    final load =context.watch<ReportsScreenViewModel>().isLoading;
     return SafeArea(child:
-    Column(crossAxisAlignment: CrossAxisAlignment.start,
+        Consumer<ReportsScreenViewModel>(builder: (context, data, child) {
+      final jHijri = JHijri(fDate:data.titlePagesModel?.data?.date).hijri;
+      return load?AppLoader(): Column(crossAxisAlignment: CrossAxisAlignment.start,
     children: [
       Container(color: AppColors.primaryColor,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const TopAppBar(logo: Assets.toolsLogo, title: 'اهلا بك في صفحة الأدوات',
-            label: 'المزيد من الادوات الدينية',
-            date: 'الأربعاء 25 شعبان 1445',),
+           TopAppBar(logo: Assets.toolsLogo, title: data.titlePagesModel?.data?.title??'',
+            label: data.titlePagesModel?.data?.body??'',
+            date: jHijri.toString(),),
           SizedBox(height: 30.h,)
       ],),),
       SizedBox(height: 20.h,),
@@ -158,6 +170,6 @@ class _ToolsScreenState extends State<ToolsScreen> {
           ),
         ],
       ),
-    ],));
+    ],);}));
   }
 }

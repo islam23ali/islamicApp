@@ -5,7 +5,9 @@ import 'package:islamic_app/presentation/auth/auth_view_model.dart';
 import 'package:islamic_app/presentation/home_screen/home_view_model.dart';
 import 'package:islamic_app/presentation/my_habits_screen/my_habits_screen_view_model.dart';
 import 'package:islamic_app/presentation/register_screen/register_screen_view_model.dart';
+import 'package:islamic_app/presentation/reports_screen/reports_screen_view_model.dart';
 import 'package:islamic_app/presentation/tools_screen/pages/quraan/my_provider_quraan.dart';
+import 'package:islamic_app/presentation/tools_screen/pages/rosary_page/rosary_view_model.dart';
 import 'package:islamic_app/presentation/tools_screen/tools_view_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
@@ -34,6 +36,8 @@ Future<void> init() async {
   getIt.registerLazySingleton(() => HabitsScreenViewModel(saveUserData: getIt(), homeRepo: getIt()));
   getIt.registerLazySingleton(() => MyProviderQuraan());
   getIt.registerLazySingleton(() => HomeViewModel(saveUserData: getIt(), homeRepo: getIt()));
+  getIt.registerLazySingleton(() => ReportsScreenViewModel(saveUserData: getIt(), homeRepo: getIt()));
+  getIt.registerLazySingleton(() => RosaryViewModel(saveUserData: getIt()));
 
   // getIt.registerLazySingleton(() => ProductProvider());
 

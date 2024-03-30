@@ -11,7 +11,9 @@ import '../../../core/res/text_styles.dart';
 import '../../../core/resources/app_assets.dart';
 import '../../../core/resources/app_colors.dart';
 import '../../../core/resources/locale_keys.g.dart';
-
+import '../../../injection.dart';
+import '../reports_screen_view_model.dart';
+ReportsScreenViewModel provider =getIt();
 class ToDateCalender extends StatefulWidget {
   const ToDateCalender({Key? key}) : super(key: key);
 
@@ -23,7 +25,6 @@ class _ToDateCalenderState extends State<ToDateCalender> {
   DateTime _currentDate = DateTime.now();
   DateTime _selectedDate2 = DateTime.now();
   final jHijriNow = JHijri.now();
-  final TextEditingController toDateController = TextEditingController();
 
   bool showDate = false;
 
@@ -48,7 +49,7 @@ class _ToDateCalenderState extends State<ToDateCalender> {
                 });
               },
               readOnly: true,
-              controller: toDateController,
+              controller: provider.toDateController,
               image: Assets.expandMore,
               imageColor: AppColors.black,
               imageHeight: 16.h,
@@ -72,7 +73,7 @@ class _ToDateCalenderState extends State<ToDateCalender> {
                   padding: EdgeInsets.symmetric(horizontal: 16.w,vertical: 12.h),
                   child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                    Text(toDateController.text==''?jHijriNow.hijri.toString():toDateController.text,style: TextStyles()
+                    Text(provider.toDateController.text==''?jHijriNow.hijri.toString():provider.toDateController.text,style: TextStyles()
                         .getRegularStyle(fontSize: 16.sp)
                         .customColor(AppColors.black),),
                       SVGIcon(Assets.expandLess,width: 16.w,height: 16.h,color: AppColors.black,)
@@ -104,8 +105,10 @@ class _ToDateCalenderState extends State<ToDateCalender> {
                     onDayPressed: (date, events) {
                       setState(() {
                         _selectedDate2 = date;
+                        String formattedDate = DateFormat('yyyy-MM-dd','en').format(_selectedDate2);
+                        provider.toDateApiController.text = formattedDate;
                         final jHijri = JHijri(fDate: _selectedDate2).hijri;
-                        toDateController.text=jHijri.toString();
+                        provider.toDateController.text=jHijri.toString();
                         showDate=!showDate;
                       });
                       events.forEach((event) => print(event.title));

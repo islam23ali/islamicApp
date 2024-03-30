@@ -146,7 +146,7 @@ class _BottomCardState extends State<BottomCard> {
                         child: Container(
                           height:92.h,width: 92.w,
                           decoration: BoxDecoration(borderRadius: BorderRadius.circular(100.r)),
-                          child: Center(child: Text((all1/100).toPrecision(2).toString(),style: TextStyles().getTitleStyle(fontSize: 24.sp).customColor(AppColors.black),)),),
+                          child: Center(child: Text('%${(all1).toPrecision(2)}',style: TextStyles().getTitleStyle(fontSize: 24.sp).customColor(AppColors.black),)),),
                       ),
                     ),
                     SizedBox(height: 20.h,),
@@ -171,7 +171,7 @@ class _BottomCardState extends State<BottomCard> {
                         child: Container(
                           height:92.h,width: 92.w,
                           decoration: BoxDecoration(borderRadius: BorderRadius.circular(100.r)),
-                          child: Center(child: Text('%${(all2/100).toPrecision(2)}',style: TextStyles().getTitleStyle(fontSize: 24.sp).customColor(AppColors.black),)),),
+                          child: Center(child: Text('%${(all2).toPrecision(2)}',style: TextStyles().getTitleStyle(fontSize: 24.sp).customColor(AppColors.black),)),),
                       ),
                     ),
                     SizedBox(height: 20.h,),
@@ -200,7 +200,7 @@ class _BottomCardState extends State<BottomCard> {
                         child: Container(
                           height:92.h,width: 92.w,
                           decoration: BoxDecoration(borderRadius: BorderRadius.circular(100.r)),
-                          child: Center(child: Text('%${(day1/100).toPrecision(2)}',style: TextStyles().getTitleStyle(fontSize: 24.sp).customColor(AppColors.black),)),),
+                          child: Center(child: Text('%${(day1).toPrecision(2)}',style: TextStyles().getTitleStyle(fontSize: 24.sp).customColor(AppColors.black),)),),
                       ),
                     ),
                     SizedBox(height: 20.h,),
@@ -225,7 +225,7 @@ class _BottomCardState extends State<BottomCard> {
                         child: Container(
                           height:92.h,width: 92.w,
                           decoration: BoxDecoration(borderRadius: BorderRadius.circular(100.r)),
-                          child: Center(child: Text('%${(day2/100).toPrecision(2)}',style: TextStyles().getTitleStyle(fontSize: 24.sp).customColor(AppColors.black),)),),
+                          child: Center(child: Text('%${(day2).toPrecision(2)}',style: TextStyles().getTitleStyle(fontSize: 24.sp).customColor(AppColors.black),)),),
                       ),
                     ),
                     SizedBox(height: 20.h,),
@@ -253,7 +253,7 @@ class _BottomCardState extends State<BottomCard> {
                         child: Container(
                           height:92.h,width: 92.w,
                           decoration: BoxDecoration(borderRadius: BorderRadius.circular(100.r)),
-                          child: Center(child: Text('%${(week1/100).toPrecision(2)}',style: TextStyles().getTitleStyle(fontSize: 24.sp).customColor(AppColors.black),)),),
+                          child: Center(child: Text('%${(week1).toPrecision(2)}',style: TextStyles().getTitleStyle(fontSize: 24.sp).customColor(AppColors.black),)),),
                       ),
                     ),
                     SizedBox(height: 20.h,),
@@ -278,7 +278,7 @@ class _BottomCardState extends State<BottomCard> {
                         child: Container(
                           height:92.h,width: 92.w,
                           decoration: BoxDecoration(borderRadius: BorderRadius.circular(100.r)),
-                          child: Center(child: Text('%${(week2/100).toPrecision(2)}',style: TextStyles().getTitleStyle(fontSize: 24.sp).customColor(AppColors.black),)),),
+                          child: Center(child: Text('%${(week2).toPrecision(2)}',style: TextStyles().getTitleStyle(fontSize: 24.sp).customColor(AppColors.black),)),),
                       ),
                     ),
                     SizedBox(height: 20.h,),

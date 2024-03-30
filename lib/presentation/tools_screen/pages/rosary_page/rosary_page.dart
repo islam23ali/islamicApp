@@ -77,7 +77,7 @@ class _RosaryState extends State<Rosary> {
                               duration:const Duration(milliseconds: 1000),
                               curve: Curves.fastLinearToSlowEaseIn,
                               child: FadeInAnimation(child:InkWell(onTap: (){
-                                push(RosaryChildPage());
+                                push(RosaryChildPage(title: provider.rosaryItems[index],));
                               },
                                 child: Container(
                                   padding: EdgeInsets.symmetric(horizontal: 20.h,vertical: 10.w),

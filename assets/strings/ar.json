@@ -39,6 +39,8 @@
   "summary": "الموجز",
   "all": "الكل",
   "obligatoryPrayer": "صلاة الفرض",
-  "supererogatoryPrayer": "صلاة النافلة"
+  "supererogatoryPrayer": "صلاة النافلة",
+  "endRequired": "يلزم تحديد تاريخ نهاية",
+  "startRequired": "يلزم تحديد تاريخ بداية"
 
 }

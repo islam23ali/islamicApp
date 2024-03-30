@@ -37,7 +37,9 @@
   "summary": "Summary",
   "all": "All",
   "obligatoryPrayer": "Obligatory prayer",
-  "supererogatoryPrayer": "Supererogatory prayer"
+  "supererogatoryPrayer": "Supererogatory prayer",
+  "endRequired": "An end date is required",
+  "startRequired": "A start date is required"
 
 
 }

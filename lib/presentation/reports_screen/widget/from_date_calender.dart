@@ -3,15 +3,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter_calendar_carousel/classes/event.dart';
 import 'package:flutter_calendar_carousel/flutter_calendar_carousel.dart';
 import 'package:islamic_app/core/extensions/num_extensions.dart';
+import 'package:islamic_app/injection.dart';
 import 'package:islamic_app/presentation/component/inputs/new/customTextFormField.dart';
 import 'package:islamic_app/presentation/component/svg_icon.dart';
+import 'package:islamic_app/presentation/reports_screen/reports_screen_view_model.dart';
 import 'package:jhijri/_src/_jHijri.dart';
 
 import '../../../core/res/text_styles.dart';
 import '../../../core/resources/app_assets.dart';
 import '../../../core/resources/app_colors.dart';
 import '../../../core/resources/locale_keys.g.dart';
-
+ReportsScreenViewModel provider =getIt();
 class FromDateCalender extends StatefulWidget {
   const FromDateCalender({Key? key}) : super(key: key);
 
@@ -24,7 +26,7 @@ class _FromDateCalenderState extends State<FromDateCalender> {
   DateTime _selectedDate2 = DateTime.now();
   final jHijriNow = JHijri.now();
 
-  final TextEditingController fromDateController = TextEditingController();
+
 
   bool showDate = false;
 
@@ -49,7 +51,7 @@ class _FromDateCalenderState extends State<FromDateCalender> {
                 });
               },
               readOnly: true,
-              controller: fromDateController,
+              controller: provider.fromDateController,
               image: Assets.expandMore,
               imageColor: AppColors.black,
               imageHeight: 16.h,
@@ -74,7 +76,7 @@ class _FromDateCalenderState extends State<FromDateCalender> {
                   padding: EdgeInsets.symmetric(horizontal: 16.w,vertical: 12.h),
                   child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                    Text(fromDateController.text==''?jHijriNow.hijri.toString():fromDateController.text,style: TextStyles()
+                    Text(provider.fromDateController.text==''?jHijriNow.hijri.toString():provider.fromDateController.text,style: TextStyles()
                         .getRegularStyle(fontSize: 16.sp)
                         .customColor(AppColors.black),),
                       SVGIcon(Assets.expandLess,width: 16.w,height: 16.h,color: AppColors.black,)
@@ -106,8 +108,12 @@ class _FromDateCalenderState extends State<FromDateCalender> {
                     onDayPressed: (date, events) {
                       setState(() {
                         _selectedDate2 = date;
+                        String formattedDate = DateFormat('yyyy-MM-dd','en').format(_selectedDate2);
+                        print('hhhhhhhh...${formattedDate}');
+                        print('hhhhhhhh...${_selectedDate2}');
+                        provider.fromDateApiController.text = formattedDate;
                         final jHijri = JHijri(fDate: _selectedDate2).hijri;
-                        fromDateController.text=jHijri.toString();
+                        provider.fromDateController.text=jHijri.toString();
                         showDate=!showDate;
                       });
                       events.forEach((event) => print(event.title));

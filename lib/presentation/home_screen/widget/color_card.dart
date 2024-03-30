@@ -6,6 +6,7 @@ import 'package:islamic_app/core/routing/route.dart';
 import 'package:islamic_app/data/repository/SaveUserData.dart';
 import 'package:islamic_app/injection.dart';
 import 'package:islamic_app/presentation/splash/splash.dart';
+import 'package:restart_app/restart_app.dart';
 
 import '../../../core/logger.dart';
 import '../../../core/res/text_styles.dart';
@@ -20,7 +21,7 @@ class ColorCard extends StatefulWidget {
 
 class _ColorCardState extends State<ColorCard> {
   // final tag = 'ChangeLanguageSheet';
-  late Locale locale = context.locale;
+  // late Locale locale = context.locale;
   @override
   Widget build(BuildContext context) {
     return Card(color: AppColors.white,
@@ -42,7 +43,8 @@ class _ColorCardState extends State<ColorCard> {
                 setState(() {
                   saveData.saveColor('1').then((value) => pushAndRemoveUntil(Splash()));
                 });
-                context.setLocale(locale) ;
+                Restart.restartApp(webOrigin: '[your main route]');
+                // context.setLocale(locale) ;
               },
                 child: Container(
                   margin: EdgeInsets.symmetric(horizontal: 2.w),
@@ -55,7 +57,7 @@ class _ColorCardState extends State<ColorCard> {
                 setState(() {
                   saveData.saveColor('2').then((value) => pushAndRemoveUntil(Splash()));
                 });
-                context.setLocale(locale) ;
+                // context.setLocale(locale) ;
               },
                 child: Container(
                   margin: EdgeInsets.symmetric(horizontal: 2.w),
@@ -67,7 +69,7 @@ class _ColorCardState extends State<ColorCard> {
                 setState(() {
                   saveData.saveColor('3').then((value) => pushAndRemoveUntil(Splash()));
                 });
-                context.setLocale(locale) ;
+                // context.setLocale(locale) ;
               },
                 child: Container(
                   margin: EdgeInsets.symmetric(horizontal: 2.w),
@@ -78,7 +80,8 @@ class _ColorCardState extends State<ColorCard> {
               InkWell(onTap: (){
                 setState(() {
                   saveData.saveColor('4').then((value) => pushAndRemoveUntil(Splash()));
-                });context.setLocale(locale) ;
+                });
+                // context.setLocale(locale) ;
               },
                 child: Container(
                   margin: EdgeInsets.symmetric(horizontal: 2.w),
@@ -89,7 +92,8 @@ class _ColorCardState extends State<ColorCard> {
               InkWell(onTap: (){
                 setState(() {
                   saveData.saveColor('5').then((value) => pushAndRemoveUntil(Splash()));
-                });context.setLocale(locale) ;
+                });
+                // context.setLocale(locale) ;
               },
                 child: Container(
                   margin: EdgeInsets.symmetric(horizontal: 2.w),

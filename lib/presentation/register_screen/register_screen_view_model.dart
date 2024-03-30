@@ -8,10 +8,12 @@ import '../../../../data/repository/auth_repo.dart';
 import '../../../core/utils/showToast.dart';
 import '../../../data/model/response/user_model.dart';
 import '../../core/api_checker.dart';
+import '../../core/routing/route.dart';
 import '../../data/model/response/assumption_model.dart';
 import '../../data/model/response/next_prayer_model.dart';
 import '../../data/model/response/prayers_model.dart';
 import '../../data/repository/home_Repo.dart';
+import '../splash/splash.dart';
 
 class RegisterScreenViewModel with ChangeNotifier {
   final HomeRepo homeRepo;
@@ -25,8 +27,8 @@ class RegisterScreenViewModel with ChangeNotifier {
 
 
   bool checkBoxValue=false;
-  int? isClicked;
-  String? isClickedKey;
+  // int? isClicked;
+  // String? isClickedKey;
 
   PrayersModel? _prayersModel;
   NextPrayerModel? _nextPrayerModel;
@@ -59,7 +61,9 @@ class RegisterScreenViewModel with ChangeNotifier {
       if (_nextPrayerModel?.status == 200) {
         // await saveUserData.clearSharedData().then((value) => pushAndRemoveUntil(const Splash()));
 
-      } else {
+      } else if(_nextPrayerModel?.status==401) {
+        await saveUserData.clearSharedData().then((value) => pushAndRemoveUntil(const Splash()));}
+      else{
         ToastUtils.showToast(_nextPrayerModel?.message.toString() ?? "");
       }
     } else {
@@ -82,7 +86,9 @@ class RegisterScreenViewModel with ChangeNotifier {
       if (_prayersModel?.status == 200) {
         // await saveUserData.clearSharedData().then((value) => pushAndRemoveUntil(const Splash()));
 
-      } else {
+      }else if(_prayersModel?.status==401) {
+        await saveUserData.clearSharedData().then((value) => pushAndRemoveUntil(const Splash()));}
+      else {
         ToastUtils.showToast(_prayersModel?.message.toString() ?? "");
       }
     } else {
@@ -105,7 +111,9 @@ class RegisterScreenViewModel with ChangeNotifier {
       if (_assumptionsModel?.status == 200) {
         // await saveUserData.clearSharedData().then((value) => pushAndRemoveUntil(const Splash()));
 
-      } else {
+      } else if(_assumptionsModel?.status==401) {
+        await saveUserData.clearSharedData().then((value) => pushAndRemoveUntil(const Splash()));}
+      else {
         ToastUtils.showToast(_assumptionsModel?.message.toString() ?? "");
       }
     } else {
@@ -128,7 +136,9 @@ class RegisterScreenViewModel with ChangeNotifier {
       if (_emptyDataModel?.status == 200) {
         // await saveUserData.clearSharedData().then((value) => pushAndRemoveUntil(const Splash()));
         ToastUtils.showToast(_emptyDataModel?.message.toString() ?? "");
-      } else {
+      } else if(_emptyDataModel?.status==401) {
+        await saveUserData.clearSharedData().then((value) => pushAndRemoveUntil(const Splash()));}
+      else {
         ToastUtils.showToast(_emptyDataModel?.message.toString() ?? "");
       }
     } else {

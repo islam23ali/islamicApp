@@ -6,6 +6,7 @@ import 'package:islamic_app/data/repository/home_Repo.dart';
 import 'package:islamic_app/data/repository/tools_Repo.dart';
 import '../../../../data/repository/SaveUserData.dart';
 import '../../core/api_checker.dart';
+import '../../core/routing/route.dart';
 import '../../data/model/response/analysis_model.dart';
 import '../../data/model/response/base/api_response.dart';
 import '../../data/model/response/hadith_model.dart';
@@ -15,6 +16,7 @@ import '../../data/model/response/remembrance_details_model.dart';
 import '../../data/model/response/remembrance_model.dart';
 import '../../data/model/response/remembrance_model.dart';
 import '../../data/model/response/supplication_details_model.dart';
+import '../splash/splash.dart';
 
 class HomeViewModel with ChangeNotifier {
   final HomeRepo homeRepo;
@@ -61,6 +63,8 @@ class HomeViewModel with ChangeNotifier {
       _isLoading = false;
       _percentageModel = PercentageModel.fromJson(responseModel.response?.data);
 if(_percentageModel?.status==200){}
+else if(_percentageModel?.status==401) {
+  await saveUserData.clearSharedData().then((value) => pushAndRemoveUntil(const Splash()));}
 else{
   ToastUtils.showToast(_percentageModel?.message.toString()??'');
 }
@@ -81,6 +85,8 @@ else{
       _isLoading = false;
       _analysisModel = AnalysisModel.fromJson(responseModel.response?.data);
 if(_analysisModel?.status==200){}
+else if(_analysisModel?.status==401) {
+  await saveUserData.clearSharedData().then((value) => pushAndRemoveUntil(const Splash()));}
 else{
   ToastUtils.showToast(_analysisModel?.message.toString()??'');
 }

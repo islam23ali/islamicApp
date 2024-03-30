@@ -91,6 +91,8 @@ dependencies:
 
 #  syncfusion_flutter_charts:
   fl_chart: ^0.63.0
+  gesture_zoom_box: ^0.0.4
+  restart_app: ^1.2.1
 
   #for dotted line
 #dependency_overrides:

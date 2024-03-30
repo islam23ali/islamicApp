@@ -22,9 +22,9 @@ class _AppLoaderState extends State<AppLoader> {
       children: [
         Center(
           child: Lottie.asset(
-            'assets/lolitJson/appLoader.json',
-            height:widget.width?? 100.h,
-            width:widget.height?? 200.w,
+            'assets/lolitJson/islamicLoader.json',
+            height:widget.width?? 150.h,
+            width:widget.height?? 150.w,
           ),
         ),
         SizedBox(height: 20),

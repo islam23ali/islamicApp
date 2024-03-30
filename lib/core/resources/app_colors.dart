@@ -9,7 +9,8 @@ class AppColors {
   static const Color ofWhite = Color(0xffF6F6F6);
   static const Color grayLight = Color(0xffEEEEEE);
   static const Color lightGray = Color(0xffE4E6E8);
-  static  Color primaryColor = (saveData.getColor()=='1')? Color(0xff2295F2):(saveData.getColor()=='2')?Color(0xffF59C34):(saveData.getColor()=='3')?Color(0xff4D3B6B):(saveData.getColor()=='4')?Color(0xff15244F):Color(0xff30AD23);
+  // static  Color primaryColor = (saveData.getColor()=='1')? Color(0xff2295F2):(saveData.getColor()=='2')?Color(0xffF59C34):(saveData.getColor()=='3')?Color(0xff4D3B6B):(saveData.getColor()=='4')?Color(0xff15244F):Color(0xff30AD23);
+  static const Color primaryColor = Color(0xff15244F);
   static const Color pointCared = Color(0xffC3C3C3);
   static  const Color inactiveColor = Color(0xffB9E5B3);
   static  const Color borderColor = Color(0xffF9DCBF);
