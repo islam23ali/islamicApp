@@ -23,7 +23,7 @@ class _TopAppBarState extends State<TopAppBar> {
     return Column(crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Container(
-          padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 16.h),
+          padding: EdgeInsets.symmetric(horizontal: 12.w,),
           height: 50.h,
           child: Center(
             child: Row(

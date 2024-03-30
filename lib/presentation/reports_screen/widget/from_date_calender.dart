@@ -96,13 +96,13 @@ class _FromDateCalenderState extends State<FromDateCalender> {
                     shouldShowTransform: true,
                     childAspectRatio: 1.5,
                     weekdayTextStyle: TextStyles()
-                        .getRegularStyle(fontSize: 14.sp)
+                        .getRegularStyle(fontSize: 10.sp)
                         .customColor(AppColors.gray),
                     showWeekDays: true,
                     locale: 'ar',
                     headerTitleTouchable: true,
                     headerTextStyle: TextStyles()
-                        .getTitleStyle(fontSize: 22.sp)
+                        .getTitleStyle(fontSize:16.sp)
                         .customColor(AppColors.black),
                     todayBorderColor: AppColors.primaryColor,
                     onDayPressed: (date, events) {

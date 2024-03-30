@@ -39,7 +39,10 @@
   "obligatoryPrayer": "Obligatory prayer",
   "supererogatoryPrayer": "Supererogatory prayer",
   "endRequired": "An end date is required",
-  "startRequired": "A start date is required"
+  "startRequired": "A start date is required",
+  "goodWorkReport": "Good work report",
+  "assumptionsReport": "Assumptions report",
+  "sunnaReport": "Sunan report"
 
 
 }

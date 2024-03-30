@@ -49,7 +49,7 @@ class Data {
 
 class Analysis {
   String? title;
-  int? percentage;
+  dynamic percentage;
 
   Analysis({
     this.title,

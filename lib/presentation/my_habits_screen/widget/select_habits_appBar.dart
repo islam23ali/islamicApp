@@ -37,7 +37,7 @@ class _SelectHabitsAppBarState extends State<SelectHabitsAppBar> {
                       // SVGIcon(Assets.expandMore,width: 24.w,height: 20.h,color: AppColors.white,),
                     ],
                   ),
-                  SizedBox(width: 16.w,),
+                  SizedBox(width: 10.w,),
                   Text(
                     LocaleKeys.today.tr(),
                     style: TextStyles()

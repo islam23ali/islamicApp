@@ -41,6 +41,9 @@
   "obligatoryPrayer": "صلاة الفرض",
   "supererogatoryPrayer": "صلاة النافلة",
   "endRequired": "يلزم تحديد تاريخ نهاية",
-  "startRequired": "يلزم تحديد تاريخ بداية"
+  "startRequired": "يلزم تحديد تاريخ بداية",
+  "goodWorkReport": "تقرير الاعمل الجيدة",
+  "assumptionsReport": "تقرير الفروض",
+  "sunnaReport": "تقرير السنن"
 
 }

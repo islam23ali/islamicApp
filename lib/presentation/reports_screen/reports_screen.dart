@@ -9,12 +9,12 @@ import 'package:islamic_app/presentation/component/animation/column_animator.dar
 import 'package:islamic_app/presentation/component/buttons/custom_button.dart';
 import 'package:islamic_app/presentation/reports_screen/reports_screen_view_model.dart';
 import 'package:islamic_app/presentation/reports_screen/widget/from_date_calender.dart';
+import 'package:islamic_app/presentation/reports_screen/widget/reports_card.dart';
 import 'package:islamic_app/presentation/reports_screen/widget/to_date_calender.dart';
 import 'package:jhijri/_src/_jHijri.dart';
 import 'package:provider/provider.dart';
 import '../../core/resources/app_assets.dart';
 import '../../core/resources/app_colors.dart';
-import '../home_screen/widget/top_card_home.dart';
 import '../register_screen/widget/top_appbar.dart';
 ReportsScreenViewModel provider =getIt();
 class ReportsScreen extends StatefulWidget {
@@ -74,7 +74,7 @@ class _ReportsScreenState extends State<ReportsScreen> {
                 Provider.of<ReportsScreenViewModel>(context,listen: false).reportsAPI(context)
                     .then((value) => setState(() {}));
               },title:(data.showReport==true)?LocaleKeys.hideReports.tr(): LocaleKeys.showReport.tr(),),
-              (data.showReport==true)? TopCardHome():SizedBox(),
+              (data.showReport==true)? ReportsCard():SizedBox(),
           ],),
         ))
       ],

@@ -17,7 +17,7 @@ class TopCardHome extends StatefulWidget {
 }
 
 class _TopCardHomeState extends State<TopCardHome> {
-  bool isDayAnalysis=true;
+  int isDayAnalysis=1;
   // final List<EconomicData> economicData = [
   //   EconomicData('فجر', -5.9),
   //   EconomicData('ظهر', -8.9),
@@ -53,7 +53,7 @@ class _TopCardHomeState extends State<TopCardHome> {
                   children: [
                     InkWell(onTap: (){
                       setState(() {
-                        isDayAnalysis=true;
+                        isDayAnalysis=1;
                       });
                     },
                       child: Container(
@@ -62,37 +62,60 @@ class _TopCardHomeState extends State<TopCardHome> {
                         margin: EdgeInsets.symmetric(horizontal: 2.w),
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(29.r),
-                          color:(isDayAnalysis==true)? AppColors.primaryColor:Colors.transparent,
-                        ),
-                        child: Center(
-                          child: Text(
-                            LocaleKeys.day.tr(),
-                            style: TextStyles()
-                                .getRegularStyle(fontSize: 12.sp)
-                                .customColor((isDayAnalysis==true)?AppColors.white:AppColors.black),
-                          ),
-                        ),
-                      ),
-                    ),
-                    InkWell(onTap: (){
-                      setState(() {
-                        isDayAnalysis=false;
-                      });
-                    },
-                      child: Container(
-                        padding: EdgeInsets.symmetric(
-                            vertical: 4.h, horizontal: 10.w),
-                        margin: EdgeInsets.symmetric(horizontal: 2.w),
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(29.r),
-                          color:(isDayAnalysis==false)? AppColors.primaryColor:Colors.transparent,
+                          color:(isDayAnalysis==1)? AppColors.primaryColor:Colors.transparent,
                         ),
                         child: Center(
                           child: Text(
                             LocaleKeys.all.tr(),
                             style: TextStyles()
                                 .getRegularStyle(fontSize: 12.sp)
-                                .customColor((isDayAnalysis==false)?AppColors.white:AppColors.black),
+                                .customColor((isDayAnalysis==1)?AppColors.white:AppColors.black),
+                          ),
+                        ),
+                      ),
+                    ),
+                    InkWell(onTap: (){
+                      setState(() {
+                        isDayAnalysis=2;
+                      });
+                    },
+                      child: Container(
+                        padding: EdgeInsets.symmetric(
+                            vertical: 4.h, horizontal: 10.w),
+                        margin: EdgeInsets.symmetric(horizontal: 2.w),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(29.r),
+                          color:(isDayAnalysis==2)? AppColors.primaryColor:Colors.transparent,
+                        ),
+                        child: Center(
+                          child: Text(
+                            LocaleKeys.day.tr(),
+                            style: TextStyles()
+                                .getRegularStyle(fontSize: 12.sp)
+                                .customColor((isDayAnalysis==2)?AppColors.white:AppColors.black),
+                          ),
+                        ),
+                      ),
+                    ),
+                    InkWell(onTap: (){
+                      setState(() {
+                        isDayAnalysis=3;
+                      });
+                    },
+                      child: Container(
+                        padding: EdgeInsets.symmetric(
+                            vertical: 4.h, horizontal: 10.w),
+                        margin: EdgeInsets.symmetric(horizontal: 2.w),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(29.r),
+                          color:(isDayAnalysis==3)? AppColors.primaryColor:Colors.transparent,
+                        ),
+                        child: Center(
+                          child: Text(
+                            LocaleKeys.week.tr(),
+                            style: TextStyles()
+                                .getRegularStyle(fontSize: 12.sp)
+                                .customColor((isDayAnalysis==3)?AppColors.white:AppColors.black),
                           ),
                         ),
                       ),
@@ -107,34 +130,42 @@ class _TopCardHomeState extends State<TopCardHome> {
                 children: [
                   SizedBox(height: 20.h,),
                   Expanded(
-                    child: LineChart(
-                      LineChartData(
-                        baselineX: 100,
-                        baselineY: 100,
+                    child: Padding(
+                      padding:  EdgeInsets.symmetric(horizontal:25.w,vertical: 20.h),
+                      child: LineChart(
+                        LineChartData(
+                          baselineX: 100,
+                          baselineY: 100,
 
-                        lineTouchData: LineTouchData(enabled: true,),
-                        gridData: FlGridData(show: true),
-                        // titlesData: FlTitlesData(show: true),
-                        titlesData:FlTitlesData(
-                          // bottomTitles: ,
-                            topTitles: AxisTitles(),leftTitles: AxisTitles(),rightTitles: AxisTitles()) ,
-                        borderData: FlBorderData(show: false),
-                        lineBarsData: [
-                          LineChartBarData(
-                            // spots: economicData.asMap().entries.map((entry) =>
-                            //     FlSpot(entry.key.toDouble(), entry.value.gdp,))
-                            //     .toList(),
-                            // spots: economicData.map((data) {
-                            //   return FlSpot(economicData.indexOf(data).toDouble(), data.gdp);
-                              spots: data.analysisModel?.data?.map((data) {
-                              return FlSpot(0.0, data.dayAssumptionPercentage?.toDouble()??0.0);
-                            }).toList()??[],
-                            isCurved: true,
-                            color: AppColors.primaryColor,
-                            barWidth: 2.w,
-                            dotData: FlDotData(show: true),
-                          ),
-                        ],
+                          lineTouchData: LineTouchData(enabled: true,),
+                          gridData: FlGridData(show: true),
+                          // titlesData: FlTitlesData(show: true),
+                          titlesData:FlTitlesData(
+                            // bottomTitles: ,
+                              topTitles: AxisTitles(),leftTitles: AxisTitles(),rightTitles: AxisTitles(),bottomTitles: AxisTitles()) ,
+                          borderData: FlBorderData(show: false),
+                          lineBarsData: [
+                            LineChartBarData(
+                              // spots: economicData.asMap().entries.map((entry) =>
+                              //     FlSpot(entry.key.toDouble(), entry.value.gdp,))
+                              //     .toList(),
+                              // spots: economicData.map((data) {
+                              //   return FlSpot(economicData.indexOf(data).toDouble(), data.gdp);
+                                spots: data.analysisModel?.data?.asMap().entries.map((data) {
+                                return
+                                  // FlSpot( data.dayAssumptionPercentage.toDouble(), // Replace this with your actual x value
+                                  // data.daySunnahPercentage.toDouble(),);
+                                  (isDayAnalysis==1)? FlSpot(data.key.toDouble(), data.value.allAssumptionPercentage.toDouble()??0.0):
+                                  (isDayAnalysis==2)? FlSpot(data.key.toDouble(), data.value.dayAssumptionPercentage.toDouble()??0.0):
+                                  FlSpot(data.key.toDouble(), data.value.weekAssumptionPercentage.toDouble()??0.0);
+                              }).toList()??[],
+                              isCurved: true,
+                              color: AppColors.primaryColor,
+                              barWidth: 2.w,
+                              dotData: FlDotData(show: true),
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                   ),
@@ -142,11 +173,12 @@ class _TopCardHomeState extends State<TopCardHome> {
                     child: ListView.builder(
                       scrollDirection: Axis.horizontal,
                       physics: const NeverScrollableScrollPhysics(),
+                      reverse: true,
                       shrinkWrap: true,
                       itemCount: data.analysisModel?.data?.length,
                         itemBuilder: (context,index){
                         return Padding(
-                          padding:  EdgeInsets.symmetric(horizontal: 10.w),
+                          padding:  EdgeInsets.symmetric(horizontal: 20.w),
                           child: Text(data.analysisModel?.data?[index].title??'',
                             style: TextStyles().getDescriptionStyle(fontSize: 10.sp).
                             customColor(AppColors.black),),
@@ -161,9 +193,9 @@ class _TopCardHomeState extends State<TopCardHome> {
     );});
   }
 }
-class EconomicData {
-  final String year;
-  final double gdp;
-
-  EconomicData(this.year, this.gdp);
-}
+// class EconomicData {
+//   final String year;
+//   final double gdp;
+//
+//   EconomicData(this.year, this.gdp);
+// }

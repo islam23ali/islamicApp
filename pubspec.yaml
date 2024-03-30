@@ -29,43 +29,18 @@ dependencies:
   flutter_staggered_animations: ^1.1.1 # #animation
   flutter_spinkit: ^5.1.0 #loading
   cached_network_image: ^3.2.2
-  # awesome_dialog: ^3.0.2 #dialog
-  # flutter_timer_countdown: ^1.0.5
-#  pin_code_fields: ^7.4.0
-  #  webview_flutter: ^3.0.4
-  #  image_picker: ^0.8.5
-  url_launcher: ^6.0.20
-  #log
   logger: ^1.1.0
   # logging: ^1.1.0
   # State management
   provider: ^6.0.4
   lottie: #lottie
-  dotted_line: ^3.2.2
-
   country_code_picker: ^2.0.2  #country_code
   # DI
   get_it: ^7.2.0
-  # smooth_page_indicator
-  # smooth_page_indicator: ^1.1.0
   # Network
   dio: ^4.0.6
   connectivity_plus: ^3.0.2
-  #  shimmer: ^2.0.0
   fluttertoast: ^8.2.1
-  carousel_slider: ^4.2.0   #slider
-  flutter_rating_bar: ^4.0.1 #rat_Bar
-#  flutter_share:  #for sharing
-
-  #  date_picker_timeline: ^1.2.5  #for slide calender
-  easy_date_timeline:   #for slide calender
-
-
-  #local data base
-  # sqflite:
-#  google_maps_flutter: ^2.2.6
-#  google_maps_place_picker_mb: ^3.0.2
-
   # for place id
   geolocator: ^9.0.2
   geocoding: ^2.0.0
@@ -74,25 +49,18 @@ dependencies:
   # for notifications
   #  firebase_messaging: ^14.6.2
   #  firebase_core:
-  flutter_local_notifications: ^14.1.1
+#  flutter_local_notifications: ^14.1.1
   #  firebase_auth: ^4.7.2
-  animated_bottom_navigation_bar: ^1.3.1
-  dotted_border: ^2.1.0
-  fdottedline_nullsafety: ^2.0.1
-#  flutter_neat_and_clean_calendar:
   flutter_calendar_carousel: ^2.4.2
-#  jiffy: ^6.2.1
   jhijri:
   flutter_qiblah:
-  intl: ^0.18.0
   awesome_notifications:
-#  audioplayers: ^5.2.1
-#  awesome_notifications_core: ^0.9.0
 
 #  syncfusion_flutter_charts:
   fl_chart: ^0.63.0
   gesture_zoom_box: ^0.0.4
   restart_app: ^1.2.1
+  quran: ^1.2.2
 
   #for dotted line
 #dependency_overrides:

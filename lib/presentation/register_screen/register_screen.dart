@@ -72,7 +72,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             //   ],
                             // ),
                           ),
-                          SizedBox(width: 16.w,),
+                          SizedBox(width: 40.w,),
                           Text(
                             LocaleKeys.today.tr(),
                             style: TextStyles()
@@ -88,7 +88,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             shrinkWrap: true,
                             itemBuilder: (BuildContext context, int index) {
                               return Container(
-                                margin: EdgeInsets.symmetric(horizontal: 6.w),
+                                margin: EdgeInsets.symmetric(horizontal: 4.w),
                                 height: 61.h,width: 50.w,
                                 child: Column(mainAxisAlignment: MainAxisAlignment.spaceAround,
                                   children: [

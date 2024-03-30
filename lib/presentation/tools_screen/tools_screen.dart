@@ -21,6 +21,9 @@ import '../../core/resources/locale_keys.g.dart';
 import '../register_screen/widget/top_appbar.dart';
 import '../reports_screen/reports_screen_view_model.dart';
 
+import 'package:quran/quran.dart' as quran;
+
+
 class ToolsScreen extends StatefulWidget {
   const ToolsScreen({Key? key}) : super(key: key);
 
@@ -154,7 +157,7 @@ class _ToolsScreenState extends State<ToolsScreen> {
       ),
       SizedBox(height: 30.h,),
       Row(
-        // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           InkWell(onTap: (){
@@ -168,8 +171,79 @@ class _ToolsScreenState extends State<ToolsScreen> {
               ],
             ),
           ),
+          InkWell(onTap: (){
+            push(AzanPage());
+          },
+            child: Column(crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Image.asset(Assets.quraan,height: 70.h,width: 70.w,),
+                SizedBox(height: 10.h,),
+                Text(LocaleKeys.quraan.tr(),style: TextStyles().getDisplayMediumStyle(fontSize: 14.sp).customColor(AppColors.text1Color),)
+              ],
+            ),
+          ),
         ],
       ),
     ],);}));
   }
 }
+// class QuraanDemo extends StatefulWidget {
+//   const QuraanDemo({Key? key}) : super(key: key);
+//
+//   @override
+//   _QuraanDemoState createState() => _QuraanDemoState();
+// }
+//
+// class _QuraanDemoState extends State<QuraanDemo> {
+//   @override
+//   Widget build(BuildContext context) {
+//     return SafeArea(
+//       child: Padding(
+//         padding: EdgeInsets.all(15.0),
+//         child: Column(
+//           crossAxisAlignment: CrossAxisAlignment.start,
+//           children: [
+//             Text("Juz Number: \n" + quran.getJuzNumber(18, 1).toString()),
+//             Text("\nJuz URL: \n" + quran.getJuzURL(15)),
+//             Text("\nSurah and Verses in Juz 15: \n" + quran.getSurahAndVersesFromJuz(15).toString()),
+//             Text("\nSurah Name: \n" + quran.getSurahName(18)),
+//             Text("\nSurah Name (English): \n" + quran.getSurahNameEnglish(18)),
+//             Text("\nSurah URL: \n" + quran.getSurahURL(18)),
+//             Text("\nTotal Verses: \n" + quran.getVerseCount(18).toString()),
+//             Text("\nPlace of Revelation: \n" + quran.getPlaceOfRevelation(18)),
+//             Text("\nBasmala: \n" + quran.getBasmala()),
+//             Text("\nVerse 1: \n" + quran.getVerse(18, 1))
+//           ],
+//         ),
+//       ),
+//     );
+//   }
+// }
+// class QuraanNew extends StatefulWidget {
+//   const QuraanNew({Key? key}) : super(key: key);
+//
+//   @override
+//   _QuraanNewState createState() => _QuraanNewState();
+// }
+//
+// class _QuraanNewState extends State<QuraanNew> {
+//   @override
+//   Widget build(BuildContext context) {
+//     return SafeArea(
+//       child: Padding(
+//         padding: EdgeInsets.all(15.0),
+//         child: ListView.builder(
+//           itemCount: quran.getVerseCount(18),
+//           itemBuilder: (context, index) {
+//             return ListTile(
+//               title: Text(
+//                 quran.getVerse(18, index + 1, verseEndSymbol: true),
+//                 textAlign: TextAlign.right,
+//               ),
+//             );
+//           },
+//         ),
+//       ),
+//     );
+//   }
+// }

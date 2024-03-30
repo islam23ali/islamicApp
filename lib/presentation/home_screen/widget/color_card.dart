@@ -41,9 +41,9 @@ class _ColorCardState extends State<ColorCard> {
             Row(children: [
               InkWell(onTap: (){
                 setState(() {
-                  saveData.saveColor('1').then((value) => pushAndRemoveUntil(Splash()));
+                  saveData.saveColor('1').then((value) => Restart.restartApp());
                 });
-                Restart.restartApp(webOrigin: '[your main route]');
+
                 // context.setLocale(locale) ;
               },
                 child: Container(
@@ -55,7 +55,7 @@ class _ColorCardState extends State<ColorCard> {
               ),
               InkWell(onTap: (){
                 setState(() {
-                  saveData.saveColor('2').then((value) => pushAndRemoveUntil(Splash()));
+                  saveData.saveColor('2').then((value) => Restart.restartApp());
                 });
                 // context.setLocale(locale) ;
               },
@@ -67,7 +67,7 @@ class _ColorCardState extends State<ColorCard> {
               ),
               InkWell(onTap: (){
                 setState(() {
-                  saveData.saveColor('3').then((value) => pushAndRemoveUntil(Splash()));
+                  saveData.saveColor('3').then((value) => Restart.restartApp());
                 });
                 // context.setLocale(locale) ;
               },
@@ -79,7 +79,7 @@ class _ColorCardState extends State<ColorCard> {
               ),
               InkWell(onTap: (){
                 setState(() {
-                  saveData.saveColor('4').then((value) => pushAndRemoveUntil(Splash()));
+                  saveData.saveColor('4').then((value) =>  Restart.restartApp());
                 });
                 // context.setLocale(locale) ;
               },
@@ -91,7 +91,7 @@ class _ColorCardState extends State<ColorCard> {
               ),
               InkWell(onTap: (){
                 setState(() {
-                  saveData.saveColor('5').then((value) => pushAndRemoveUntil(Splash()));
+                  saveData.saveColor('5').then((value) =>  Restart.restartApp());
                 });
                 // context.setLocale(locale) ;
               },
