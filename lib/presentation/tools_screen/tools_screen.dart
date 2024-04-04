@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:islamic_app/core/app_loader.dart';
 import 'package:islamic_app/core/extensions/num_extensions.dart';
 import 'package:islamic_app/core/routing/route.dart';
-import 'package:islamic_app/presentation/tools_screen/pages/azan_screen/azan_screen.dart';
+import 'package:islamic_app/presentation/component/svg_icon.dart';
 import 'package:islamic_app/presentation/tools_screen/pages/hadiths_page/hadiths_page.dart';
 import 'package:islamic_app/presentation/tools_screen/pages/imsakia_page/imsakiya_page.dart';
 import 'package:islamic_app/presentation/tools_screen/pages/notification_page/notification_pagr.dart';
@@ -20,9 +20,8 @@ import '../../core/resources/app_colors.dart';
 import '../../core/resources/locale_keys.g.dart';
 import '../register_screen/widget/top_appbar.dart';
 import '../reports_screen/reports_screen_view_model.dart';
-
-import 'package:quran/quran.dart' as quran;
-
+import 'azan_files/home_screen.dart';
+import 'new_quraan/new_quraan.dart';
 
 class ToolsScreen extends StatefulWidget {
   const ToolsScreen({Key? key}) : super(key: key);
@@ -59,16 +58,27 @@ class _ToolsScreenState extends State<ToolsScreen> {
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
           InkWell(onTap: (){
-            push(quranTap());
+            push(HomeAzanScreen());
           },
             child: Column(crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Image.asset(Assets.quraan,height: 70.h,width: 70.w,),
+                SVGIcon(Assets.azan,height: 70.h,width: 70.w,),
                 SizedBox(height: 10.h,),
-                Text(LocaleKeys.quraan.tr(),style: TextStyles().getDisplayMediumStyle(fontSize: 14.sp).customColor(AppColors.text1Color),)
+                Text(LocaleKeys.azan.tr(),style: TextStyles().getDisplayMediumStyle(fontSize: 14.sp).customColor(AppColors.text1Color),)
               ],
             ),
           ),
+          // InkWell(onTap: (){
+          //   push(quranTap());
+          // },
+          //   child: Column(crossAxisAlignment: CrossAxisAlignment.center,
+          //     children: [
+          //       Image.asset(Assets.quraan,height: 70.h,width: 70.w,),
+          //       SizedBox(height: 10.h,),
+          //       Text(LocaleKeys.quraan.tr(),style: TextStyles().getDisplayMediumStyle(fontSize: 14.sp).customColor(AppColors.text1Color),)
+          //     ],
+          //   ),
+          // ),
           InkWell(onTap: (){
             push(HadithsPage());
           },
@@ -160,90 +170,19 @@ class _ToolsScreenState extends State<ToolsScreen> {
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          InkWell(onTap: (){
-            push(AzanPage());
-          },
-            child: Column(crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Image.asset(Assets.quraan,height: 70.h,width: 70.w,),
-                SizedBox(height: 10.h,),
-                Text(LocaleKeys.add.tr(),style: TextStyles().getDisplayMediumStyle(fontSize: 14.sp).customColor(AppColors.text1Color),)
-              ],
-            ),
-          ),
-          InkWell(onTap: (){
-            push(AzanPage());
-          },
-            child: Column(crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Image.asset(Assets.quraan,height: 70.h,width: 70.w,),
-                SizedBox(height: 10.h,),
-                Text(LocaleKeys.quraan.tr(),style: TextStyles().getDisplayMediumStyle(fontSize: 14.sp).customColor(AppColors.text1Color),)
-              ],
-            ),
-          ),
+          // InkWell(onTap: (){
+          //   push(QuranApp());
+          // },
+          //   child: Column(crossAxisAlignment: CrossAxisAlignment.center,
+          //     children: [
+          //       Image.asset(Assets.quraan,height: 70.h,width: 70.w,),
+          //       SizedBox(height: 10.h,),
+          //       Text(LocaleKeys.quraan.tr(),style: TextStyles().getDisplayMediumStyle(fontSize: 14.sp).customColor(AppColors.text1Color),)
+          //     ],
+          //   ),
+          // ),
         ],
       ),
     ],);}));
   }
 }
-// class QuraanDemo extends StatefulWidget {
-//   const QuraanDemo({Key? key}) : super(key: key);
-//
-//   @override
-//   _QuraanDemoState createState() => _QuraanDemoState();
-// }
-//
-// class _QuraanDemoState extends State<QuraanDemo> {
-//   @override
-//   Widget build(BuildContext context) {
-//     return SafeArea(
-//       child: Padding(
-//         padding: EdgeInsets.all(15.0),
-//         child: Column(
-//           crossAxisAlignment: CrossAxisAlignment.start,
-//           children: [
-//             Text("Juz Number: \n" + quran.getJuzNumber(18, 1).toString()),
-//             Text("\nJuz URL: \n" + quran.getJuzURL(15)),
-//             Text("\nSurah and Verses in Juz 15: \n" + quran.getSurahAndVersesFromJuz(15).toString()),
-//             Text("\nSurah Name: \n" + quran.getSurahName(18)),
-//             Text("\nSurah Name (English): \n" + quran.getSurahNameEnglish(18)),
-//             Text("\nSurah URL: \n" + quran.getSurahURL(18)),
-//             Text("\nTotal Verses: \n" + quran.getVerseCount(18).toString()),
-//             Text("\nPlace of Revelation: \n" + quran.getPlaceOfRevelation(18)),
-//             Text("\nBasmala: \n" + quran.getBasmala()),
-//             Text("\nVerse 1: \n" + quran.getVerse(18, 1))
-//           ],
-//         ),
-//       ),
-//     );
-//   }
-// }
-// class QuraanNew extends StatefulWidget {
-//   const QuraanNew({Key? key}) : super(key: key);
-//
-//   @override
-//   _QuraanNewState createState() => _QuraanNewState();
-// }
-//
-// class _QuraanNewState extends State<QuraanNew> {
-//   @override
-//   Widget build(BuildContext context) {
-//     return SafeArea(
-//       child: Padding(
-//         padding: EdgeInsets.all(15.0),
-//         child: ListView.builder(
-//           itemCount: quran.getVerseCount(18),
-//           itemBuilder: (context, index) {
-//             return ListTile(
-//               title: Text(
-//                 quran.getVerse(18, index + 1, verseEndSymbol: true),
-//                 textAlign: TextAlign.right,
-//               ),
-//             );
-//           },
-//         ),
-//       ),
-//     );
-//   }
-// }

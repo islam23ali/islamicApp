@@ -197,7 +197,7 @@ class quranTap extends StatelessWidget {
                     child: Text(
                         suraNames[index],
                         textAlign: TextAlign.center,
-                        style: Theme.of(context).textTheme.bodyMedium
+                        style: TextStyles().getTitleStyle(fontSize: 18.sp).customColor(AppColors.black)
                     ),
                   );
                 },

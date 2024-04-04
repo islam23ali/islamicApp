@@ -53,12 +53,13 @@ class _BottomNavigationBarState extends State<BottomNavigationBarApp> {
       bottomNavigationBar: SizedBox(
         height: 77.83.h,
         child: BottomNavigationBar(
+          showUnselectedLabels:true ,
           fixedColor: AppColors.second,
           selectedLabelStyle: TextStyles()
               .getTitleStyle(fontSize: 12.sp)
               .customColor(AppColors.white),
           unselectedLabelStyle: TextStyles()
-              .getTitleStyle(fontSize: 8.sp)
+              .getTitleStyle(fontSize: 10.sp)
               .customColor(AppColors.white),
           backgroundColor: AppColors.primaryColor,
           items: <BottomNavigationBarItem>[

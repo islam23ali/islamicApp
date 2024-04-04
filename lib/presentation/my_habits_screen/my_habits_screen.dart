@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:islamic_app/core/app_loader.dart';
@@ -68,14 +69,16 @@ class _MyHabitsScreenState extends State<MyHabitsScreen> {
                             curve: Curves.fastLinearToSlowEaseIn,
                             child: FadeInAnimation(child:
                             Container(
-                              margin: EdgeInsets.symmetric(vertical: 10.h),
+                              decoration: BoxDecoration(borderRadius: BorderRadius.circular(8.r), color: Colors.grey.withOpacity(.07),),
+                              padding: EdgeInsets.symmetric(vertical: 10.h,horizontal: 10.w),
+                              margin: EdgeInsets.symmetric(vertical: 4.h),
                               child: Row(mainAxisAlignment: MainAxisAlignment.start,
                                 children: [
                                   Row(
                                     children: [
                                       AppNetworkImage(imageUrl:data.habitsModel?.data?.goodDeeds?[index].image??'',width: 32.w,height: 32.h,borderRadius: 4.r,),
-                                      SizedBox(width: 5.w,),
-                                      SizedBox(width: 100.w,
+                                      SizedBox(width: 10.w,),
+                                      SizedBox(width: 120.w,
                                         child: Text(data.habitsModel?.data?.goodDeeds?[index].title??'',
                                           style: TextStyles()
                                               .getTitleStyle(fontSize: 14.sp)

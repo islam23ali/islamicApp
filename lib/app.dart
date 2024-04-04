@@ -1,6 +1,7 @@
 import 'package:country_code_picker/country_localizations.dart';
 import 'package:easy_localization/easy_localization.dart' as el;
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:islamic_app/presentation/splash/splash.dart';
 import 'package:islamic_app/presentation/tools_screen/pages/quraan/widget/sura_details/sura_details.dart';
 import 'core/res/theme/theme_manager.dart';
@@ -11,6 +12,10 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+      DeviceOrientation.portraitDown,
+    ]);
     appContext = context;
     return MaterialApp(
       routes: {

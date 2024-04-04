@@ -16,6 +16,41 @@ class SelectHabitsAppBar extends StatefulWidget {
 }
 
 class _SelectHabitsAppBarState extends State<SelectHabitsAppBar> {
+
+  Future<void> _selectDate(BuildContext context) async {
+    final DateTime? picked = await showDatePicker(
+      context: context,
+      initialDate: DateTime.now(),//DateFormat(provider.startDateController.text??'')
+      // firstDate: (isStart)? DateTime.now():DateTime.,
+      firstDate: DateTime(2022),
+      lastDate: DateTime.now(),
+      builder: (context, child) {
+        return Theme(
+          data: Theme.of(context).copyWith(
+            textTheme: TextTheme(titleLarge: TextStyles().getTitleStyle(),titleMedium: TextStyles().getDisplayMediumStyle(),titleSmall: TextStyles().getRegularStyle(),
+                labelLarge: TextStyles().getTitleStyle(),labelMedium: TextStyles().getDisplayMediumStyle(),labelSmall: TextStyles().getRegularStyle(),
+                bodyLarge: TextStyles().getTitleStyle(),bodySmall: TextStyles().getRegularStyle(),displayLarge: TextStyles().getTitleStyle(),displayMedium: TextStyles().getDisplayMediumStyle(),
+                displaySmall: TextStyles().getRegularStyle(),headlineLarge: TextStyles().getTitleStyle(),
+                headlineMedium: TextStyles().getDisplayMediumStyle(),headlineSmall: TextStyles().getRegularStyle()
+            ),
+            colorScheme: ColorScheme.light(
+              primary: AppColors.primaryColor,
+            ),
+          ),
+          child: child!,
+        );},
+    );
+
+    if (picked != null) {
+      final DateFormat formatter = DateFormat('dd-MM-yyyy', 'en');
+      final String formattedDate = formatter.format(picked);
+
+      setState(() {
+        // isStart? provider.startDateController.text = formattedDate : provider.endDateController.text = formattedDate;
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -32,9 +67,18 @@ class _SelectHabitsAppBarState extends State<SelectHabitsAppBar> {
                 children: [
                   Column(
                     children: [
-                      SizedBox(width: 24.w,height: 20.h,)
-                      // SVGIcon(Assets.expandLess,width: 24.w,height: 20.h,color: AppColors.second),
-                      // SVGIcon(Assets.expandMore,width: 24.w,height: 20.h,color: AppColors.white,),
+                      InkWell(onTap:(){
+                        _selectDate(context);
+                      },
+                        child: SizedBox(width: 40.w,
+                          child: Column(
+                            children: [
+                              SVGIcon(Assets.expandLess,width: 24.w,height: 20.h,color: AppColors.white),
+                              SVGIcon(Assets.expandMore,width: 24.w,height: 20.h,color: AppColors.white,),
+                            ],
+                          ),
+                        ),
+                      ),
                     ],
                   ),
                   SizedBox(width: 10.w,),
@@ -44,8 +88,9 @@ class _SelectHabitsAppBarState extends State<SelectHabitsAppBar> {
                         .getDisplayMediumStyle(fontSize: 14.sp)
                         .customColor(AppColors.white),
                   ),
+                  SizedBox(width: 30.w,),
                 ],)),
-          SizedBox(width: 50.w,),
+          SizedBox(width: 45.w,),
           Container(
             margin: EdgeInsets.symmetric(horizontal: 11.w),
             height: 61.h,width: 40.w,

@@ -33,6 +33,7 @@ class Assets {
   static const String google= 'assets/images/svg/google.svg';
   static const String needle= 'assets/images/svg/needle.svg';
   static const String compass= 'assets/images/svg/compass.svg';
+  static const String azan= 'assets/images/svg/azan.svg';
 
 
   /// not set

@@ -13,6 +13,7 @@ import 'package:provider/provider.dart';
 import '../../core/res/text_styles.dart';
 import '../../core/resources/app_assets.dart';
 import '../../core/resources/app_colors.dart';
+import '../component/svg_icon.dart';
 
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({Key? key}) : super(key: key);
@@ -29,6 +30,41 @@ class _RegisterScreenState extends State<RegisterScreen> {
     Provider.of<RegisterScreenViewModel>(context,listen: false).getAllAssumptions(context);
     Provider.of<RegisterScreenViewModel>(context,listen: false).nextPrayAPI(context);
   }
+
+Future<void> _selectDate(BuildContext context) async {
+  final DateTime? picked = await showDatePicker(
+    context: context,
+    initialDate: DateTime.now(),//DateFormat(provider.startDateController.text??'')
+    // firstDate: (isStart)? DateTime.now():DateTime.,
+    firstDate: DateTime(2022),
+    lastDate: DateTime.now(),
+    builder: (context, child) {
+      return Theme(
+        data: Theme.of(context).copyWith(
+          textTheme: TextTheme(titleLarge: TextStyles().getTitleStyle(),titleMedium: TextStyles().getDisplayMediumStyle(),titleSmall: TextStyles().getRegularStyle(),
+            labelLarge: TextStyles().getTitleStyle(),labelMedium: TextStyles().getDisplayMediumStyle(),labelSmall: TextStyles().getRegularStyle(),
+            bodyLarge: TextStyles().getTitleStyle(),bodySmall: TextStyles().getRegularStyle(),displayLarge: TextStyles().getTitleStyle(),displayMedium: TextStyles().getDisplayMediumStyle(),
+            displaySmall: TextStyles().getRegularStyle(),headlineLarge: TextStyles().getTitleStyle(),
+            headlineMedium: TextStyles().getDisplayMediumStyle(),headlineSmall: TextStyles().getRegularStyle()
+          ),
+          colorScheme: ColorScheme.light(
+            primary: AppColors.primaryColor,
+          ),
+        ),
+        child: child!,
+      );},
+  );
+
+  if (picked != null) {
+    final DateFormat formatter = DateFormat('dd-MM-yyyy', 'en');
+    final String formattedDate = formatter.format(picked);
+
+    setState(() {
+      // isStart? provider.startDateController.text = formattedDate : provider.endDateController.text = formattedDate;
+    });
+  }
+}
+
   @override
   Widget build(BuildContext context) {
     final load =context.watch<RegisterScreenViewModel>().isLoading;
@@ -54,7 +90,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                    date:jHijri.toString() ??'',),
                   Container(
                     padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 16.h),
-                    height: 90.h,
+                    height: 91.h,
                     child:Row(crossAxisAlignment: CrossAxisAlignment.center,
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
@@ -64,21 +100,26 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             child:Row(crossAxisAlignment: CrossAxisAlignment.center,
                               mainAxisAlignment: MainAxisAlignment.spaceAround,
                               children: [
-                          SizedBox(width: 40.w,
-                            // child: Column(
-                            //   children: [
-                            //     SVGIcon(Assets.expandLess,width: 24.w,height: 20.h,color: AppColors.white),
-                            //     SVGIcon(Assets.expandMore,width: 24.w,height: 20.h,color: AppColors.white,),
-                            //   ],
-                            // ),
+                          InkWell(onTap:(){
+                            _selectDate(context);
+                          },
+                            child: SizedBox(width: 40.w,
+                              child: Column(
+                                children: [
+                                  SVGIcon(Assets.expandLess,width: 24.w,height: 20.h,color: AppColors.white),
+                                  SVGIcon(Assets.expandMore,width: 24.w,height: 20.h,color: AppColors.white,),
+                                ],
+                              ),
+                            ),
                           ),
-                          SizedBox(width: 40.w,),
+                          SizedBox(width: 10.w,),
                           Text(
                             LocaleKeys.today.tr(),
                             style: TextStyles()
                                 .getDisplayMediumStyle(fontSize: 14.sp)
                                 .customColor(AppColors.white),
                           ),
+                                SizedBox(width: 30.w,),
                         ],)),
                         Expanded(
                           child: ListView.builder(
@@ -98,7 +139,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                         .getDisplayMediumStyle(fontSize: 10.sp)
                                         .customColor(AppColors.white),
                                   ),
-                                  AppNetworkImage(imageUrl:data.assumptionsModel?.data?[index].image??'',width: 40.w,height: 40.h,borderRadius: 4.r,),
+                                  SizedBox(height: 3.h,),
+                                  AppNetworkImage(imageUrl:data.assumptionsModel?.data?[index].image??'',width: 30.w,height: 40.h,borderRadius: 4.r,),
                                 ],),);
 
                             },
@@ -112,6 +154,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
             Expanded(
               child: (data.prayersModel?.data?.length==0)?NoDataScreen(): AnimationLimiter(
                 child:ListView.builder(
+                  // physics:const NeverScrollableScrollPhysics(),
                     padding: EdgeInsets.symmetric(horizontal: 12.w,vertical: 16.h),
                     itemCount: data.prayersModel?.data?.length,
                     shrinkWrap: true,
@@ -125,17 +168,20 @@ class _RegisterScreenState extends State<RegisterScreen> {
                               duration:const Duration(milliseconds: 1000),
                               curve: Curves.fastLinearToSlowEaseIn,
                               child: FadeInAnimation(child:
-                              Container(padding: EdgeInsets.symmetric(vertical: 10.h,horizontal: 10.w),
+                              Container(
+                                decoration: BoxDecoration(borderRadius: BorderRadius.circular(8.r),color: Colors.grey.withOpacity(.07),),
+                                padding: EdgeInsets.symmetric(vertical: 10.h,horizontal: 10.w),
+                                margin: EdgeInsets.symmetric(vertical: 4.h),
                                 child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                   children: [
                                     Row(
                                       children: [
                                         AppNetworkImage(
                                           imageUrl:data.prayersModel?.data?[index].image??'',width: 32.w,height: 32.h,borderRadius: 4.r,),
-                                        SizedBox(width: 5.w,),
+                                        SizedBox(width: 10.w,),
                                         Column(crossAxisAlignment: CrossAxisAlignment.start,
                                           children: [
-                                          SizedBox(width: 80.w,
+                                          SizedBox(width: 70.w,
                                             child: Text(data.prayersModel?.data?[index].title??'',
                                               style: TextStyles()
                                                   .getTitleStyle(fontSize: 14.sp)

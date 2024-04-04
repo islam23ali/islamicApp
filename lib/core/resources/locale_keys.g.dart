@@ -50,6 +50,7 @@ abstract class  LocaleKeys {
   static const goodWorkReport = 'goodWorkReport';
   static const assumptionsReport = 'assumptionsReport';
   static const sunnaReport = 'sunnaReport';
+  static const azan = 'azan';
 
 ///componantes-----------
   static const camera = '';
