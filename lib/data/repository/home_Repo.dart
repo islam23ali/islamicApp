@@ -10,9 +10,9 @@ class HomeRepo {
 
   HomeRepo({required this.dioClient});
 
-  Future<ApiResponse> prayersRepo() async {
+  Future<ApiResponse> prayersRepo(String date) async {
     try {
-      Response response = await dioClient.get(AppURL.kPrayersURI);
+      Response response = await dioClient.get('${AppURL.kPrayersURI}$date');
       return ApiResponse.withSuccess(response);
     } catch (e) {
       return ApiResponse.withError(ApiErrorHandler.getMessage(e));
@@ -50,11 +50,12 @@ class HomeRepo {
       return ApiResponse.withError(ApiErrorHandler.getMessage(e));
     }
   }
-  Future<ApiResponse> makeAssumptionsRepo(String prayerId,slug) async {
+  Future<ApiResponse> makeAssumptionsRepo(String prayerId,slug,date) async {
     try {
       Response response = await dioClient.post(AppURL.kMakeAssumptionsURI,data: FormData.fromMap({
             'prayer_id':prayerId,
             'slug':slug,
+            'date':date,
           }));
       return ApiResponse.withSuccess(response);
     } catch (e) {
@@ -77,17 +78,17 @@ class HomeRepo {
       return ApiResponse.withError(ApiErrorHandler.getMessage(e));
     }
   }
-  Future<ApiResponse> goodDeedsRepo() async {
+  Future<ApiResponse> goodDeedsRepo(String date) async {
     try {
-      Response response = await dioClient.get(AppURL.kGoodDeedsURI);
+      Response response = await dioClient.get('${AppURL.kGoodDeedsURI}$date');
       return ApiResponse.withSuccess(response);
     } catch (e) {
       return ApiResponse.withError(ApiErrorHandler.getMessage(e));
     }
   }
-  Future<ApiResponse> goodDeedsPostRepo(HabitsBody habitsBody) async {
+  Future<ApiResponse> goodDeedsPostRepo(HabitsBody habitsBody,String date) async {
     try {
-      Response response = await dioClient.post(AppURL.kGoodDeedsPostURI,data: habitsBody.toJson());
+      Response response = await dioClient.post('${AppURL.kGoodDeedsPostURI}$date',data: habitsBody.toJson());
       return ApiResponse.withSuccess(response);
     } catch (e) {
       return ApiResponse.withError(ApiErrorHandler.getMessage(e));

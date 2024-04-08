@@ -74,7 +74,7 @@ class _ReportsScreenState extends State<ReportsScreen> {
                 Provider.of<ReportsScreenViewModel>(context,listen: false).reportsAPI(context)
                     .then((value) => setState(() {}));
               },title:(data.showReport==true)?LocaleKeys.hideReports.tr(): LocaleKeys.showReport.tr(),),
-              (data.showReport==true)? ReportsCard():SizedBox(),
+              (data.showReport==true)? ReportsCard(gradientColor1: AppColors.primaryColor,):SizedBox(),
           ],),
         ))
       ],

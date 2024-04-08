@@ -12,8 +12,9 @@ import 'package:provider/provider.dart';
 import '../../core/res/text_styles.dart';
 import '../../core/resources/app_assets.dart';
 import '../../core/resources/app_colors.dart';
+import '../../injection.dart';
 import '../component/images/network_image.dart';
-
+HabitsScreenViewModel provider =getIt();
 class MyHabitsScreen extends StatefulWidget {
   const MyHabitsScreen({Key? key}) : super(key: key);
 
@@ -26,6 +27,7 @@ class _MyHabitsScreenState extends State<MyHabitsScreen> {
   void initState() {
     super.initState();
     Provider.of<HabitsScreenViewModel>(context,listen: false).getAllHabitsAPI(context);
+    provider.dateHabitsController.text='';
   }
 
 

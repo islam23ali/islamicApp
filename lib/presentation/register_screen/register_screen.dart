@@ -13,8 +13,9 @@ import 'package:provider/provider.dart';
 import '../../core/res/text_styles.dart';
 import '../../core/resources/app_assets.dart';
 import '../../core/resources/app_colors.dart';
+import '../../injection.dart';
 import '../component/svg_icon.dart';
-
+RegisterScreenViewModel provider =getIt();
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({Key? key}) : super(key: key);
 
@@ -29,8 +30,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
     Provider.of<RegisterScreenViewModel>(context,listen: false).prayersAPI(context);
     Provider.of<RegisterScreenViewModel>(context,listen: false).getAllAssumptions(context);
     Provider.of<RegisterScreenViewModel>(context,listen: false).nextPrayAPI(context);
+    provider.praysDateController.text='';
   }
-
 Future<void> _selectDate(BuildContext context) async {
   final DateTime? picked = await showDatePicker(
     context: context,
@@ -56,11 +57,13 @@ Future<void> _selectDate(BuildContext context) async {
   );
 
   if (picked != null) {
-    final DateFormat formatter = DateFormat('dd-MM-yyyy', 'en');
+    final DateFormat formatter = DateFormat('yyyy-MM-dd', 'en');
     final String formattedDate = formatter.format(picked);
 
     setState(() {
-      // isStart? provider.startDateController.text = formattedDate : provider.endDateController.text = formattedDate;
+      provider.praysDateController.text = formattedDate ;
+      provider.prayersAPI(context);
+      provider.getAllAssumptions(context);
     });
   }
 }

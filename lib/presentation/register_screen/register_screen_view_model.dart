@@ -35,7 +35,7 @@ class RegisterScreenViewModel with ChangeNotifier {
   AssumptionsModel? _assumptionsModel;
   EmptyDataModel? _emptyDataModel;
 
-  // final TextEditingController userNameController = TextEditingController();
+  final TextEditingController praysDateController =TextEditingController();
 
   ///getters
   bool get isLoading => _isLoading;
@@ -77,7 +77,7 @@ class RegisterScreenViewModel with ChangeNotifier {
   Future<ApiResponse> prayersAPI (BuildContext context) async {
     _isLoading = true;
     // notifyListeners();
-    ApiResponse responseModel = await homeRepo.prayersRepo();
+    ApiResponse responseModel = await homeRepo.prayersRepo(praysDateController.text);
     if (responseModel.response != null &&
         responseModel.response?.statusCode == 200) {
       _isLoading = false;
@@ -127,7 +127,7 @@ class RegisterScreenViewModel with ChangeNotifier {
   Future<ApiResponse> makeAssumptions (BuildContext context,prayerId,slug) async {
     _isLoading = true;
     notifyListeners();
-    ApiResponse responseModel = await homeRepo.makeAssumptionsRepo(prayerId,slug);
+    ApiResponse responseModel = await homeRepo.makeAssumptionsRepo(prayerId,slug,praysDateController.text);
     if (responseModel.response != null &&
         responseModel.response?.statusCode == 200) {
       _isLoading = false;

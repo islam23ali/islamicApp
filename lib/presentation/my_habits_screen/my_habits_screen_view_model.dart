@@ -1,18 +1,13 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:islamic_app/data/model/body/login_body.dart';
 import 'package:islamic_app/data/model/response/base/emptyDataModel.dart';
 import '../../../../data/model/response/base/api_response.dart';
 import '../../../../data/repository/SaveUserData.dart';
-import '../../../../data/repository/auth_repo.dart';
 import '../../../core/utils/showToast.dart';
-import '../../../data/model/response/user_model.dart';
 import '../../core/api_checker.dart';
 import '../../core/routing/route.dart';
 import '../../data/model/body/habits_body.dart';
-import '../../data/model/response/assumption_model.dart';
 import '../../data/model/response/habits_model.dart';
-import '../../data/model/response/prayers_model.dart';
 import '../../data/repository/home_Repo.dart';
 import '../splash/splash.dart';
 
@@ -32,7 +27,7 @@ class HabitsScreenViewModel with ChangeNotifier {
   HabitsModel? _habitsModel;
   EmptyDataModel? _emptyDataModel;
 
-  // final TextEditingController userNameController = TextEditingController();
+  final TextEditingController dateHabitsController = TextEditingController();
 
   ///getters
   bool get isLoading => _isLoading;
@@ -47,7 +42,7 @@ class HabitsScreenViewModel with ChangeNotifier {
   Future<ApiResponse> getAllHabitsAPI (BuildContext context) async {
     _isLoading = true;
     // notifyListeners();
-    ApiResponse responseModel = await homeRepo.goodDeedsRepo();
+    ApiResponse responseModel = await homeRepo.goodDeedsRepo(dateHabitsController.text);
     if (responseModel.response != null &&
         responseModel.response?.statusCode == 200) {
       _isLoading = false;
@@ -74,7 +69,7 @@ class HabitsScreenViewModel with ChangeNotifier {
     HabitsBody habitsBody=HabitsBody();
     habitsBody.status=status;
     habitsBody.goodDeedId=goodDeedId;
-    ApiResponse responseModel = await homeRepo.goodDeedsPostRepo(habitsBody);
+    ApiResponse responseModel = await homeRepo.goodDeedsPostRepo(habitsBody,dateHabitsController.text);
     if (responseModel.response != null &&
         responseModel.response?.statusCode == 200) {
       _isLoading = false;

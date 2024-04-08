@@ -6,8 +6,10 @@ import '../../../core/res/text_styles.dart';
 import '../../../core/resources/app_assets.dart';
 import '../../../core/resources/app_colors.dart';
 import '../../../core/resources/locale_keys.g.dart';
+import '../../../injection.dart';
 import '../../component/svg_icon.dart';
-
+import '../my_habits_screen_view_model.dart';
+HabitsScreenViewModel provider =getIt();
 class SelectHabitsAppBar extends StatefulWidget {
   const SelectHabitsAppBar({Key? key}) : super(key: key);
 
@@ -42,11 +44,12 @@ class _SelectHabitsAppBarState extends State<SelectHabitsAppBar> {
     );
 
     if (picked != null) {
-      final DateFormat formatter = DateFormat('dd-MM-yyyy', 'en');
+      final DateFormat formatter = DateFormat('yyyy-MM-dd', 'en');
       final String formattedDate = formatter.format(picked);
 
       setState(() {
-        // isStart? provider.startDateController.text = formattedDate : provider.endDateController.text = formattedDate;
+        provider.dateHabitsController.text = formattedDate;
+        provider.getAllHabitsAPI(context);
       });
     }
   }

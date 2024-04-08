@@ -57,7 +57,7 @@ class _HomeState extends State<Home> {
               ),
             ),
             const ColorCard(),
-            const TopCardHome(),
+             TopCardHome(gradientColor1: AppColors.primaryColor,),
             const BottomCard(),
           ],
         ),
