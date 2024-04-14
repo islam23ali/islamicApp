@@ -195,7 +195,7 @@ class _SunnaCardState extends State<SunnaCard> {
                         ),
                       ),
                       lineBarsData: lineBarsData,
-                      minY: -0.25,
+                      minY: 0,
                       titlesData: FlTitlesData(
                         leftTitles: const AxisTitles(
                           // axisNameWidget: Text('count'),

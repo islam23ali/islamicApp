@@ -89,6 +89,7 @@ class _TopCardHomeState extends State<TopCardHome> {
               color: widget.gradientColor1.withOpacity(0.1)
           ),
           dotData: const FlDotData(show: true),
+
           gradient: LinearGradient(
             colors: [
               widget.gradientColor1,
@@ -278,7 +279,7 @@ class _TopCardHomeState extends State<TopCardHome> {
                           ),
                         ),
                         lineBarsData: lineBarsData,
-                        minY: -0.25,
+                        minY: 0,
                         titlesData: FlTitlesData(
                           leftTitles: const AxisTitles(
                             // axisNameWidget: Text('count'),

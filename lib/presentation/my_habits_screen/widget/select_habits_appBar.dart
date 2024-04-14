@@ -86,12 +86,12 @@ class _SelectHabitsAppBarState extends State<SelectHabitsAppBar> {
                   ),
                   SizedBox(width: 10.w,),
                   Text(
-                    LocaleKeys.today.tr(),
+                    provider.dateHabitsController.text==''?LocaleKeys.today.tr():provider.dateHabitsController.text,
                     style: TextStyles()
                         .getDisplayMediumStyle(fontSize: 14.sp)
                         .customColor(AppColors.white),
                   ),
-                  SizedBox(width: 30.w,),
+                  SizedBox(width:provider.dateHabitsController.text==''? 30.w:0,),
                 ],)),
           SizedBox(width: 45.w,),
           Container(

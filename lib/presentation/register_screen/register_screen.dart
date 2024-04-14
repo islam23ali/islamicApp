@@ -6,6 +6,7 @@ import 'package:islamic_app/core/app_loader.dart';
 import 'package:islamic_app/core/extensions/num_extensions.dart';
 import 'package:islamic_app/core/resources/locale_keys.g.dart';
 import 'package:islamic_app/presentation/component/component.dart';
+import 'package:islamic_app/presentation/component/inputs/new/customTextFormField.dart';
 import 'package:islamic_app/presentation/register_screen/register_screen_view_model.dart';
 import 'package:islamic_app/presentation/register_screen/widget/top_appbar.dart';
 import 'package:jhijri/_src/_jHijri.dart';
@@ -117,12 +118,12 @@ Future<void> _selectDate(BuildContext context) async {
                           ),
                           SizedBox(width: 10.w,),
                           Text(
-                            LocaleKeys.today.tr(),
+                            provider.praysDateController.text==''? LocaleKeys.today.tr():provider.praysDateController.text,
                             style: TextStyles()
                                 .getDisplayMediumStyle(fontSize: 14.sp)
                                 .customColor(AppColors.white),
                           ),
-                                SizedBox(width: 30.w,),
+                                SizedBox(width:provider.praysDateController.text==''? 30.w:0,),
                         ],)),
                         Expanded(
                           child: ListView.builder(

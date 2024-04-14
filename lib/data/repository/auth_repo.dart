@@ -4,6 +4,7 @@ import '../app_urls/app_url.dart';
 import '../datasource/remote/dio/dio_client.dart';
 import '../datasource/remote/exception/api_error_handler.dart';
 import '../model/body/login_body.dart';
+import '../model/body/register_body.dart';
 import '../model/response/base/api_response.dart';
 import 'SaveUserData.dart';
 
@@ -24,6 +25,44 @@ class AuthRepo {
       return ApiResponse.withError(ApiErrorHandler.getMessage(e));
     }
   }
+
+  Future<ApiResponse> loginSocialRepo(String email) async {
+    try {
+      Response response = await dioClient.post(
+        AppURL.kLoginSocialURI,data: FormData.fromMap({
+        'email':email,
+      })
+      );
+      return ApiResponse.withSuccess(response);
+    } catch (e) {
+      return ApiResponse.withError(ApiErrorHandler.getMessage(e));
+    }
+  }
+
+  Future<ApiResponse> registerSocialRepo(String email) async {
+    try {
+      Response response = await dioClient.post(
+        AppURL.kRegisterSocialURI,data: FormData.fromMap({
+        'email':email,
+      })
+      );
+      return ApiResponse.withSuccess(response);
+    } catch (e) {
+      return ApiResponse.withError(ApiErrorHandler.getMessage(e));
+    }
+  }
+
+  Future<ApiResponse> registerRepo(RegisterBody registerBody) async {
+    try {
+      Response response = await dioClient.post(
+        AppURL.kRegisterURI,data: registerBody.toJson()
+      );
+      return ApiResponse.withSuccess(response);
+    } catch (e) {
+      return ApiResponse.withError(ApiErrorHandler.getMessage(e));
+    }
+  }
+
 // Future<ApiResponse> registerRepo(RegisterBody? registerBody) async {
 //   try {
 //     // TargetPlatform deviceType = getDeviceType();/// for software_type

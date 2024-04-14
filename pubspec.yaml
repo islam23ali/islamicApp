@@ -24,7 +24,6 @@ dependencies:
   #cupertino_icons: ^1.0.2
   flutter_svg: ^2.0.5  # svg image
   easy_localization: ^3.0.1  # localization
-  #shared_preferences: ^2.1.1   # shared_preferences
   # image:
   flutter_staggered_animations: ^1.1.1 # #animation
   flutter_spinkit: ^5.1.0 #loading
@@ -47,10 +46,10 @@ dependencies:
   # for map permission
   permission_handler: ^10.2.0
   # for notifications
-  #  firebase_messaging: ^14.6.2
-  #  firebase_core:
-#  flutter_local_notifications: ^14.1.1
-  #  firebase_auth: ^4.7.2
+  firebase_messaging: ^14.6.2
+  firebase_core:
+  firebase_auth: ^4.7.2
+  google_sign_in: ^6.1.5
   flutter_calendar_carousel: ^2.4.2
   jhijri:
   flutter_qiblah:
@@ -70,7 +69,7 @@ dependencies:
   http:
   shared_preferences: ^2.0.13
   url_launcher: 6.1.2
-  flutter_local_notifications: ^9.1.6
+  flutter_local_notifications: ^14.1.1
   flutter_background_service: ^2.1.2
   audioplayers: ^5.2.0
 

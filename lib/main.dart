@@ -2,11 +2,14 @@ import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
 import 'dart:ui';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter_background_service_android/flutter_background_service_android.dart';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_background_service/flutter_background_service.dart';
+import 'package:islamic_app/presentation/firebase_notification/FirebaseNotificationHandler.dart';
 import 'package:islamic_app/presentation/tools_screen/azan_files/pref.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'app.dart';
@@ -22,6 +25,9 @@ class MyHttpOverrides extends HttpOverrides {
   }
 }
 final GlobalKey<NavigatorState> navigator = GlobalKey<NavigatorState>();
+Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message)async {
+  await Firebase.initializeApp();
+}
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   HttpOverrides.global = MyHttpOverrides();
@@ -29,7 +35,8 @@ Future<void> main() async {
   await Prefs.init();
   await injection.init();
   ///
-  // await Firebase.initializeApp();
+  await Firebase.initializeApp();
+  // FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
   // FirebaseMessagingService firebaseMessagingService = FirebaseMessagingService();
   // await firebaseMessagingService.initializeFirebaseMessaging();
   // String? token = await firebaseMessagingService.getToken();

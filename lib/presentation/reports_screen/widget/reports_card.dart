@@ -130,145 +130,154 @@ class _ReportsCardState extends State<ReportsCard> {
                 Text(LocaleKeys.goodWorkReport.tr(),
                   style: TextStyles().getTitleStyle(fontSize: 18.sp).
                   customColor(AppColors.black),),
-                SizedBox(height: 25.h,),
-                SizedBox(
-                  height: 180.h,
-                  child: AspectRatio(
-                    aspectRatio: 2.5,
-                    child: LayoutBuilder(builder: (context, constraints) {
-                      return LineChart(
-                        LineChartData(
-                          showingTooltipIndicators: showingTooltipOnSpots.map((index) {
-                            return ShowingTooltipIndicators([
-                              LineBarSpot(
-                                tooltipsOnBar,
-                                lineBarsData.indexOf(tooltipsOnBar),
-                                tooltipsOnBar.spots[index],
-                              ),
-                            ]);
-                          }).toList(),
-                          lineTouchData: LineTouchData(
-                            enabled: true,
-                            handleBuiltInTouches: false,
-                            touchCallback:
-                                (FlTouchEvent event, LineTouchResponse? response) {
-
-                              if (response == null || response.lineBarSpots == null) {
-                                return;
-                              }
-                              // if (event is FlTapUpEvent) {
-                              //   final spotIndex = response.lineBarSpots!.first.spotIndex;
-                              //   setState(() {
-                              //     if (showingTooltipOnSpots.contains(spotIndex)) {
-                              //       showingTooltipOnSpots.remove(spotIndex);
-                              //     } else {
-                              //       showingTooltipOnSpots.add(spotIndex);
-                              //     }
-                              //   });
-                              // }
-                            },
-                            mouseCursorResolver:
-                                (FlTouchEvent event, LineTouchResponse? response) {
-                              if (response == null || response.lineBarSpots == null) {
-                                return SystemMouseCursors.basic;
-                              }
-                              return SystemMouseCursors.click;
-                            },
-                            getTouchedSpotIndicator:
-                                (LineChartBarData barData, List<int> spotIndexes) {
-                              return spotIndexes.map((index) {
-                                return TouchedSpotIndicatorData(
-                                  FlLine(strokeWidth: 1.5.w,
-                                    color: AppColors.second,
-                                  ),
-                                  FlDotData(
-                                    show: true,
-                                    getDotPainter: (spot, percent, barData, index) =>
-                                        FlDotCirclePainter(
-                                          radius: 6.r,
-                                          color: Colors.white,
-                                          strokeWidth: 1.5.w,
-                                          strokeColor: AppColors.second,
-                                        ),
-                                  ),
-                                );
-                              }).toList();
-                            },
-                            touchTooltipData: LineTouchTooltipData(
-                              // getTooltipColor: (touchedSpot) => Colors.pink,
-                              tooltipRoundedRadius: 8,
-                              tooltipBgColor: Colors.transparent,
-                              getTooltipItems: (List<LineBarSpot> lineBarsSpot) {
-                                return lineBarsSpot.map((lineBarSpot) {
-                                  int numberAsInt = lineBarSpot.y.truncate();
-                                  return LineTooltipItem(
-                                      "$numberAsInt%",
-                                      TextStyles().getTitleStyle(fontSize: 14.sp).customColor(AppColors.black)
-                                  );
-                                }).toList();
-                              },
-                            ),
-                          ),
-                          lineBarsData: lineBarsData,
-                          minY: -0.25,
-                          titlesData: FlTitlesData(
-                            leftTitles: const AxisTitles(
-                              // axisNameWidget: Text('count'),
-                              axisNameWidget: Text(''),
-                              axisNameSize: 20,
-                              sideTitles: SideTitles(
-                                showTitles: false,
-                                reservedSize: 0,
-                              ),
-                            ),
-                            bottomTitles: AxisTitles(
-                              sideTitles: SideTitles(
-                                showTitles: true,
-                                interval: 1,
-                                getTitlesWidget: (value, meta) {
-                                  return Transform.rotate(
-                                    angle: 60 * pi / 180,
-                                    child: bottomTitleWidgets(
-                                      value,
-                                      meta,
-                                      constraints.maxWidth,
+                SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      SizedBox(height: 25.h,),
+                      SizedBox(
+                        height: 180.h,
+                        child: AspectRatio(
+                          aspectRatio: 2.5,
+                          child: LayoutBuilder(builder: (context, constraints) {
+                            return LineChart(
+                              LineChartData(
+                                showingTooltipIndicators: showingTooltipOnSpots.map((index) {
+                                  return ShowingTooltipIndicators([
+                                    LineBarSpot(
+                                      tooltipsOnBar,
+                                      lineBarsData.indexOf(tooltipsOnBar),
+                                      tooltipsOnBar.spots[index],
                                     ),
-                                  );
-                                },
-                                reservedSize: 30,
+                                  ]);
+                                }).toList(),
+                                lineTouchData: LineTouchData(
+                                  enabled: true,
+                                  handleBuiltInTouches: false,
+                                  touchCallback:
+                                      (FlTouchEvent event, LineTouchResponse? response) {
+
+                                    if (response == null || response.lineBarSpots == null) {
+                                      return;
+                                    }
+                                    // if (event is FlTapUpEvent) {
+                                    //   final spotIndex = response.lineBarSpots!.first.spotIndex;
+                                    //   setState(() {
+                                    //     if (showingTooltipOnSpots.contains(spotIndex)) {
+                                    //       showingTooltipOnSpots.remove(spotIndex);
+                                    //     } else {
+                                    //       showingTooltipOnSpots.add(spotIndex);
+                                    //     }
+                                    //   });
+                                    // }
+                                  },
+                                  mouseCursorResolver:
+                                      (FlTouchEvent event, LineTouchResponse? response) {
+                                    if (response == null || response.lineBarSpots == null) {
+                                      return SystemMouseCursors.basic;
+                                    }
+                                    return SystemMouseCursors.click;
+                                  },
+                                  getTouchedSpotIndicator:
+                                      (LineChartBarData barData, List<int> spotIndexes) {
+                                    return spotIndexes.map((index) {
+                                      return TouchedSpotIndicatorData(
+                                        FlLine(strokeWidth: 1.5.w,
+                                          color: AppColors.second,
+                                        ),
+                                        FlDotData(
+                                          show: true,
+                                          getDotPainter: (spot, percent, barData, index) =>
+                                              FlDotCirclePainter(
+                                                radius: 6.r,
+                                                color: Colors.white,
+                                                strokeWidth: 1.5.w,
+                                                strokeColor: AppColors.second,
+                                              ),
+                                        ),
+                                      );
+                                    }).toList();
+                                  },
+                                  touchTooltipData: LineTouchTooltipData(
+                                    // getTooltipColor: (touchedSpot) => Colors.pink,
+                                    tooltipRoundedRadius: 8,
+                                    tooltipBgColor: Colors.transparent,
+                                    getTooltipItems: (List<LineBarSpot> lineBarsSpot) {
+                                      return lineBarsSpot.map((lineBarSpot) {
+                                        int numberAsInt = lineBarSpot.y.truncate();
+                                        return LineTooltipItem(
+                                            "$numberAsInt%",
+                                            TextStyles().getTitleStyle(fontSize: 14.sp).customColor(AppColors.black)
+                                        );
+                                      }).toList();
+                                    },
+                                  ),
+                                ),
+                                lineBarsData: lineBarsData,
+                                minY: 0,
+                                titlesData: FlTitlesData(
+                                  leftTitles: const AxisTitles(
+                                    // axisNameWidget: Text('count'),
+                                    axisNameWidget: Text(''),
+                                    axisNameSize: 20,
+                                    sideTitles: SideTitles(
+                                      showTitles: false,
+                                      reservedSize: 0,
+                                    ),
+                                  ),
+                                  bottomTitles: AxisTitles(
+                                    sideTitles: SideTitles(
+                                      showTitles: true,
+                                      interval: 1,
+                                      getTitlesWidget: (value, meta) {
+                                        return Transform.rotate(
+                                          angle: 60 * pi / 180,
+                                          child: bottomTitleWidgets(
+                                            value,
+                                            meta,
+                                            constraints.maxWidth,
+                                          ),
+                                        );
+                                      },
+                                      reservedSize: 30,
+                                    ),
+                                  ),
+                                  rightTitles: const AxisTitles(
+                                    // axisNameWidget: Text('count'),
+                                    axisNameWidget: Text(''),
+                                    sideTitles: SideTitles(
+                                      showTitles: false,
+                                      reservedSize: 0,
+                                    ),
+                                  ),
+                                  topTitles: const AxisTitles(
+                                    axisNameWidget: Text('',
+                                      textAlign: TextAlign.left,
+                                    ),
+                                    axisNameSize: 24,
+                                    sideTitles: SideTitles(
+                                      showTitles: true,
+                                      reservedSize: 0,
+                                    ),
+                                  ),
+                                ),
+                                gridData: const FlGridData(show: true),
+                                borderData: FlBorderData(
+                                  show: true,
+                                  border: Border.all(
+                                    color:Colors.transparent,
+                                  ),
+                                ),
                               ),
-                            ),
-                            rightTitles: const AxisTitles(
-                              // axisNameWidget: Text('count'),
-                              axisNameWidget: Text(''),
-                              sideTitles: SideTitles(
-                                showTitles: false,
-                                reservedSize: 0,
-                              ),
-                            ),
-                            topTitles: const AxisTitles(
-                              axisNameWidget: Text('',
-                                textAlign: TextAlign.left,
-                              ),
-                              axisNameSize: 24,
-                              sideTitles: SideTitles(
-                                showTitles: true,
-                                reservedSize: 0,
-                              ),
-                            ),
-                          ),
-                          gridData: const FlGridData(show: true),
-                          borderData: FlBorderData(
-                            show: true,
-                            border: Border.all(
-                              color:Colors.transparent,
-                            ),
-                          ),
+                            );
+                          }),
                         ),
-                      );
-                    }),
+                      ),
+                      SizedBox(height: 25.h,),
+                    ],
                   ),
-                ),
+                )
               ],
             ),
           ),

@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:islamic_app/data/model/body/register_body.dart';
 
 import '../../../../data/model/response/base/api_response.dart';
 import '../../../../data/repository/SaveUserData.dart';
@@ -19,6 +20,7 @@ class AuthViewModel with ChangeNotifier {
 
   ///variables
   bool _isLoading = false;
+  bool _isSocialLoading = false;
 
   UserModel? _userModel;
 
@@ -26,8 +28,15 @@ class AuthViewModel with ChangeNotifier {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
 
+
+  final TextEditingController nameController = TextEditingController();
+  final TextEditingController emailRegisterController = TextEditingController();
+  final TextEditingController phoneController = TextEditingController();
+  final TextEditingController passwordRegisterController = TextEditingController();
+
   ///getters
   bool get isLoading => _isLoading;
+  bool get isSocialLoading => _isSocialLoading;
 
   ///setters
 
@@ -42,6 +51,107 @@ class AuthViewModel with ChangeNotifier {
       _body.email=emailController.text;
       _body.password=passwordController.text;
     ApiResponse responseModel = await authRepo.loginRepo(_body);
+    if (responseModel.response != null &&
+        responseModel.response?.statusCode == 200) {
+      _isLoading = false;
+      _userModel = UserModel.fromJson(responseModel.response?.data);
+      if (_userModel != null && _userModel?.status == 200) {
+        if (_userModel?.data?.id != null) {
+          saveUserData.saveUserData(_userModel!);
+          saveUserData.saveUserToken(_userModel?.data?.token ?? '');
+          // await authRepo.updateFCMToken();
+        }
+        ToastUtils.showToast(_userModel?.message.toString()??'');
+         // updateFCMToken();
+        pushAndRemoveUntil(const BottomNavigationBarApp());
+      } else if(_userModel?.status==422) {
+        ToastUtils.showToast(_userModel?.message.toString()??'');
+      }else{
+        ToastUtils.showToast(_userModel?.message.toString()??'');
+      }
+      _isLoading = false;
+      notifyListeners();
+    } else {
+      _isLoading = false;
+      ApiChecker.checkApi(context, responseModel);
+    }
+    _isLoading = false;
+    notifyListeners();
+    return responseModel;
+  }
+  Future<ApiResponse> loginSocial(BuildContext context,String email) async {
+    _isSocialLoading = true;
+    notifyListeners();
+    ApiResponse responseModel = await authRepo.loginSocialRepo(email);
+    if (responseModel.response != null &&
+        responseModel.response?.statusCode == 200) {
+      _isSocialLoading = false;
+      _userModel = UserModel.fromJson(responseModel.response?.data);
+      if (_userModel != null && _userModel?.status == 200) {
+        if (_userModel?.data?.id != null) {
+          saveUserData.saveUserData(_userModel!);
+          saveUserData.saveUserToken(_userModel?.data?.token ?? '');
+          // await authRepo.updateFCMToken();
+        }
+        ToastUtils.showToast(_userModel?.message.toString()??'');
+         // updateFCMToken();
+        pushAndRemoveUntil(const BottomNavigationBarApp());
+      } else{
+        registerSocial(context,email);
+        // ToastUtils.showToast(_userModel?.message.toString()??'');
+      }
+      _isSocialLoading = false;
+      notifyListeners();
+    } else {
+      _isSocialLoading = false;
+      ApiChecker.checkApi(context, responseModel);
+    }
+    _isSocialLoading = false;
+    notifyListeners();
+    return responseModel;
+  }
+  Future<ApiResponse> registerSocial(BuildContext context,String email) async {
+    _isSocialLoading = true;
+    notifyListeners();
+    ApiResponse responseModel = await authRepo.registerSocialRepo(email);
+    if (responseModel.response != null &&
+        responseModel.response?.statusCode == 200) {
+      _isSocialLoading = false;
+      _userModel = UserModel.fromJson(responseModel.response?.data);
+      if (_userModel != null && _userModel?.status == 200) {
+        if (_userModel?.data?.id != null) {
+          saveUserData.saveUserData(_userModel!);
+          saveUserData.saveUserToken(_userModel?.data?.token ?? '');
+          // await authRepo.updateFCMToken();
+        }
+        ToastUtils.showToast(_userModel?.message.toString()??'');
+         // updateFCMToken();
+        pushAndRemoveUntil(const BottomNavigationBarApp());
+      } else if(_userModel?.status==422) {
+        ToastUtils.showToast(_userModel?.message.toString()??'');
+      }else{
+        ToastUtils.showToast(_userModel?.message.toString()??'');
+      }
+      _isSocialLoading = false;
+      notifyListeners();
+    } else {
+      _isSocialLoading = false;
+      ApiChecker.checkApi(context, responseModel);
+    }
+    _isSocialLoading = false;
+    notifyListeners();
+    return responseModel;
+  }
+
+  Future<ApiResponse> register(BuildContext context) async {
+    _isLoading = true;
+    notifyListeners();
+     RegisterBody _body = RegisterBody();
+      _body.email=emailRegisterController.text;
+      _body.name=nameController.text;
+      _body.phone=phoneController.text;
+      _body.password=passwordRegisterController.text;
+    ApiResponse responseModel = await authRepo.registerRepo(_body);
     if (responseModel.response != null &&
         responseModel.response?.statusCode == 200) {
       _isLoading = false;

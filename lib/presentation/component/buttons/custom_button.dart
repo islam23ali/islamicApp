@@ -25,6 +25,7 @@ class CustomButton extends StatelessWidget {
   final bool _isOutlined;
   final bool _widerPadding;
   final bool _loading;
+  final Color? _loadColor;
 
   const CustomButton({
     super.key,
@@ -34,6 +35,7 @@ class CustomButton extends StatelessWidget {
     String? icon,
     // Color? iconColor,
     Color? color,
+    Color? loadColor,
     Color? textColor,
     Color? borderColor,
     double? width,
@@ -59,6 +61,7 @@ class CustomButton extends StatelessWidget {
         _isOutlined = isOutlined,
         _widerPadding = widerPadding,
         _loading = loading,
+        _loadColor = loadColor,
        _buttonRadius = buttonRadius,
        _borderColor = borderColor;
 
@@ -99,7 +102,7 @@ class CustomButton extends StatelessWidget {
               ? Padding(
                 padding:  EdgeInsets.all(6.r),
                 child: LoadingSpinner(
-                     color: Theme.of(context).cardColor),
+                     color:_loadColor ?? Theme.of(context).cardColor),
               )
               : _title != null
                   ? Center(

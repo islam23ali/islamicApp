@@ -198,7 +198,7 @@ class _AssumptionCardState extends State<AssumptionCard> {
                         ),
                       ),
                       lineBarsData: lineBarsData,
-                      minY: -0.25,
+                      minY: 0,
                       titlesData: FlTitlesData(
                         leftTitles: const AxisTitles(
                           // axisNameWidget: Text('count'),

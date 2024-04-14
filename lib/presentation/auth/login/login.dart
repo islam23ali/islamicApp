@@ -1,5 +1,8 @@
 import 'package:easy_localization/easy_localization.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:google_sign_in/google_sign_in.dart';
+import 'package:islamic_app/presentation/auth/register/register.dart';
 import 'package:provider/provider.dart';
 import 'package:islamic_app/core/extensions/num_extensions.dart';
 import 'package:islamic_app/core/routing/route.dart';
@@ -51,9 +54,13 @@ class _LoginState extends State<Login> {
     }
   }
 
+  ValueNotifier userCredential = ValueNotifier('');
+
+
   @override
   Widget build(BuildContext context) {
     bool isLoading = context.watch<AuthViewModel>().isLoading;
+    bool isSocialLoading = context.watch<AuthViewModel>().isSocialLoading;
 
     final isKeyboard = MediaQuery.of(context).viewInsets.bottom != 0;
     return CustomScaffold(
@@ -70,7 +77,22 @@ class _LoginState extends State<Login> {
                   width: 292.w,
                 ),
                 VerticalSpace(AppSize.s36.h),
-                CustomButton(onTap: (){},
+                CustomButton(
+                  loading: isSocialLoading,
+                  loadColor: AppColors.primaryColor,
+                  onTap: () async {
+                  userCredential.value = await signInWithGoogle();
+                  if (userCredential.value != null){
+                    print("fffffffffffff");
+                    print(userCredential.value.user!.email);
+                    print(userCredential.value.user!.displayName);
+                    Provider.of<AuthViewModel>(context, listen: false).loginSocial(context,userCredential.value.user!.email);
+                  }else{
+                    print("7777777777777");
+
+                  }
+
+                },
                   title: LocaleKeys.registerGoogleAccount.tr(),textColor: AppColors.black,
                   color: AppColors.white,borderColor: AppColors.grayLight,icon: Assets.google,),
                 VerticalSpace(AppSize.s8.h),
@@ -95,8 +117,22 @@ class _LoginState extends State<Login> {
                   onTap: (){
                   _onSubmit(context);
                 },),
+                VerticalSpace(AppSize.s8.h),
+                Center(
+                  child: InkWell(onTap: (){
+                    push(Register());
+                  },
+                    child: Text(
+                      'او التسجيل',
+                      style: TextStyles()
+                          .getRegularStyle(fontSize: 15.sp)
+                          .customColor(AppColors.primaryColor),
+                    ),
+                  ),
+                ),
               ],
             ),
+
             // if (!isKeyboard)
             //   Align(
             //     alignment: Alignment.bottomLeft,
@@ -162,6 +198,23 @@ class _LoginState extends State<Login> {
       ),
     );
   }
+  Future<dynamic> signInWithGoogle() async {
+    try {
+      final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
 
+      final GoogleSignInAuthentication? googleAuth =
+      await googleUser?.authentication;
+
+      final credential = GoogleAuthProvider.credential(
+        accessToken: googleAuth?.accessToken,
+        idToken: googleAuth?.idToken,
+      );
+
+      return await FirebaseAuth.instance.signInWithCredential(credential);
+    } on Exception catch (e) {
+      // TODO
+      print('exception->$e');
+    }
+  }
 
 }

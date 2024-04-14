@@ -2,6 +2,9 @@ class AppURL {
   static const String kBaseURL = "http://selfaccounting.arabicalgorithm.com/api";
   ///Auth
  static const String kLoginURI = "/user/auth/login";
+ static const String kLoginSocialURI = "/user/auth/login_social";
+ static const String kRegisterURI = "/user/auth/signup";
+ static const String kRegisterSocialURI = "/user/auth/signup_social";
  // store keeper
   static const String kPrayersURI = "/user/auth/prayers?date=";
   static const String kNextPrayerURI = "/user/auth/next_prayer";

@@ -5,11 +5,28 @@ import 'package:flutter/services.dart';
 import 'package:islamic_app/presentation/splash/splash.dart';
 import 'package:islamic_app/presentation/tools_screen/pages/quraan/widget/sura_details/sura_details.dart';
 import 'core/res/theme/theme_manager.dart';
+import 'firebase_notification/notification_services.dart';
 import 'main.dart';
 BuildContext? appContext;
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({Key? key}) : super(key: key);
 
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  NotificationServices notificationServices = NotificationServices();
+  @override
+  void initState() {
+    super.initState();
+    notificationServices.requestNotificationPermission();
+    notificationServices.requestPermission();
+    notificationServices.forgroundMessage();
+    notificationServices.firebaseInit(context);
+    notificationServices.setupInteractMessage(context);
+    notificationServices.getDeviceToken();
+  }
   @override
   Widget build(BuildContext context) {
     SystemChrome.setPreferredOrientations([
