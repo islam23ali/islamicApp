@@ -20,7 +20,7 @@ class CustomButton extends StatelessWidget {
   final double? _buttonRadius;
   final double? _fontSize;
   final String? _icon;
-  // final Color? _iconColor;
+  final Color? _iconColor;
   final bool _isRounded;
   final bool _isOutlined;
   final bool _widerPadding;
@@ -33,7 +33,7 @@ class CustomButton extends StatelessWidget {
     Widget? child,
     String? title,
     String? icon,
-    // Color? iconColor,
+    Color? iconColor,
     Color? color,
     Color? loadColor,
     Color? textColor,
@@ -51,7 +51,7 @@ class CustomButton extends StatelessWidget {
         _child = child,
         _title = title,
         _icon = icon,
-        // _iconColor = iconColor,
+        _iconColor = iconColor,
         _color = color,
         _textColor = textColor,
         _width = width,
@@ -111,7 +111,7 @@ class CustomButton extends StatelessWidget {
                         children: [
                           (_icon==null)?SizedBox(): Padding(
                             padding: EdgeInsets.symmetric(horizontal: 4.w),
-                            child: SVGIcon(_icon??'',width: 20.w,height: 20.h,),
+                            child: SVGIcon(_icon??'',width: 20.w,height: 20.h,color: _iconColor,),
                           ),
                           Text(
                             _title!,

@@ -34,6 +34,7 @@ class Assets {
   static const String needle= 'assets/images/svg/needle.svg';
   static const String compass= 'assets/images/svg/compass.svg';
   static const String azan= 'assets/images/svg/azan.svg';
+  static const String logout= 'assets/images/svg/logout.svg';
 
 
   /// not set

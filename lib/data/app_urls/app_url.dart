@@ -5,7 +5,10 @@ class AppURL {
  static const String kLoginSocialURI = "/user/auth/login_social";
  static const String kRegisterURI = "/user/auth/signup";
  static const String kRegisterSocialURI = "/user/auth/signup_social";
- // store keeper
+  static const String kUpdateFCMTokenURI = "/user/auth/update_token";
+  static const String kLogoutURI = "/user/auth/logout";
+
+  // store keeper
   static const String kPrayersURI = "/user/auth/prayers?date=";
   static const String kNextPrayerURI = "/user/auth/next_prayer";
   static const String kAssumptionsURI = "/user/auth/assumptions";

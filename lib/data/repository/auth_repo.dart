@@ -118,19 +118,21 @@ class AuthRepo {
 //     return ApiResponse.withError(ApiErrorHandler.getMessage(e));
 //   }
 // }
-// Future<ApiResponse> logout() async {
-//   try {
-//     Response response = await dioClient.post(
-//       AppURL.kLogoutURI,
-//       data: FormData.fromMap({
-//         "token": saveUserData.getUserToken()??'',
-//       }),
-//     );
-//     return ApiResponse.withSuccess(response);
-//   } catch (e) {
-//     return ApiResponse.withError(ApiErrorHandler.getMessage(e));
-//   }
-// }
+Future<ApiResponse> logout({required String fcmToken}) async {
+  try {
+    TargetPlatform deviceType = getDeviceType();/// for software_type
+    Response response = await dioClient.post(
+      AppURL.kLogoutURI,
+      data: FormData.fromMap({
+        "type": deviceType.name,
+        "token": fcmToken,
+      }),
+    );
+    return ApiResponse.withSuccess(response);
+  } catch (e) {
+    return ApiResponse.withError(ApiErrorHandler.getMessage(e));
+  }
+}
 // Future<ApiResponse> deleteAccount() async {
 //   try {
 //     Response response = await dioClient.get(
@@ -142,19 +144,19 @@ class AuthRepo {
 //   }
 // }
 
-// Future<ApiResponse> updateFCMToken({required String fcmToken}) async {
-//   try {
-//     TargetPlatform deviceType = getDeviceType();/// for software_type
-//     Response response = await dioClient.post(AppURL.kUpdateFCMTokenURI,
-//         queryParameters: {
-//           'token':fcmToken,
-//           'lang':saveUserData.getLang(),
-//           'type':deviceType.name});
-//     return ApiResponse.withSuccess(response);
-//   } catch (e) {
-//     return ApiResponse.withError(ApiErrorHandler.getMessage(e));
-//   }
-// }
+Future<ApiResponse> updateFCMToken({required String fcmToken}) async {
+  try {
+    TargetPlatform deviceType = getDeviceType();/// for software_type
+    Response response = await dioClient.post(AppURL.kUpdateFCMTokenURI,
+        queryParameters: {
+          'token':fcmToken,
+          'lang':saveUserData.getLang(),
+          'type':deviceType.name});
+    return ApiResponse.withSuccess(response);
+  } catch (e) {
+    return ApiResponse.withError(ApiErrorHandler.getMessage(e));
+  }
+}
 TargetPlatform getDeviceType() {/// for software_type
   return defaultTargetPlatform;
 }

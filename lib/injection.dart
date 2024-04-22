@@ -13,7 +13,6 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'core/network_info.dart';
 import 'data/app_urls/app_url.dart';
-import 'data/datasource/locale/locale_data_source.dart';
 import 'data/datasource/remote/dio/dio_client.dart';
 import 'data/datasource/remote/dio/logging_interceptor.dart';
 import 'data/repository/SaveUserData.dart';

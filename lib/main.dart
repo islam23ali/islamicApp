@@ -9,7 +9,6 @@ import 'package:audioplayers/audioplayers.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_background_service/flutter_background_service.dart';
-import 'package:islamic_app/presentation/firebase_notification/FirebaseNotificationHandler.dart';
 import 'package:islamic_app/presentation/tools_screen/azan_files/pref.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'app.dart';

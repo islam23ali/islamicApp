@@ -1,5 +1,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:islamic_app/presentation/auth/auth_view_model.dart';
+import 'package:provider/provider.dart';
 import '../../../../core/resources/app_assets.dart';
 import '../../../../core/routing/route.dart';
 import '../../../../data/repository/SaveUserData.dart';
@@ -22,6 +24,7 @@ class _SplashState extends State<Splash> {
     print("jhjhjhhhhtoken${sp.getUserData()?.data?.token}");
     Timer(const Duration(seconds: 3), () {
       if (sp.getUserData()?.data?.id !=null) {
+        Provider.of<AuthViewModel>(context,listen: false).updateFCMToken();
         pushAndRemoveUntil(const BottomNavigationBarApp());
       }else{
       pushAndRemoveUntil(const Login());}

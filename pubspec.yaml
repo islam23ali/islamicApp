@@ -21,7 +21,6 @@ dependencies:
     sdk: flutter
 
   # UI
-  #cupertino_icons: ^1.0.2
   flutter_svg: ^2.0.5  # svg image
   easy_localization: ^3.0.1  # localization
   # image:
@@ -29,7 +28,6 @@ dependencies:
   flutter_spinkit: ^5.1.0 #loading
   cached_network_image: ^3.2.2
   logger: ^1.1.0
-  # logging: ^1.1.0
   # State management
   provider: ^6.0.4
   lottie: #lottie
@@ -40,20 +38,15 @@ dependencies:
   dio: ^4.0.6
   connectivity_plus: ^3.0.2
   fluttertoast: ^8.2.1
-  # for place id
-  geolocator: ^9.0.2
-  geocoding: ^2.0.0
   # for map permission
   permission_handler: ^10.2.0
   # for notifications
   firebase_messaging: ^14.6.2
-  firebase_core:
   firebase_auth: ^4.7.2
   google_sign_in: ^6.1.5
   flutter_calendar_carousel: ^2.4.2
   jhijri:
   flutter_qiblah:
-#  awesome_notifications:
 
 #  syncfusion_flutter_charts:
   fl_chart: ^0.63.0
@@ -61,25 +54,12 @@ dependencies:
   restart_app: ^1.2.1
 #  quran: ^1.2.2
   al_quran: ^0.1.1+5
-  google_fonts:
-
-  cupertino_icons: ^1.0.2
   percent_indicator: ^4.0.1
-  intl:
-  http:
   shared_preferences: ^2.0.13
-  url_launcher: 6.1.2
   flutter_local_notifications: ^14.1.1
   flutter_background_service: ^2.1.2
   audioplayers: ^5.2.0
 
-
-  #for dotted line
-#dependency_overrides:
-#  modal_bottom_sheet:
-#    git:
-#      url: https://github.com/danReynolds/modal_bottom_sheet.git
-#      path: modal_bottom_sheet
 
 dev_dependencies:
   flutter_test:

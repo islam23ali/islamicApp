@@ -4,8 +4,11 @@ import 'package:fl_chart/fl_chart.dart';
 import 'package:islamic_app/core/app_loader.dart';
 import 'package:islamic_app/core/extensions/num_extensions.dart';
 import 'package:islamic_app/core/res/text_styles.dart';
+import 'package:islamic_app/core/resources/app_assets.dart';
 import 'package:islamic_app/core/resources/app_colors.dart';
 import 'package:islamic_app/core/resources/locale_keys.g.dart';
+import 'package:islamic_app/presentation/component/buttons/custom_button.dart';
+import 'package:islamic_app/presentation/component/svg_icon.dart';
 import 'package:islamic_app/presentation/home_screen/home_view_model.dart';
 import 'package:islamic_app/presentation/home_screen/widget/bottom_card.dart';
 import 'package:islamic_app/presentation/home_screen/widget/color_card.dart';
@@ -15,6 +18,7 @@ import 'package:provider/provider.dart';
 import 'dart:math' as math;
 
 import '../component/custom_circle_pant.dart';
+import '../component/pop/logout_dialog.dart';
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
@@ -44,13 +48,22 @@ class _HomeState extends State<Home> {
               height: 50.h,
               color: AppColors.white,
               child: Center(
-                child: Row(
+                child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
                       jHijriNow.hijri.toString(),
                       style: TextStyles()
                           .getTitleStyle(fontSize: 16.sp)
                           .customColor(AppColors.black),
+                    ),
+                    InkWell(onTap: (){
+                      createAlertDialogLogout();
+                    },
+                      child: Container(
+                        padding: EdgeInsets.symmetric(horizontal:20.w,vertical: 12.h),
+                        decoration:
+                      BoxDecoration(borderRadius: BorderRadius.circular(12.r),
+                        color: AppColors.errorColor,),child: Center(child: SVGIcon(Assets.logout,color: AppColors.white,)),),
                     ),
                   ],
                 ),
@@ -63,5 +76,13 @@ class _HomeState extends State<Home> {
         ),
       ),
     );
+  }
+  void createAlertDialogLogout() {
+    showDialog(
+        barrierDismissible: false,
+        context: context,
+        builder: (context) {
+          return const LogoutDialog();
+        });
   }
 }

@@ -9,7 +9,6 @@ import 'package:islamic_app/presentation/tools_screen/pages/quraan/my_provider_q
 import 'package:islamic_app/presentation/tools_screen/pages/rosary_page/rosary_view_model.dart';
 import 'package:islamic_app/presentation/tools_screen/tools_view_model.dart';
 import 'package:provider/provider.dart';
-import 'data/datasource/locale/locale_data_source.dart';
 import 'injection.dart';
 
 class GenerateMultiProvider extends StatelessWidget {
