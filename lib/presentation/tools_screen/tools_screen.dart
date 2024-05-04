@@ -68,17 +68,6 @@ class _ToolsScreenState extends State<ToolsScreen> {
               ],
             ),
           ),
-          // InkWell(onTap: (){
-          //   push(quranTap());
-          // },
-          //   child: Column(crossAxisAlignment: CrossAxisAlignment.center,
-          //     children: [
-          //       Image.asset(Assets.quraan,height: 70.h,width: 70.w,),
-          //       SizedBox(height: 10.h,),
-          //       Text(LocaleKeys.quraan.tr(),style: TextStyles().getDisplayMediumStyle(fontSize: 14.sp).customColor(AppColors.text1Color),)
-          //     ],
-          //   ),
-          // ),
           InkWell(onTap: (){
             push(HadithsPage());
           },
@@ -166,23 +155,37 @@ class _ToolsScreenState extends State<ToolsScreen> {
         ],
       ),
       SizedBox(height: 30.h,),
-      Row(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          // InkWell(onTap: (){
-          //   push(QuranApp());
-          // },
-          //   child: Column(crossAxisAlignment: CrossAxisAlignment.center,
-          //     children: [
-          //       Image.asset(Assets.quraan,height: 70.h,width: 70.w,),
-          //       SizedBox(height: 10.h,),
-          //       Text(LocaleKeys.quraan.tr(),style: TextStyles().getDisplayMediumStyle(fontSize: 14.sp).customColor(AppColors.text1Color),)
-          //     ],
-          //   ),
-          // ),
-        ],
-      ),
+      // Row(
+      //   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      //   crossAxisAlignment: CrossAxisAlignment.center,
+      //   children: [
+      //
+      //
+      //     InkWell(onTap: (){
+      //       push(quranTap());
+      //     },
+      //       child: Column(crossAxisAlignment: CrossAxisAlignment.center,
+      //         children: [
+      //           Image.asset(Assets.quraan,height: 70.h,width: 70.w,),
+      //           SizedBox(height: 10.h,),
+      //           Text(LocaleKeys.quraan.tr(),style: TextStyles().getDisplayMediumStyle(fontSize: 14.sp).customColor(AppColors.text1Color),)
+      //         ],
+      //       ),
+      //     ),
+      //
+      //     // InkWell(onTap: (){
+      //     //   push(QuranApp());
+      //     // },
+      //     //   child: Column(crossAxisAlignment: CrossAxisAlignment.center,
+      //     //     children: [
+      //     //       Image.asset(Assets.quraan,height: 70.h,width: 70.w,),
+      //     //       SizedBox(height: 10.h,),
+      //     //       Text(LocaleKeys.quraan.tr(),style: TextStyles().getDisplayMediumStyle(fontSize: 14.sp).customColor(AppColors.text1Color),)
+      //     //     ],
+      //     //   ),
+      //     // ),
+      //   ],
+      // ),
     ],);}));
   }
 }

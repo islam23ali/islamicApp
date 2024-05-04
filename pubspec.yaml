@@ -91,6 +91,9 @@ flutter:
         - asset: assets/fonts/Sukar Regular.ttf
           weight: 400
 
+    - family: quranFont
+      fonts:
+        - asset: assets/fonts/tfont.ttf
 #        - asset: assets/fonts/Madani Arabic Extra Light.ttf
 #          weight: 200
 #        - asset: assets/fonts/Madani Arabic Regular.ttf

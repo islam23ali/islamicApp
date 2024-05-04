@@ -4,11 +4,13 @@ import 'dart:io';
 import 'dart:ui';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_background_service_android/flutter_background_service_android.dart';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_background_service/flutter_background_service.dart';
+import 'package:islamic_app/presentation/firebase_notification/FirebaseNotificationHandler.dart';
 import 'package:islamic_app/presentation/tools_screen/azan_files/pref.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'app.dart';
@@ -29,17 +31,21 @@ Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message)async {
 }
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp,
+    DeviceOrientation.portraitDown,
+  ]);
   HttpOverrides.global = MyHttpOverrides();
 
   await Prefs.init();
   await injection.init();
   ///
   await Firebase.initializeApp();
-  // FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
-  // FirebaseMessagingService firebaseMessagingService = FirebaseMessagingService();
-  // await firebaseMessagingService.initializeFirebaseMessaging();
-  // String? token = await firebaseMessagingService.getToken();
-  // print('Firebase token: $token');
+  FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
+  FirebaseMessagingService firebaseMessagingService = FirebaseMessagingService();
+  await firebaseMessagingService.initializeFirebaseMessaging();
+  String? token = await firebaseMessagingService.getToken();
+  print('Firebase token: $token');
 
   await initializeApp();
   ///
@@ -107,7 +113,7 @@ onStart(ServiceInstance service) async {
   Timer.periodic(const Duration(minutes: 1), (timer) async {
     final now = DateTime.now();
     final formatter = DateFormat('HH:mm');
-    print("time now is ----${formatter.format(now)}");
+    // print("time now is ----${formatter.format(now)}");
 
     SharedPreferences prefs = await SharedPreferences.getInstance();
     String? jsonString = prefs.getString('myList');
@@ -116,15 +122,15 @@ onStart(ServiceInstance service) async {
 
       for (int i = 0; i < myList.length; i++) {
         if(myList[i] == formatter.format(now)){
-          print(";;;;;6666666666;;;;;;${myList[i]}");
+          // print(";;;;;6666666666;;;;;;${myList[i]}");
           // showNotification(flutterLocalNotificationsPlugin);
           final player = AudioPlayer();
           await player.setSource(AssetSource('audio/azan.mp3'));
           await player.play(AssetSource('audio/azan.mp3'));
 
         }else{
-          print(";;;;;77777;;;;;;${myList[i]}");
-          print(";;;;;time now;;;;;;${formatter.format(now)}");
+          // print(";;;;;77777;;;;;;${myList[i]}");
+          // print(";;;;;time now;;;;;;${formatter.format(now)}");
         }
       }
     }

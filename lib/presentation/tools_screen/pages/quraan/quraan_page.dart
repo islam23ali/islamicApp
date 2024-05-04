@@ -168,11 +168,11 @@ class quranTap extends StatelessWidget {
           ),
          const Divider(),
           Center(
-            child: Text(LocaleKeys.chooseAppColor.tr(),
-              style: TextStyles()
-                  .getTitleStyle(fontSize: 16.sp)
-                  .customColor(AppColors.black),
-            ),
+            // child: Text(LocaleKeys.chooseAppColor.tr(),
+            //   style: TextStyles()
+            //       .getTitleStyle(fontSize: 16.sp)
+            //       .customColor(AppColors.black),
+            // ),
           ),
          const Divider(),
           Expanded(
@@ -197,7 +197,11 @@ class quranTap extends StatelessWidget {
                     child: Text(
                         suraNames[index],
                         textAlign: TextAlign.center,
-                        style: TextStyles().getTitleStyle(fontSize: 18.sp).customColor(AppColors.black)
+                        style: TextStyle(
+                          color:AppColors.black ,
+                          fontSize: 20.sp,
+                          fontFamily: "quranFont",
+                        )
                     ),
                   );
                 },
