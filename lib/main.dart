@@ -26,9 +26,9 @@ class MyHttpOverrides extends HttpOverrides {
   }
 }
 final GlobalKey<NavigatorState> navigator = GlobalKey<NavigatorState>();
-Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message)async {
-  await Firebase.initializeApp();
-}
+// Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message)async {
+//   await Firebase.initializeApp();
+// }
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   SystemChrome.setPreferredOrientations([
@@ -41,11 +41,11 @@ Future<void> main() async {
   await injection.init();
   ///
   await Firebase.initializeApp();
-  FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
-  FirebaseMessagingService firebaseMessagingService = FirebaseMessagingService();
-  await firebaseMessagingService.initializeFirebaseMessaging();
-  String? token = await firebaseMessagingService.getToken();
-  print('Firebase token: $token');
+  // FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
+  // FirebaseMessagingService firebaseMessagingService = FirebaseMessagingService();
+  // await firebaseMessagingService.initializeFirebaseMessaging();
+  // String? token = await firebaseMessagingService.getToken();
+  // print('Firebase token: $token');
 
   await initializeApp();
   ///
