@@ -208,11 +208,13 @@ class _TopCardHomeState extends State<TopCardHome> {
                     return LineChart(
                       LineChartData(
                         showingTooltipIndicators: showingTooltipOnSpots.map((index) {
-                          return ShowingTooltipIndicators([
+                          return //showingTooltipOnSpots.isEmpty? const SizedBox():
+                            ShowingTooltipIndicators([
                             LineBarSpot(
                               tooltipsOnBar,
                               lineBarsData.indexOf(tooltipsOnBar),
-                              tooltipsOnBar.spots[index],
+                           //  tooltipsOnBar.spots[index],
+                             tooltipsOnBar.spots.isEmpty ? const FlSpot(0.0,0.0):tooltipsOnBar.spots[index],
                             ),
                           ]);
                         }).toList(),
